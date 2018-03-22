@@ -1,0 +1,71 @@
+/*
+
+wire [15:0] freq1, freq2, imp;
+
+taho_impuls taho_impulsUnit(
+	 .clock		(clk_1MHz),
+	 .reset		(reset),
+	 .msec		(msec),
+	 .sec			(sec),	 
+	 .TAHO1		(TAHO1_sync),
+	 .TAHO2		(TAHO2_sync),	 
+	 .IMPULS		(IMPULS_sync),	 
+	 .freq1		(freq1),
+	 .freq2		(freq2),
+	 .imp			(imp)
+);
+*/
+
+
+module taho_impuls(
+	 clock,		// clk_1MHz
+	 reset,
+	 sec,
+	 msec,
+	 
+	 taho1,
+	 taho2,	 
+	 impuls,
+	 
+	 freq1,
+	 freq2,
+	 imp
+);
+
+input wire clock, reset, sec, msec, taho1, taho2, IMPULS;
+ 
+output reg [15:0] imp;
+output reg [15:0] freq1, freq2;
+
+
+TAHO 
+TAHO_Unit1
+(
+	 .clock		(clock),
+	 .reset		(reset),
+	 .sec			(sec),	 
+	 .taho		(TAHO1),	 
+	 .freq		(freq1)
+);
+
+TAHO 
+TAHO_Unit2
+(
+	 .clock		(clock),
+	 .reset		(reset),
+	 .sec			(sec),	 
+	 .taho		(TAHO1),	 
+	 .freq		(freq2)
+);
+
+
+IMPULS 
+IMPULS_Unit
+(
+	 .clock		(clock),
+	 .reset		(reset),
+	 .msec		(msec),	 
+	 .impuls		(impuls),	 
+	 .imp			(imp)
+);
+endmodule

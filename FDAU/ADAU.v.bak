@@ -1,0 +1,625 @@
+/*
+13.06.17: 
+
+
+input  wire clk_5Mhz, reset, msec, DATA_in;
+output wire CNV, CLK, TX;
+output wire [3:0] 	ADDR, ENA;
+
+wire 			sample_rdy;
+wire [15:0] ADC_sample;		
+
+Adjuster 
+Adjuster_FRAME(
+    .clock			(clock),
+	 .clk_5Mhz		(clk_5Mhz),
+	 .reset			(reset),
+	 .msec			(msec),
+	 .ADDR			(ADDR),
+	 .ENA				(ENA),
+	 .CNV				(CNV),
+	 .CLK				(CLK),
+	 .DATA_in		(DATA_in),
+	 .sample_rdy	(sample_rdy),
+	 .ADC_sample	(ADC_sample),
+	 .TX				(TX)
+);
+
+
+*/
+
+
+module ADAU // analog data aquisition unit
+(
+	clock,
+	clk_5Mhz,
+	reset,
+	msec,
+	sec,
+	
+	ADDR,
+	ENA,
+	
+	CNV,
+	SDI,
+	CLK,
+	DATA_in,
+	
+	sample_rdy,
+	
+	TX,
+	
+//	timer,
+	sec_cnt,
+	minute,
+	
+	rd_FLIGHT,
+	FLIGHT_out,
+	GPS_DATA,
+	
+	freq1,
+	freq2,
+	imp
+);
+
+input  wire clk_5Mhz,clock, reset, msec, DATA_in,sec;
+output wire CNV, TX, CLK, SDI;
+output reg [3:0] 	ADDR, ENA;
+
+output wire 			sample_rdy;
+
+
+//output reg  [31:0] 	timer;
+//==============================
+output reg [15:0] 	sec_cnt;
+output reg [2:0]		minute;
+//==============================
+input  wire [7:0] 	rd_FLIGHT;
+output wire [31:0] 	FLIGHT_out;
+input  wire [223:0]  GPS_DATA;
+
+
+
+
+wire	[7:0]  new_frame;
+wire	[7:0]  new_frame_addr;
+wire	  wren;	assign wren = 1'b1;
+wire	[7:0]  channel;
+
+frame 
+RAM_with_FRAME(
+	 .clock			(clk_5Mhz),
+	 .data			(new_frame),
+	 .rdaddress		(rd_channel),
+	 .wraddress		(new_frame_addr),
+	 .wren			(wren),
+	 .q				(channel)
+);
+
+
+
+reg [3:0] 	state /* synthesis syn_encoding = "safe, one-hot" */;
+localparam  IDDLE 			= 4'd0,
+
+				SYNC				= 4'd1,
+				SYNC_DELAY		= 4'd2,
+				SYNC_TRANS		= 4'd3,
+				
+				START				= 4'd4,
+				DELAY				= 4'd5,
+				WT_RDY			= 4'd6,
+				WAIT_TRANSFER	= 4'd7,
+				REARANGE			= 4'd8;
+
+
+				
+parameter delay_clocks = 1220;	
+				
+
+reg s_word, ADC_start; 
+reg [7:0] 	rd_channel;
+reg [15:0]	sync_word;
+reg [31:0] 	cnt;
+
+always@(posedge reset or posedge clk_5Mhz) begin
+	if (reset) begin
+		s_word		<= 1'b0;
+		sync_word	<= 16'hFF7F;
+		state			<= IDDLE;
+		//---------------//
+			ENA	<= channel[3:0]; // 4'b1;//
+			ADDR	<= channel[7:4]; //4'b0;//
+		//---------------// 
+		rd_channel	<= 1;
+			
+	end
+	
+	else begin
+		case (state) 
+			
+			IDDLE: begin
+			 
+				ADC_start	<= 1'b0;
+				cnt			<= 32'b0;
+					
+				if (sec) state	<= SYNC;
+				 
+				else 		state	<= IDDLE;
+				
+			end
+			
+			SYNC: begin
+				
+				cnt		<= 32'd1050;		
+				state		<= WAIT_TRANSFER;
+				//-----------------------// 
+					ENA	<= channel[3:0]; 
+					ADDR	<= channel[7:4]; 
+				//-----------------------//
+				s_word		<= 1'b1;		
+				sync_word	<= 16'hFF7F;	
+				
+			end
+			
+			WAIT_TRANSFER: begin
+			 
+				cnt 		<= cnt + 32'b1;	
+				s_word	<= 1'b0;	
+				
+				if (~busy) 	state	<= DELAY;
+				
+				else			state	<= WAIT_TRANSFER;
+				
+			end
+			
+			DELAY: begin
+				
+				if (sec)begin
+					
+					state			<= IDDLE;
+					rd_channel	<= 1;//{`FRAME_size{1'd1}};
+					
+				end
+				
+				if (cnt == delay_clocks) begin
+				 
+					ADC_start	<= 1'b1;
+					state			<= WT_RDY;
+					cnt			<= 32'b0;	//<========
+					
+					if(rd_channel == 64) rd_channel	<= 1;
+					
+					else 						rd_channel	<= rd_channel + 1;
+					
+				end
+				
+				else cnt <= cnt + 32'b1;
+				
+			end
+			
+			WT_RDY: begin 	
+					
+				cnt 	<= cnt + 32'b1;	//<========
+					
+				if (sample_rdy) begin
+				 
+					ADC_start	<= 1'b0;
+				//-----------------------//
+					ENA		<= 4'h1;		 // SETs MUX to GND
+					ADDR 		<= 4'hF;		 // to low V on ADC
+				//-----------------------//	
+					state	<= REARANGE;
+					
+				end
+				
+				else state	<= WT_RDY;
+				
+			end
+			
+			REARANGE: begin
+			 
+				cnt <= cnt + 32'b1;
+				
+				if (cnt == 72) begin	
+					
+					state	<= WAIT_TRANSFER;
+					
+					//-----------------------// 
+						ENA	<= channel[3:0]; 
+						ADDR	<= channel[7:4]; 
+					//-----------------------//
+					
+				end				
+			end
+			
+		endcase
+	end
+end
+	
+
+wire IRQ;	assign IRQ = DATA_in;
+wire [15:0] 	ADC_sample;
+
+ADC  
+AD7983
+(
+	 .clock			(clk_5Mhz),
+	 .reset			(reset),
+	 .start			(ADC_start),//(msec), //
+	 
+	 .CNV				(CNV),
+	 .SDI				(SDI),
+	 .IRQ				(IRQ),
+	 .CLK				(CLK),
+	 .DATA_in		(DATA_in),
+	 
+	 .sample_rdy	(sample_rdy),
+	 .ADC_sample	(ADC_sample)
+);
+
+reg wr_en;
+reg [8:0]  	wraddress;
+reg [15:0]  bur_data_ext;
+
+MSRP MSRP_RAM(
+	 .clock			(clock),
+	 .data			(bur_data_ext),
+	 .rdaddress		(rd_FLIGHT),
+	 .wraddress		(wraddress),
+	 .wren			(wr_en),
+	 .q				(FLIGHT_out)
+);
+
+wire			busy;
+
+parameter FAST_clk = 48, SLOW_clk =217;
+
+wire [15:0]	SEND_pack;		assign SEND_pack 	= s_word ? sync_word	: ADC_sample;
+wire 			SEND_start;		assign SEND_start = s_word ? 1'b1		: sample_rdy;
+
+UARTx  
+		 #(.trans_mode(1),	
+			.delay_val(FAST_clk))
+DATA_STREAM (
+	 .clock		(clock),
+	 .reset		(reset),	
+	 .busy		(busy),	
+	 .DATA		(SEND_pack),
+	 .ENA			(SEND_start),	
+	 .tx			(TX)
+);
+
+//
+//always @ (posedge reset or posedge clk_5Mhz) begin
+//	if (reset) begin
+//		timer	<= 32'd10;
+//	end
+//	
+//	else begin
+//		if (sec) timer <= 32'd10;
+//		else 		timer <= timer + 32'b1;
+//	end
+//end
+
+
+
+
+///*
+//		FRAME ram for frame forming
+//*/
+//reg [31:0]	delay_clocks;
+////reg [15:0] 	sec_cnt;
+////reg [2:0]	minute;
+//
+//always @ (posedge reset or posedge sec) begin
+//	if (reset) begin
+//		sec_cnt			<= 16'd1;
+//		minute			<= 3'd7;
+//		delay_clocks	<= 32'd1220;
+//	end
+//	
+//	else begin
+//	 
+//		if (sec_cnt == 20) begin
+//		 
+//			sec_cnt	<= 16'd1;
+////			minute	<= minute + 3'b1;
+//			
+//		end
+//		
+//		else begin
+//			sec_cnt	<= sec_cnt + 16'd1;
+//			case (minute)
+////				0:	delay_clocks	<= 32'd415000;//
+////				1: delay_clocks	<= 32'd208000;//d205000;//
+////				2: delay_clocks	<= 32'd403500;//d100000;//
+////				3: delay_clocks	<= 32'd51500;//
+////				4: delay_clocks	<= 32'd25700;//d50000;//
+////				5: delay_clocks	<= 32'd12500;//d50000;//
+////				6: delay_clocks	<= 32'd2900;//d1200;//<----------------------!!!!!!!!!!!!!!
+////				7: delay_clocks	<= 32'd1300;//
+//
+//				0:	delay_clocks	<= 32'd19200;//
+//				1: delay_clocks	<= 32'd4550;//d205000;//
+//				2: delay_clocks	<= 32'd4550;//d100000;//
+//				3: delay_clocks	<= 32'd2100;//
+//				4: delay_clocks	<= 32'd2100;//d50000;//
+//				5: delay_clocks	<= 32'd950;//d50000;//
+//				6: delay_clocks	<= 32'd900;//d1200;//<----------------------!!!!!!!!!!!!!!
+//				7: delay_clocks	<= 32'd1220;//
+//				
+//				
+//			endcase
+//		end
+//		
+//	end
+//end
+
+
+
+//
+//
+//
+//
+////------------------------------------------------------------------//
+//
+//reg [4:0] st_m/* synthesis syn_encoding = "safe, one-hot" */;
+//
+//localparam  Iddle 			= 1,//5'b00000,
+//				Wr_data			= 2,//5'b00001,
+//				Check				= 3,//5'b00010,
+//				Wr_gps			= 4,//5'b00011,
+//				WAIT_Low_send	= 5,//5'b00100,
+//				
+//				READ_DIGI_1		= 6,//5'b00101,
+//				READ_DIGI_2		= 7,//5'b00110,
+//				READ_DIGI_3		= 8,//5'b00111,
+//				READ_DIGI_4		= 9,//5'b01000,
+//				READ_DIGI_5		= 10,//5'b01001,
+//				READ_DIGI_6		= 11,//5'b01010,
+//				WAIT_one_clk	= 12,//5'b01011,
+//				
+//				READ_TAHO_1		= 13,//5'b01100,
+//				READ_TAHO_2		= 14,//5'b01101,
+//				READ_IMPULS		= 15,//5'b01110,
+//				
+//				PLUS_ONE			= 16,//5'b01111,
+//				SEND_SERIAL1	= 17,//5'b10000,
+//				SEND_SERIAL2	= 18;//5'b10001;
+//	
+//always @ (posedge reset or posedge clock) begin
+//	if (reset) begin
+//		wr_en				<= 1'b0;
+//		word_cnt			<= 8'b0;
+//		GPS_buff			<= 224'b0;
+//		wraddress		<=	9'b0;
+//		bur_data_ext	<=	16'b0;
+//		digi_channel	<= 4'b0;	
+//		
+//		
+//		rd_arinc1 		<= 5'b0;
+//		rd_arinc2 		<= 5'b0;
+//		rd_arinc3 		<= 5'b0;
+//		rd_arinc4 		<= 5'b0;
+//		rd_arinc5 		<= 5'b0;
+//		rd_arinc6 		<= 5'b0;
+//		
+//	end
+//	
+//	else begin
+//		case (st_m)
+//		 
+//			Iddle: begin
+//				if (sec) begin
+//					st_m 				<= SEND_SERIAL1;//Wr_data;
+//					wraddress		<=	9'b0;
+//					GPS_buff			<= GPS_DATA;
+//					digi_channel	<= 4'b0;	
+//				end
+//				
+//				else 		st_m	<= Iddle;
+//				
+//			end
+//			
+//			SEND_SERIAL1: begin 
+//				wr_en				<= 1'b1;
+//				bur_data_ext 	<= "RP";
+//				st_m				<= SEND_SERIAL2;
+//			end
+//			
+//			SEND_SERIAL2: begin 
+//				bur_data_ext 	<= "24";
+//				wraddress		<= wraddress + 9'b1;
+//				st_m				<= PLUS_ONE;
+//			end
+//			
+//			PLUS_ONE: begin 
+//				wraddress		<= wraddress + 9'b1;
+//				st_m				<= Wr_data;
+//			end			
+//			
+//			Wr_data:begin
+//				if (SEND_start) begin
+//					wr_en				<= 1'b1;
+//					bur_data_ext 	<= SEND_pack;
+//					
+//					word_cnt			<= word_cnt + 8'b1;
+//					
+//					st_m	<= WAIT_Low_send;
+//				end
+//				
+//				else st_m <= Wr_data;
+//			end
+//			
+//			WAIT_Low_send: begin
+//				if (~SEND_start) 	st_m	<= Check;
+//				else 					st_m	<= WAIT_Low_send;
+//			end
+//			
+//			Check: begin
+//				if (word_cnt == 65) begin
+//					st_m 		<= Wr_gps;
+//					word_cnt	<= 8'b0;
+//				end
+//				
+//				else begin
+//					st_m			<= Wr_data;
+//					wraddress	<= wraddress + 9'b1;
+//				end
+//				
+//			end			
+//			
+//			Wr_gps: begin
+//				if (word_cnt == 14) begin 	
+//					word_cnt <= 8'b0;					
+//					st_m 		<= READ_TAHO_1; //READ_DIGI_1; //Iddle;					
+//				end
+//				
+//				else begin 	
+//					st_m 			<= Wr_gps;
+//					word_cnt 	<= word_cnt + 8'b1;
+//					
+//					bur_data_ext 	<= GPS_buff [15:0];
+//					wraddress		<= wraddress + 9'b1;
+//					GPS_buff 		<= GPS_buff >> 16;				
+//					
+//				end
+//			end
+//			
+//			READ_TAHO_1: begin
+//				st_m 				<= READ_TAHO_2;
+//				bur_data_ext 	<= freq1;
+//				wraddress		<= wraddress + 9'b1;
+//			end
+//			
+//			READ_TAHO_2: begin
+//				st_m 				<= READ_IMPULS;
+//				bur_data_ext 	<= freq2;
+//				wraddress		<= wraddress + 9'b1;
+//			end
+//			
+//			READ_IMPULS: begin
+//				st_m 				<= READ_DIGI_1;
+//				bur_data_ext 	<= imp;
+//				wraddress		<= wraddress + 9'b1;
+//			end			
+//			
+//			READ_DIGI_1: begin
+//			 
+//				bur_data_ext	<= arinc_1_outp; 
+//				wraddress		<= wraddress + 9'b1;
+//				
+//				st_m		 			<= WAIT_one_clk;		
+//			 
+//				if (rd_arinc1 == 31) begin 	
+//					rd_arinc1 		<= 5'b0;
+//					digi_channel	<= digi_channel + 4'b1;				
+//				end				
+//				
+//				else rd_arinc1		<= rd_arinc1  + 5'b1;
+//			end
+//			
+//			READ_DIGI_2: begin
+//			 
+//				bur_data_ext	<= arinc_2_outp; 
+//				wraddress		<= wraddress + 9'b1;
+//				
+//				st_m		 			<= WAIT_one_clk;		
+//			 
+//				if (rd_arinc2 == 31) begin 	
+//					rd_arinc2 		<= 5'b0;
+//					digi_channel	<= digi_channel + 4'b1;				
+//				end					
+//				
+//				else 	rd_arinc2		<= rd_arinc2  + 5'b1;		
+//					
+//			end
+//			
+//			READ_DIGI_3: begin
+//			 
+//				bur_data_ext	<= arinc_3_outp; 
+//				wraddress		<= wraddress + 9'b1;
+//				
+//				st_m		 			<= WAIT_one_clk;		
+//			 
+//				if (rd_arinc3 == 31) begin 	
+//					rd_arinc3 		<= 5'b0;
+//					digi_channel	<= digi_channel + 4'b1;				
+//				end						
+//				
+//				else 	rd_arinc3		<= rd_arinc3  + 5'b1;	
+//					
+//			end
+//			
+//			READ_DIGI_4: begin
+//			 
+//				bur_data_ext	<= arinc_4_outp; 
+//				wraddress		<= wraddress + 9'b1;
+//				
+//				st_m		 			<= WAIT_one_clk;		
+//			 
+//				if (rd_arinc4 == 31) begin 	
+//					rd_arinc4 		<= 5'b0;
+//					digi_channel	<= digi_channel + 4'b1;				
+//				end				
+//				
+//				else 	rd_arinc4		<= rd_arinc4  + 5'b1;
+//					
+//			end
+//			
+//			READ_DIGI_5: begin
+//			 
+//				bur_data_ext	<= arinc_5_outp; 
+//				wraddress		<= wraddress + 9'b1;
+//					
+//				st_m		 			<= WAIT_one_clk;		
+//			 
+//				if (rd_arinc5 == 31) begin 	
+//					rd_arinc5 		<= 5'b0;
+//					digi_channel	<= digi_channel + 4'b1;				
+//				end				
+//				
+//				else 	rd_arinc5		<= rd_arinc5  + 5'b1;
+//					
+//			end
+//			
+//			READ_DIGI_6: begin
+//			 
+//				bur_data_ext	<= arinc_6_outp; 
+//				wraddress		<= wraddress + 9'b1;
+//					
+//				st_m		 			<= WAIT_one_clk;		
+//			 
+//				if (rd_arinc6 == 31) begin 	
+//					rd_arinc6 		<= 5'b0;
+//					digi_channel	<= digi_channel + 4'b1;				
+//				end				
+//				
+//				else 	rd_arinc6		<= rd_arinc6  + 5'b1;
+//					
+//			end
+//			
+//			WAIT_one_clk: begin					
+//				case (digi_channel)
+//					0: st_m		<= READ_DIGI_1;
+//					1: st_m		<= READ_DIGI_2;
+//					2: st_m		<= READ_DIGI_3;
+//					3: st_m		<= READ_DIGI_4;
+//					4: st_m		<= READ_DIGI_5;
+//					5: st_m		<= READ_DIGI_6;
+//					6: st_m		<= Iddle;
+//				endcase
+//			end
+//			
+//		endcase
+//	end
+//end
+//
+//reg  [3:0] 	digi_channel;
+//
+//
+//
+
+
+endmodule
+ 
