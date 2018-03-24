@@ -1,0 +1,160 @@
+
+State Machine - |aTOP_ARCTIUM|Get_All_and_Trans_TOP:Get_All_and_Trans_TOP_UNIT|state
+Name state.FLIGHT state.ZERO state.WAIT_FRAME state.READ_PARAM state.WAIT_one_clk state.READ_SOUND state.WAIT_START 
+state.WAIT_START 0 0 0 0 0 0 0 
+state.READ_SOUND 0 0 0 0 0 1 1 
+state.WAIT_one_clk 0 0 0 0 1 0 1 
+state.READ_PARAM 0 0 0 1 0 0 1 
+state.WAIT_FRAME 0 0 1 0 0 0 1 
+state.ZERO 0 1 0 0 0 0 1 
+state.FLIGHT 1 0 0 0 0 0 1 
+
+State Machine - |aTOP_ARCTIUM|Get_All_and_Trans_TOP:Get_All_and_Trans_TOP_UNIT|CC_transmit:CC_transmitUnit|state
+Name state.STOP state.NEXT_stp state.Delay state.Trans state.Start state.TODO state.Idle 
+state.Idle 0 0 0 0 0 0 0 
+state.TODO 0 0 0 0 0 1 1 
+state.Start 0 0 0 0 1 0 1 
+state.Trans 0 0 0 1 0 0 1 
+state.Delay 0 0 1 0 0 0 1 
+state.NEXT_stp 0 1 0 0 0 0 1 
+state.STOP 1 0 0 0 0 0 1 
+
+State Machine - |aTOP_ARCTIUM|Get_All_and_Trans_TOP:Get_All_and_Trans_TOP_UNIT|sound_store4:sound_storeUnit|state
+Name state.STOP state.IDDLE state.DATA_BYTE state.SAMPLE state.PRE_STOP 
+state.SAMPLE 0 0 0 0 0 
+state.DATA_BYTE 0 0 1 1 0 
+state.IDDLE 0 1 0 1 0 
+state.STOP 1 0 0 1 0 
+state.PRE_STOP 0 0 0 1 1 
+
+State Machine - |aTOP_ARCTIUM|SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|state
+Name state.SUBFRAME state.PUT_SERIAL_2 state.PUT_SERIAL_1 state.CNT state.WAIT_LOW state.WAIT_CYCLE state.READ_DOP state.READ_MSRP state.READ_GPS state.READ_I2C state.IDDLE 
+state.IDDLE 0 0 0 0 0 0 0 0 0 0 0 
+state.READ_I2C 0 0 0 0 0 0 0 0 0 1 1 
+state.READ_GPS 0 0 0 0 0 0 0 0 1 0 1 
+state.READ_MSRP 0 0 0 0 0 0 0 1 0 0 1 
+state.READ_DOP 0 0 0 0 0 0 1 0 0 0 1 
+state.WAIT_CYCLE 0 0 0 0 0 1 0 0 0 0 1 
+state.WAIT_LOW 0 0 0 0 1 0 0 0 0 0 1 
+state.CNT 0 0 0 1 0 0 0 0 0 0 1 
+state.PUT_SERIAL_1 0 0 1 0 0 0 0 0 0 0 1 
+state.PUT_SERIAL_2 0 1 0 0 0 0 0 0 0 0 1 
+state.SUBFRAME 1 0 0 0 0 0 0 0 0 0 1 
+
+State Machine - |aTOP_ARCTIUM|FDAU:FDAU|st_m
+Name st_m.READ_IMPULS st_m.READ_TAHO_2 st_m.READ_TAHO_1 st_m.WAIT_one_clk st_m.READ_DIGI_6 st_m.READ_DIGI_5 st_m.READ_DIGI_4 st_m.READ_DIGI_3 st_m.READ_DIGI_2 st_m.READ_DIGI_1 st_m.WAIT_Low_send st_m.Check st_m.Wr_data st_m.Iddle 
+st_m.Iddle 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+st_m.Wr_data 0 0 0 0 0 0 0 0 0 0 0 0 1 1 
+st_m.Check 0 0 0 0 0 0 0 0 0 0 0 1 0 1 
+st_m.WAIT_Low_send 0 0 0 0 0 0 0 0 0 0 1 0 0 1 
+st_m.READ_DIGI_1 0 0 0 0 0 0 0 0 0 1 0 0 0 1 
+st_m.READ_DIGI_2 0 0 0 0 0 0 0 0 1 0 0 0 0 1 
+st_m.READ_DIGI_3 0 0 0 0 0 0 0 1 0 0 0 0 0 1 
+st_m.READ_DIGI_4 0 0 0 0 0 0 1 0 0 0 0 0 0 1 
+st_m.READ_DIGI_5 0 0 0 0 0 1 0 0 0 0 0 0 0 1 
+st_m.READ_DIGI_6 0 0 0 0 1 0 0 0 0 0 0 0 0 1 
+st_m.WAIT_one_clk 0 0 0 1 0 0 0 0 0 0 0 0 0 1 
+st_m.READ_TAHO_1 0 0 1 0 0 0 0 0 0 0 0 0 0 1 
+st_m.READ_TAHO_2 0 1 0 0 0 0 0 0 0 0 0 0 0 1 
+st_m.READ_IMPULS 1 0 0 0 0 0 0 0 0 0 0 0 0 1 
+
+State Machine - |aTOP_ARCTIUM|FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|IMPULS:IMPULS_Unit|state
+Name state.decision state.cntL state.cntH state.iddle 
+state.iddle 0 0 0 0 
+state.cntH 0 0 1 1 
+state.cntL 0 1 0 1 
+state.decision 1 0 0 1 
+
+State Machine - |aTOP_ARCTIUM|FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|state
+Name state.FILTR2 state.FILTR state.WT_sec state.NEGATIV state.POSITIV state.IDDLE 
+state.IDDLE 0 0 0 0 0 0 
+state.POSITIV 0 0 0 0 1 1 
+state.NEGATIV 0 0 0 1 0 1 
+state.WT_sec 0 0 1 0 0 1 
+state.FILTR 0 1 0 0 0 1 
+state.FILTR2 1 0 0 0 0 1 
+
+State Machine - |aTOP_ARCTIUM|FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|st
+Name st.IDDLE st.NEGATIV st.POSITIV 
+st.IDDLE 0 0 0 
+st.POSITIV 1 0 1 
+st.NEGATIV 1 1 0 
+
+State Machine - |aTOP_ARCTIUM|FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|state
+Name state.FILTR2 state.FILTR state.WT_sec state.NEGATIV state.POSITIV state.IDDLE 
+state.IDDLE 0 0 0 0 0 0 
+state.POSITIV 0 0 0 0 1 1 
+state.NEGATIV 0 0 0 1 0 1 
+state.WT_sec 0 0 1 0 0 1 
+state.FILTR 0 1 0 0 0 1 
+state.FILTR2 1 0 0 0 0 1 
+
+State Machine - |aTOP_ARCTIUM|FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|st
+Name st.IDDLE st.NEGATIV st.POSITIV 
+st.IDDLE 0 0 0 
+st.POSITIV 1 0 1 
+st.NEGATIV 1 1 0 
+
+State Machine - |aTOP_ARCTIUM|FDAU:FDAU|ADAU:ADAU_FRAME|state
+Name state.WAIT_TRANSFER state.WT_RDY state.DELAY state.SYNC state.IDDLE state.REARANGE 
+state.IDDLE 0 0 0 0 0 0 
+state.SYNC 0 0 0 1 1 0 
+state.DELAY 0 0 1 0 1 0 
+state.WT_RDY 0 1 0 0 1 0 
+state.WAIT_TRANSFER 1 0 0 0 1 0 
+state.REARANGE 0 0 0 0 1 1 
+
+State Machine - |aTOP_ARCTIUM|FDAU:FDAU|ADAU:ADAU_FRAME|UARTx:DATA_STREAM|state
+Name state._16Bit state.STOP state.NEXT_stp state.DELAY state.TRANSMIT state.START state.IDLE 
+state.IDLE 0 0 0 0 0 0 0 
+state.START 0 0 0 0 0 1 1 
+state.TRANSMIT 0 0 0 0 1 0 1 
+state.DELAY 0 0 0 1 0 0 1 
+state.NEXT_stp 0 0 1 0 0 0 1 
+state.STOP 0 1 0 0 0 0 1 
+state._16Bit 1 0 0 0 0 0 1 
+
+State Machine - |aTOP_ARCTIUM|FDAU:FDAU|ADAU:ADAU_FRAME|ADC:AD7983|state
+Name state.DELAY2 state.DELAY state.SAMPLE state.WT_RDY state.START state.IDDLE 
+state.IDDLE 0 0 0 0 0 0 
+state.START 0 0 0 0 1 1 
+state.WT_RDY 0 0 0 1 0 1 
+state.SAMPLE 0 0 1 0 0 1 
+state.DELAY 0 1 0 0 0 1 
+state.DELAY2 1 0 0 0 0 1 
+
+State Machine - |aTOP_ARCTIUM|GPS:GPS_Unit|fstate
+Name fstate.FAULT_DATA fstate.Wait_CALENDAR fstate.DATE fstate.COMA_DATE fstate.ALTITUDE fstate.Wait_Altitude fstate.COMMAND2 fstate.COURSE fstate.COMA_Course fstate.SPEED fstate.E_W fstate.Wait2 fstate.LONGITUDE fstate.N_S fstate.Wait fstate.LATITUDE fstate.COMA_VER fstate.GET_Veryf fstate.COMA fstate.UTC_Time fstate.COMMAND 
+fstate.COMMAND 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+fstate.UTC_Time 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 
+fstate.COMA 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 
+fstate.GET_Veryf 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 1 
+fstate.COMA_VER 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 
+fstate.LATITUDE 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 1 
+fstate.Wait 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 
+fstate.N_S 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 1 
+fstate.LONGITUDE 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 
+fstate.Wait2 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 1 
+fstate.E_W 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 1 
+fstate.SPEED 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 
+fstate.COMA_Course 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 
+fstate.COURSE 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 1 
+fstate.COMMAND2 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+fstate.Wait_Altitude 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+fstate.ALTITUDE 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+fstate.COMA_DATE 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+fstate.DATE 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+fstate.Wait_CALENDAR 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+fstate.FAULT_DATA 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+
+State Machine - |aTOP_ARCTIUM|GPS:GPS_Unit|state
+Name state.IDLE state.START state.BYTE 
+state.IDLE 0 0 0 
+state.BYTE 1 0 1 
+state.START 1 1 0 
+
+State Machine - |aTOP_ARCTIUM|RTC:RTCUnit|state
+Name state.IDDLE state.END state.BLINK 
+state.IDDLE 0 0 0 
+state.BLINK 1 0 1 
+state.END 1 1 0 

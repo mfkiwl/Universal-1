@@ -1,18 +1,20 @@
-`ifndef AUDIO 
-  `include "defines.vh";
-`endif 
+//`ifndef AUDIO 
+//  `include "defines.vh";
+//`endif 
 /*
 	Get's AUDIO & sends it with DATA to CC &| LPC
 */
 /* 		<=======
 
+wire			frame_rdy;
+wire [3:0]	frame_cnt;
 
 Get_All_and_Trans_TOP
 Get_All_and_Trans_TOP_UNIT
 (
 	 .clock			(inp_clk),
 	 .reset			(reset),	
-	 .timer			(timer),		// start of sound sampling
+	 .timer			(delay),		// start of sound sampling
 	 .msec			(msec),		// interupt for packages	 
 	 
 	 .aud1			(aud1), 
@@ -22,7 +24,7 @@ Get_All_and_Trans_TOP_UNIT
 	 .frame_rdy 	(frame_rdy),
 	 .frame_cnt		(frame_cnt),
 	 
-	 .rd_FLIGHT		(rd_FLIGHT),	// [6:0]
+	 .rd_FLIGHT		(rd_FLIGHT),	// [7:0]
 	 .FLIGHT_out	(FLIGHT_out),	// [31:0]
 
 `ifdef LPC	    
@@ -50,12 +52,12 @@ module Get_All_and_Trans_TOP
 	frame_cnt,
 	
 	rd_FLIGHT,
-	FLIGHT_out
+	FLIGHT_out,
 	
 `ifdef LPC	
     
-	input wire 		LPC_bsy,
-	output wire 	Tx_sound,
+	LPC_bsy,
+	Tx_sound
     
 `endif
 );
@@ -73,6 +75,13 @@ module Get_All_and_Trans_TOP
 	
 	output reg [7:0] 		rd_FLIGHT;
 	input wire [31:0] 	FLIGHT_out;
+	
+`ifdef LPC	
+    
+	input wire 		LPC_bsy;
+	output wire 	Tx_sound;
+    
+`endif
 	
 /*
 ======================================================================
@@ -174,9 +183,10 @@ wire [31:0] sound; assign sound = {s2_data,s1_data};
 
 
 reg 			wren; 
+reg [9:0]  	cc_wr;
 reg [12:0]	wraddress;
-reg [31:0]  cc_in, cnt;
-
+reg [31:0]  cc_in,
+				cnt;
 
 reg [2:0] state/* synthesis syn_encoding = "safe, one-hot" */;
 localparam	WAIT_FRAME 		= 3'b000,
@@ -300,7 +310,7 @@ always @ (posedge reset or posedge clock) begin
 				wren 		<= 1'b0;
 				CC_RDY	<= 1'b0;
 				
-			if (rd_FLIGHT >= PARAMS) 	rd_FLIGHT	<= 7'b0; // `FRAME_SIZE_D ("defines.vh")
+			if (rd_FLIGHT >= PARAMS) 	rd_FLIGHT	<= 8'b0; // `FRAME_SIZE_D ("defines.vh")
 
 			end
 			
@@ -309,16 +319,13 @@ always @ (posedge reset or posedge clock) begin
 end
 
 `ifdef	CFDR	// look in "defines.vh"
-	parameter PARAMS 48
+	parameter PARAMS = 48;
 `else 
-	parameter PARAMS 190
+	parameter PARAMS = 48;
 `endif	
 
 
-reg 	[31:0]   cc_in; 	//assign cc_in = data;
-
 wire	[11:0] 	cc_rd;
-reg	[9:0]  	cc_wr;
 wire	[7:0]  	cc_data;
 
 reg CC_RDY;
@@ -343,15 +350,13 @@ CC_transmit CC_transmitUnit(
 	 .reset				(reset),
 	 .clock				(clock),
 	 
-	 .frame_rdy					(CC_RDY),	
+	 .RDY					(CC_RDY),	
 	 
 	 .rdaddress			(cc_rd),			// [10:0]
 	 .data				(cc_data),		//[7:0]
 	 
 	 .tx					(CC_tx)
 );
-
-
 
 /*================================================================*/
 `ifdef LPC	//	TRANSMITs stored DATA to LPC ("defines.vh")

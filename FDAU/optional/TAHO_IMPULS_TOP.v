@@ -10,8 +10,8 @@ TAHO_IMPULS_TOPUnit
 (
 	 .clock		(clk_1MHz),
 	 .reset		(reset),
-	 .sec			(sec),
 	 .msec		(msec),
+	 .sec			(sec),
 	 
 	 .taho1		(taho1),
 	 .taho2		(taho2),	 
@@ -28,8 +28,8 @@ module TAHO_IMPULS_TOP
 (
 	 clock,		// clk_1MHz
 	 reset,
-	 sec,
 	 msec,
+	 sec,
 	 
 	 taho1,
 	 taho2,	 
@@ -48,9 +48,9 @@ input wire 	clock,
 				taho2,
 				impuls;
  
-output reg [15:0] freq1,
-						freq2,
-						imp;
+output wire [15:0] 	freq1,
+							freq2,
+							imp;
 
 
 TAHO 

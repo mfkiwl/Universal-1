@@ -1,0 +1,761 @@
+------------------------------------------------------------
+TimeQuest Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow 1200mV 85C Model Setup 'RTC:RTCUnit|reset'
+Slack : -5.252
+TNS   : -38.904
+
+Type  : Slow 1200mV 85C Model Setup 'GPS:GPS_Unit|TIC'
+Slack : -5.148
+TNS   : -1182.455
+
+Type  : Slow 1200mV 85C Model Setup 'RTCUnit|CLOCK|altpll_component|auto_generated|pll1|clk[1]'
+Slack : -3.138
+TNS   : -234.536
+
+Type  : Slow 1200mV 85C Model Setup 'RTCUnit|CLOCK|altpll_component|auto_generated|pll1|clk[3]'
+Slack : -2.824
+TNS   : -83.288
+
+Type  : Slow 1200mV 85C Model Setup 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_1|Sync_input:Sync_input_line_A|sync[1]'
+Slack : -2.713
+TNS   : -136.105
+
+Type  : Slow 1200mV 85C Model Setup 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_2|Sync_input:Sync_input_line_A|sync[1]'
+Slack : -2.543
+TNS   : -136.899
+
+Type  : Slow 1200mV 85C Model Setup 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_5|Sync_input:Sync_input_line_A|sync[1]'
+Slack : -2.482
+TNS   : -124.878
+
+Type  : Slow 1200mV 85C Model Setup 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_4|Sync_input:Sync_input_line_A|sync[1]'
+Slack : -2.463
+TNS   : -125.948
+
+Type  : Slow 1200mV 85C Model Setup 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_3|Sync_input:Sync_input_line_A|sync[1]'
+Slack : -2.448
+TNS   : -127.741
+
+Type  : Slow 1200mV 85C Model Setup 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_6|Sync_input:Sync_input_line_A|sync[1]'
+Slack : -2.153
+TNS   : -115.993
+
+Type  : Slow 1200mV 85C Model Setup 'RTC:RTCUnit|sec'
+Slack : -1.843
+TNS   : -15.750
+
+Type  : Slow 1200mV 85C Model Setup 'RTCUnit|CLOCK|altpll_component|auto_generated|pll1|clk[0]'
+Slack : -1.355
+TNS   : -56.802
+
+Type  : Slow 1200mV 85C Model Setup 'inp_clk'
+Slack : -0.979
+TNS   : -138.998
+
+Type  : Slow 1200mV 85C Model Hold 'GPS:GPS_Unit|TIC'
+Slack : -0.825
+TNS   : -1.625
+
+Type  : Slow 1200mV 85C Model Hold 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_4|Sync_input:Sync_input_line_A|sync[1]'
+Slack : -0.752
+TNS   : -25.585
+
+Type  : Slow 1200mV 85C Model Hold 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_1|Sync_input:Sync_input_line_A|sync[1]'
+Slack : -0.408
+TNS   : -9.267
+
+Type  : Slow 1200mV 85C Model Hold 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_2|Sync_input:Sync_input_line_A|sync[1]'
+Slack : -0.308
+TNS   : -1.935
+
+Type  : Slow 1200mV 85C Model Hold 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_3|Sync_input:Sync_input_line_A|sync[1]'
+Slack : -0.277
+TNS   : -5.343
+
+Type  : Slow 1200mV 85C Model Hold 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_5|Sync_input:Sync_input_line_A|sync[1]'
+Slack : -0.272
+TNS   : -6.564
+
+Type  : Slow 1200mV 85C Model Hold 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_6|Sync_input:Sync_input_line_A|sync[1]'
+Slack : -0.194
+TNS   : -1.564
+
+Type  : Slow 1200mV 85C Model Hold 'RTCUnit|CLOCK|altpll_component|auto_generated|pll1|clk[3]'
+Slack : -0.121
+TNS   : -0.121
+
+Type  : Slow 1200mV 85C Model Hold 'inp_clk'
+Slack : -0.059
+TNS   : -0.077
+
+Type  : Slow 1200mV 85C Model Hold 'RTCUnit|CLOCK|altpll_component|auto_generated|pll1|clk[1]'
+Slack : 0.014
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'RTCUnit|CLOCK|altpll_component|auto_generated|pll1|clk[0]'
+Slack : 0.435
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'RTC:RTCUnit|sec'
+Slack : 0.443
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'RTC:RTCUnit|reset'
+Slack : 3.635
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Recovery 'RTCUnit|CLOCK|altpll_component|auto_generated|pll1|clk[0]'
+Slack : -1.719
+TNS   : -96.244
+
+Type  : Slow 1200mV 85C Model Recovery 'RTCUnit|CLOCK|altpll_component|auto_generated|pll1|clk[1]'
+Slack : -1.671
+TNS   : -64.890
+
+Type  : Slow 1200mV 85C Model Recovery 'RTCUnit|CLOCK|altpll_component|auto_generated|pll1|clk[3]'
+Slack : -1.552
+TNS   : -84.886
+
+Type  : Slow 1200mV 85C Model Recovery 'inp_clk'
+Slack : -0.430
+TNS   : -96.878
+
+Type  : Slow 1200mV 85C Model Recovery 'RTC:RTCUnit|sec'
+Slack : -0.045
+TNS   : -0.090
+
+Type  : Slow 1200mV 85C Model Recovery 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_5|Sync_input:Sync_input_line_A|sync[1]'
+Slack : 0.017
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Recovery 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_6|Sync_input:Sync_input_line_A|sync[1]'
+Slack : 0.034
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Recovery 'GPS:GPS_Unit|TIC'
+Slack : 0.047
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Recovery 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_3|Sync_input:Sync_input_line_A|sync[1]'
+Slack : 0.061
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Recovery 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_2|Sync_input:Sync_input_line_A|sync[1]'
+Slack : 0.155
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Recovery 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_1|Sync_input:Sync_input_line_A|sync[1]'
+Slack : 0.294
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Recovery 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_4|Sync_input:Sync_input_line_A|sync[1]'
+Slack : 0.448
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Removal 'inp_clk'
+Slack : -0.891
+TNS   : -8.443
+
+Type  : Slow 1200mV 85C Model Removal 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_4|Sync_input:Sync_input_line_A|sync[1]'
+Slack : -0.736
+TNS   : -21.949
+
+Type  : Slow 1200mV 85C Model Removal 'GPS:GPS_Unit|TIC'
+Slack : -0.680
+TNS   : -107.662
+
+Type  : Slow 1200mV 85C Model Removal 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_1|Sync_input:Sync_input_line_A|sync[1]'
+Slack : -0.474
+TNS   : -12.500
+
+Type  : Slow 1200mV 85C Model Removal 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_2|Sync_input:Sync_input_line_A|sync[1]'
+Slack : -0.328
+TNS   : -6.715
+
+Type  : Slow 1200mV 85C Model Removal 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_3|Sync_input:Sync_input_line_A|sync[1]'
+Slack : -0.281
+TNS   : -9.165
+
+Type  : Slow 1200mV 85C Model Removal 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_5|Sync_input:Sync_input_line_A|sync[1]'
+Slack : -0.248
+TNS   : -6.296
+
+Type  : Slow 1200mV 85C Model Removal 'RTC:RTCUnit|sec'
+Slack : -0.140
+TNS   : -0.980
+
+Type  : Slow 1200mV 85C Model Removal 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_6|Sync_input:Sync_input_line_A|sync[1]'
+Slack : -0.103
+TNS   : -1.269
+
+Type  : Slow 1200mV 85C Model Removal 'RTCUnit|CLOCK|altpll_component|auto_generated|pll1|clk[3]'
+Slack : 0.633
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Removal 'RTCUnit|CLOCK|altpll_component|auto_generated|pll1|clk[0]'
+Slack : 0.727
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Removal 'RTCUnit|CLOCK|altpll_component|auto_generated|pll1|clk[1]'
+Slack : 0.917
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_1|Sync_input:Sync_input_line_A|sync[1]'
+Slack : -3.201
+TNS   : -119.641
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_2|Sync_input:Sync_input_line_A|sync[1]'
+Slack : -3.201
+TNS   : -119.641
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_3|Sync_input:Sync_input_line_A|sync[1]'
+Slack : -3.201
+TNS   : -119.641
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_4|Sync_input:Sync_input_line_A|sync[1]'
+Slack : -3.201
+TNS   : -119.641
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_5|Sync_input:Sync_input_line_A|sync[1]'
+Slack : -3.201
+TNS   : -119.641
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_6|Sync_input:Sync_input_line_A|sync[1]'
+Slack : -3.201
+TNS   : -119.641
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'GPS:GPS_Unit|TIC'
+Slack : -1.487
+TNS   : -527.885
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'RTC:RTCUnit|sec'
+Slack : -1.487
+TNS   : -13.383
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'RTC:RTCUnit|reset'
+Slack : 0.417
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'inp_clk'
+Slack : 9.653
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'RTCUnit|CLOCK|altpll_component|auto_generated|pll1|clk[0]'
+Slack : 99.694
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'RTCUnit|CLOCK|altpll_component|auto_generated|pll1|clk[1]'
+Slack : 499.702
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'RTCUnit|CLOCK|altpll_component|auto_generated|pll1|clk[3]'
+Slack : 1249.695
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Setup 'RTC:RTCUnit|reset'
+Slack : -4.980
+TNS   : -36.979
+
+Type  : Slow 1200mV 0C Model Setup 'GPS:GPS_Unit|TIC'
+Slack : -4.766
+TNS   : -1089.692
+
+Type  : Slow 1200mV 0C Model Setup 'RTCUnit|CLOCK|altpll_component|auto_generated|pll1|clk[1]'
+Slack : -2.692
+TNS   : -194.527
+
+Type  : Slow 1200mV 0C Model Setup 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_1|Sync_input:Sync_input_line_A|sync[1]'
+Slack : -2.472
+TNS   : -122.299
+
+Type  : Slow 1200mV 0C Model Setup 'RTCUnit|CLOCK|altpll_component|auto_generated|pll1|clk[3]'
+Slack : -2.450
+TNS   : -71.408
+
+Type  : Slow 1200mV 0C Model Setup 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_2|Sync_input:Sync_input_line_A|sync[1]'
+Slack : -2.291
+TNS   : -122.320
+
+Type  : Slow 1200mV 0C Model Setup 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_5|Sync_input:Sync_input_line_A|sync[1]'
+Slack : -2.238
+TNS   : -111.215
+
+Type  : Slow 1200mV 0C Model Setup 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_4|Sync_input:Sync_input_line_A|sync[1]'
+Slack : -2.226
+TNS   : -112.578
+
+Type  : Slow 1200mV 0C Model Setup 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_3|Sync_input:Sync_input_line_A|sync[1]'
+Slack : -2.217
+TNS   : -114.237
+
+Type  : Slow 1200mV 0C Model Setup 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_6|Sync_input:Sync_input_line_A|sync[1]'
+Slack : -1.940
+TNS   : -103.131
+
+Type  : Slow 1200mV 0C Model Setup 'RTC:RTCUnit|sec'
+Slack : -1.652
+TNS   : -14.067
+
+Type  : Slow 1200mV 0C Model Setup 'RTCUnit|CLOCK|altpll_component|auto_generated|pll1|clk[0]'
+Slack : -1.018
+TNS   : -40.423
+
+Type  : Slow 1200mV 0C Model Setup 'inp_clk'
+Slack : -0.881
+TNS   : -115.311
+
+Type  : Slow 1200mV 0C Model Hold 'GPS:GPS_Unit|TIC'
+Slack : -0.716
+TNS   : -1.414
+
+Type  : Slow 1200mV 0C Model Hold 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_4|Sync_input:Sync_input_line_A|sync[1]'
+Slack : -0.588
+TNS   : -17.971
+
+Type  : Slow 1200mV 0C Model Hold 'RTCUnit|CLOCK|altpll_component|auto_generated|pll1|clk[3]'
+Slack : -0.253
+TNS   : -0.253
+
+Type  : Slow 1200mV 0C Model Hold 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_1|Sync_input:Sync_input_line_A|sync[1]'
+Slack : -0.249
+TNS   : -4.653
+
+Type  : Slow 1200mV 0C Model Hold 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_6|Sync_input:Sync_input_line_A|sync[1]'
+Slack : -0.227
+TNS   : -2.309
+
+Type  : Slow 1200mV 0C Model Hold 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_2|Sync_input:Sync_input_line_A|sync[1]'
+Slack : -0.162
+TNS   : -0.349
+
+Type  : Slow 1200mV 0C Model Hold 'RTCUnit|CLOCK|altpll_component|auto_generated|pll1|clk[1]'
+Slack : -0.130
+TNS   : -0.136
+
+Type  : Slow 1200mV 0C Model Hold 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_5|Sync_input:Sync_input_line_A|sync[1]'
+Slack : -0.129
+TNS   : -1.678
+
+Type  : Slow 1200mV 0C Model Hold 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_3|Sync_input:Sync_input_line_A|sync[1]'
+Slack : -0.123
+TNS   : -1.071
+
+Type  : Slow 1200mV 0C Model Hold 'inp_clk'
+Slack : -0.103
+TNS   : -0.176
+
+Type  : Slow 1200mV 0C Model Hold 'RTCUnit|CLOCK|altpll_component|auto_generated|pll1|clk[0]'
+Slack : 0.384
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'RTC:RTCUnit|sec'
+Slack : 0.392
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'RTC:RTCUnit|reset'
+Slack : 3.490
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Recovery 'RTCUnit|CLOCK|altpll_component|auto_generated|pll1|clk[0]'
+Slack : -1.354
+TNS   : -70.899
+
+Type  : Slow 1200mV 0C Model Recovery 'RTCUnit|CLOCK|altpll_component|auto_generated|pll1|clk[1]'
+Slack : -1.296
+TNS   : -49.233
+
+Type  : Slow 1200mV 0C Model Recovery 'RTCUnit|CLOCK|altpll_component|auto_generated|pll1|clk[3]'
+Slack : -1.172
+TNS   : -61.885
+
+Type  : Slow 1200mV 0C Model Recovery 'inp_clk'
+Slack : -0.258
+TNS   : -26.023
+
+Type  : Slow 1200mV 0C Model Recovery 'RTC:RTCUnit|sec'
+Slack : 0.083
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Recovery 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_5|Sync_input:Sync_input_line_A|sync[1]'
+Slack : 0.109
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Recovery 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_3|Sync_input:Sync_input_line_A|sync[1]'
+Slack : 0.141
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Recovery 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_6|Sync_input:Sync_input_line_A|sync[1]'
+Slack : 0.187
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Recovery 'GPS:GPS_Unit|TIC'
+Slack : 0.218
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Recovery 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_2|Sync_input:Sync_input_line_A|sync[1]'
+Slack : 0.231
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Recovery 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_1|Sync_input:Sync_input_line_A|sync[1]'
+Slack : 0.354
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Recovery 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_4|Sync_input:Sync_input_line_A|sync[1]'
+Slack : 0.498
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Removal 'inp_clk'
+Slack : -0.801
+TNS   : -7.546
+
+Type  : Slow 1200mV 0C Model Removal 'GPS:GPS_Unit|TIC'
+Slack : -0.616
+TNS   : -88.276
+
+Type  : Slow 1200mV 0C Model Removal 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_4|Sync_input:Sync_input_line_A|sync[1]'
+Slack : -0.611
+TNS   : -17.070
+
+Type  : Slow 1200mV 0C Model Removal 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_1|Sync_input:Sync_input_line_A|sync[1]'
+Slack : -0.353
+TNS   : -7.773
+
+Type  : Slow 1200mV 0C Model Removal 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_2|Sync_input:Sync_input_line_A|sync[1]'
+Slack : -0.228
+TNS   : -2.880
+
+Type  : Slow 1200mV 0C Model Removal 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_3|Sync_input:Sync_input_line_A|sync[1]'
+Slack : -0.177
+TNS   : -5.043
+
+Type  : Slow 1200mV 0C Model Removal 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_5|Sync_input:Sync_input_line_A|sync[1]'
+Slack : -0.162
+TNS   : -3.046
+
+Type  : Slow 1200mV 0C Model Removal 'RTC:RTCUnit|sec'
+Slack : -0.148
+TNS   : -1.036
+
+Type  : Slow 1200mV 0C Model Removal 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_6|Sync_input:Sync_input_line_A|sync[1]'
+Slack : -0.115
+TNS   : -1.597
+
+Type  : Slow 1200mV 0C Model Removal 'RTCUnit|CLOCK|altpll_component|auto_generated|pll1|clk[3]'
+Slack : 0.449
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Removal 'RTCUnit|CLOCK|altpll_component|auto_generated|pll1|clk[0]'
+Slack : 0.541
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Removal 'RTCUnit|CLOCK|altpll_component|auto_generated|pll1|clk[1]'
+Slack : 0.707
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_6|Sync_input:Sync_input_line_A|sync[1]'
+Slack : -3.201
+TNS   : -120.565
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_1|Sync_input:Sync_input_line_A|sync[1]'
+Slack : -3.201
+TNS   : -119.641
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_2|Sync_input:Sync_input_line_A|sync[1]'
+Slack : -3.201
+TNS   : -119.641
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_3|Sync_input:Sync_input_line_A|sync[1]'
+Slack : -3.201
+TNS   : -119.641
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_4|Sync_input:Sync_input_line_A|sync[1]'
+Slack : -3.201
+TNS   : -119.641
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_5|Sync_input:Sync_input_line_A|sync[1]'
+Slack : -3.201
+TNS   : -119.641
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'GPS:GPS_Unit|TIC'
+Slack : -1.487
+TNS   : -527.885
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'RTC:RTCUnit|sec'
+Slack : -1.487
+TNS   : -13.383
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'RTC:RTCUnit|reset'
+Slack : 0.312
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'inp_clk'
+Slack : 9.643
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'RTCUnit|CLOCK|altpll_component|auto_generated|pll1|clk[0]'
+Slack : 99.670
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'RTCUnit|CLOCK|altpll_component|auto_generated|pll1|clk[1]'
+Slack : 499.665
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'RTCUnit|CLOCK|altpll_component|auto_generated|pll1|clk[3]'
+Slack : 1249.671
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'RTC:RTCUnit|reset'
+Slack : -1.659
+TNS   : -11.818
+
+Type  : Fast 1200mV 0C Model Setup 'GPS:GPS_Unit|TIC'
+Slack : -1.614
+TNS   : -302.678
+
+Type  : Fast 1200mV 0C Model Setup 'RTCUnit|CLOCK|altpll_component|auto_generated|pll1|clk[1]'
+Slack : -1.307
+TNS   : -96.376
+
+Type  : Fast 1200mV 0C Model Setup 'RTCUnit|CLOCK|altpll_component|auto_generated|pll1|clk[3]'
+Slack : -0.832
+TNS   : -23.073
+
+Type  : Fast 1200mV 0C Model Setup 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_1|Sync_input:Sync_input_line_A|sync[1]'
+Slack : -0.526
+TNS   : -16.831
+
+Type  : Fast 1200mV 0C Model Setup 'RTCUnit|CLOCK|altpll_component|auto_generated|pll1|clk[0]'
+Slack : -0.515
+TNS   : -21.615
+
+Type  : Fast 1200mV 0C Model Setup 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_2|Sync_input:Sync_input_line_A|sync[1]'
+Slack : -0.496
+TNS   : -17.715
+
+Type  : Fast 1200mV 0C Model Setup 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_5|Sync_input:Sync_input_line_A|sync[1]'
+Slack : -0.459
+TNS   : -12.843
+
+Type  : Fast 1200mV 0C Model Setup 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_4|Sync_input:Sync_input_line_A|sync[1]'
+Slack : -0.447
+TNS   : -12.401
+
+Type  : Fast 1200mV 0C Model Setup 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_3|Sync_input:Sync_input_line_A|sync[1]'
+Slack : -0.441
+TNS   : -13.125
+
+Type  : Fast 1200mV 0C Model Setup 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_6|Sync_input:Sync_input_line_A|sync[1]'
+Slack : -0.294
+TNS   : -7.568
+
+Type  : Fast 1200mV 0C Model Setup 'RTC:RTCUnit|sec'
+Slack : -0.183
+TNS   : -1.278
+
+Type  : Fast 1200mV 0C Model Setup 'inp_clk'
+Slack : 0.061
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'GPS:GPS_Unit|TIC'
+Slack : -0.533
+TNS   : -2.666
+
+Type  : Fast 1200mV 0C Model Hold 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_4|Sync_input:Sync_input_line_A|sync[1]'
+Slack : -0.352
+TNS   : -14.991
+
+Type  : Fast 1200mV 0C Model Hold 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_1|Sync_input:Sync_input_line_A|sync[1]'
+Slack : -0.237
+TNS   : -6.021
+
+Type  : Fast 1200mV 0C Model Hold 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_2|Sync_input:Sync_input_line_A|sync[1]'
+Slack : -0.219
+TNS   : -3.512
+
+Type  : Fast 1200mV 0C Model Hold 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_5|Sync_input:Sync_input_line_A|sync[1]'
+Slack : -0.215
+TNS   : -5.344
+
+Type  : Fast 1200mV 0C Model Hold 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_3|Sync_input:Sync_input_line_A|sync[1]'
+Slack : -0.192
+TNS   : -4.647
+
+Type  : Fast 1200mV 0C Model Hold 'inp_clk'
+Slack : -0.167
+TNS   : -1.449
+
+Type  : Fast 1200mV 0C Model Hold 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_6|Sync_input:Sync_input_line_A|sync[1]'
+Slack : -0.052
+TNS   : -0.364
+
+Type  : Fast 1200mV 0C Model Hold 'RTCUnit|CLOCK|altpll_component|auto_generated|pll1|clk[3]'
+Slack : -0.010
+TNS   : -0.010
+
+Type  : Fast 1200mV 0C Model Hold 'RTCUnit|CLOCK|altpll_component|auto_generated|pll1|clk[1]'
+Slack : 0.042
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'RTCUnit|CLOCK|altpll_component|auto_generated|pll1|clk[0]'
+Slack : 0.179
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'RTC:RTCUnit|sec'
+Slack : 0.200
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'RTC:RTCUnit|reset'
+Slack : 1.365
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Recovery 'RTCUnit|CLOCK|altpll_component|auto_generated|pll1|clk[0]'
+Slack : -0.733
+TNS   : -40.463
+
+Type  : Fast 1200mV 0C Model Recovery 'RTCUnit|CLOCK|altpll_component|auto_generated|pll1|clk[1]'
+Slack : -0.704
+TNS   : -26.285
+
+Type  : Fast 1200mV 0C Model Recovery 'RTCUnit|CLOCK|altpll_component|auto_generated|pll1|clk[3]'
+Slack : -0.648
+TNS   : -34.936
+
+Type  : Fast 1200mV 0C Model Recovery 'inp_clk'
+Slack : -0.096
+TNS   : -2.402
+
+Type  : Fast 1200mV 0C Model Recovery 'GPS:GPS_Unit|TIC'
+Slack : 0.040
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Recovery 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_6|Sync_input:Sync_input_line_A|sync[1]'
+Slack : 0.117
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Recovery 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_5|Sync_input:Sync_input_line_A|sync[1]'
+Slack : 0.125
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Recovery 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_3|Sync_input:Sync_input_line_A|sync[1]'
+Slack : 0.135
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Recovery 'RTC:RTCUnit|sec'
+Slack : 0.160
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Recovery 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_2|Sync_input:Sync_input_line_A|sync[1]'
+Slack : 0.182
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Recovery 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_1|Sync_input:Sync_input_line_A|sync[1]'
+Slack : 0.252
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Recovery 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_4|Sync_input:Sync_input_line_A|sync[1]'
+Slack : 0.327
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Removal 'inp_clk'
+Slack : -0.473
+TNS   : -5.815
+
+Type  : Fast 1200mV 0C Model Removal 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_4|Sync_input:Sync_input_line_A|sync[1]'
+Slack : -0.369
+TNS   : -12.208
+
+Type  : Fast 1200mV 0C Model Removal 'GPS:GPS_Unit|TIC'
+Slack : -0.348
+TNS   : -65.239
+
+Type  : Fast 1200mV 0C Model Removal 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_1|Sync_input:Sync_input_line_A|sync[1]'
+Slack : -0.263
+TNS   : -8.030
+
+Type  : Fast 1200mV 0C Model Removal 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_2|Sync_input:Sync_input_line_A|sync[1]'
+Slack : -0.207
+TNS   : -5.304
+
+Type  : Fast 1200mV 0C Model Removal 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_3|Sync_input:Sync_input_line_A|sync[1]'
+Slack : -0.156
+TNS   : -5.486
+
+Type  : Fast 1200mV 0C Model Removal 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_5|Sync_input:Sync_input_line_A|sync[1]'
+Slack : -0.150
+TNS   : -3.795
+
+Type  : Fast 1200mV 0C Model Removal 'RTC:RTCUnit|sec'
+Slack : -0.035
+TNS   : -0.245
+
+Type  : Fast 1200mV 0C Model Removal 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_6|Sync_input:Sync_input_line_A|sync[1]'
+Slack : 0.013
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Removal 'RTCUnit|CLOCK|altpll_component|auto_generated|pll1|clk[3]'
+Slack : 0.353
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Removal 'RTCUnit|CLOCK|altpll_component|auto_generated|pll1|clk[0]'
+Slack : 0.382
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Removal 'RTCUnit|CLOCK|altpll_component|auto_generated|pll1|clk[1]'
+Slack : 0.436
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'GPS:GPS_Unit|TIC'
+Slack : -1.000
+TNS   : -355.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_1|Sync_input:Sync_input_line_A|sync[1]'
+Slack : -1.000
+TNS   : -77.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_2|Sync_input:Sync_input_line_A|sync[1]'
+Slack : -1.000
+TNS   : -77.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_3|Sync_input:Sync_input_line_A|sync[1]'
+Slack : -1.000
+TNS   : -77.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_4|Sync_input:Sync_input_line_A|sync[1]'
+Slack : -1.000
+TNS   : -77.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_5|Sync_input:Sync_input_line_A|sync[1]'
+Slack : -1.000
+TNS   : -77.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_6|Sync_input:Sync_input_line_A|sync[1]'
+Slack : -1.000
+TNS   : -77.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'RTC:RTCUnit|sec'
+Slack : -1.000
+TNS   : -9.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'RTC:RTCUnit|reset'
+Slack : 0.402
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'inp_clk'
+Slack : 9.373
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'RTCUnit|CLOCK|altpll_component|auto_generated|pll1|clk[0]'
+Slack : 99.735
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'RTCUnit|CLOCK|altpll_component|auto_generated|pll1|clk[1]'
+Slack : 499.770
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'RTCUnit|CLOCK|altpll_component|auto_generated|pll1|clk[3]'
+Slack : 1249.770
+TNS   : 0.000
+
+------------------------------------------------------------

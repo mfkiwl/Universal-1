@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<LOG_ROOT>
+	<PROJECT NAME="aTOP_ARCTIUM">
+		<CBX_INST_ENTRY INSTANCE_NAME="|aTOP_ARCTIUM|FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_1|rz_ram:rz_ram_unit|altsyncram:altsyncram_component" CBX_FILE_NAME="altsyncram_04k1.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|aTOP_ARCTIUM|FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_5|rz_ram:rz_ram_unit|altsyncram:altsyncram_component" CBX_FILE_NAME="altsyncram_04k1.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|aTOP_ARCTIUM|SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|subframe_ram:subframe_ram_Unit|altsyncram:altsyncram_component" CBX_FILE_NAME="altsyncram_28o1.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|aTOP_ARCTIUM|FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_2|rz_ram:rz_ram_unit|altsyncram:altsyncram_component" CBX_FILE_NAME="altsyncram_04k1.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|aTOP_ARCTIUM|FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_4|rz_ram:rz_ram_unit|altsyncram:altsyncram_component" CBX_FILE_NAME="altsyncram_04k1.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|aTOP_ARCTIUM|FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_6|rz_ram:rz_ram_unit|altsyncram:altsyncram_component" CBX_FILE_NAME="altsyncram_04k1.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|aTOP_ARCTIUM|FDAU:FDAU|fdau_ram:fdau_ram_UNIT|altsyncram:altsyncram_component" CBX_FILE_NAME="altsyncram_08o1.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|aTOP_ARCTIUM|Get_All_and_Trans_TOP:Get_All_and_Trans_TOP_UNIT|CC_ram:CC_ramUnit|altsyncram:altsyncram_component" CBX_FILE_NAME="altsyncram_k8o1.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|aTOP_ARCTIUM|Get_All_and_Trans_TOP:Get_All_and_Trans_TOP_UNIT|sound_store4:sound_storeUnit|s_Buff4:s_BuffUnit|altsyncram:altsyncram_component" CBX_FILE_NAME="altsyncram_lao1.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|aTOP_ARCTIUM|FDAU:FDAU|ADAU:ADAU_FRAME|frame:RAM_with_FRAME|altsyncram:altsyncram_component" CBX_FILE_NAME="altsyncram_ecq1.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|aTOP_ARCTIUM|FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|ARINC_429:ARINC_429_3|rz_ram:rz_ram_unit|altsyncram:altsyncram_component" CBX_FILE_NAME="altsyncram_04k1.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|aTOP_ARCTIUM|RTC:RTCUnit|CLK:CLOCK|altpll:altpll_component" CBX_FILE_NAME="CLK_altpll.v"/>
+	</PROJECT>
+</LOG_ROOT>

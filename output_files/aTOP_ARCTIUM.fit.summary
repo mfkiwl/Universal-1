@@ -1,0 +1,16 @@
+Fitter Status : Successful - Fri Mar 23 15:54:39 2018
+Quartus II 64-Bit Version : 13.1.4 Build 182 03/12/2014 SJ Web Edition
+Revision Name : aTOP_ARCTIUM
+Top-level Entity Name : aTOP_ARCTIUM
+Family : Cyclone III
+Device : EP3C10E144C8
+Timing Models : Final
+Total logic elements : 2,555 / 10,320 ( 25 % )
+    Total combinational functions : 2,043 / 10,320 ( 20 % )
+    Dedicated logic registers : 1,737 / 10,320 ( 17 % )
+Total registers : 1737
+Total pins : 35 / 95 ( 37 % )
+Total virtual pins : 0
+Total memory bits : 69,632 / 423,936 ( 16 % )
+Embedded Multiplier 9-bit elements : 0 / 46 ( 0 % )
+Total PLLs : 1 / 2 ( 50 % )

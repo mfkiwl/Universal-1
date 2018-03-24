@@ -1,6 +1,6 @@
-`ifndef SUBFRAME_D
-  `include "defines.vh";
-`endif 
+//`ifndef SUBFRAME_D
+//  `include "defines.vh";
+//`endif 
 /*
 CC_transmit CC_transmitUnit(
 	 .reset				(reset),
@@ -39,9 +39,9 @@ input wire [7:0] 	data;
 output reg 	tx;
  
 `ifdef	CFDR	// look in "defines.vh"
-	parameter SUBFRAME 2048
+	parameter SUBFRAME = 2048;
 `else 
-	parameter SUBFRAME 2048
+	parameter SUBFRAME = 2048;
 `endif	
 
 	parameter delay_val = 48;	
@@ -54,7 +54,7 @@ output reg 	tx;
 	
 	reg [2:0] 	state/* synthesis syn_encoding = "safe, one-hot" */;
 	
-	localparam 		Idle				= 3'b000,
+localparam 		Idle				= 3'b000,
 					TODO				= 3'b001,
 					Start				= 3'b010,
 					Trans				= 3'b011,

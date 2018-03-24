@@ -1,5 +1,6 @@
 /*
 	6 RZ (ARINC429) lines input into 16w RAM
+	main clk <= clk_400kHz
 */
 /*		<==========
 
@@ -58,7 +59,7 @@ RZ_LINE_TOP_Unit
 module RZ_LINE_TOP
 (
 	clock,
-	clk_400kHz,
+	inp_clk,
 	reset,
 	
 	line_A1, line_B1,
@@ -83,7 +84,11 @@ module RZ_LINE_TOP
 	arinc_6_outp
 );
 
- input  wire 	line_A1, line_B1
+ input  wire 	clock,
+					inp_clk,
+					reset,
+					
+					line_A1, line_B1,
 					line_A2, line_B2,
 					line_A3, line_B3,
 					line_A4, line_B4,
@@ -109,7 +114,7 @@ output wire [15:0]	arinc_1_outp,
 ARINC_429
 ARINC_429_1
 (
-	 .clock			(clk_400kHz),
+	 .clock			(clock),
 	 .reset			(reset),
 	 .inp_clk		(inp_clk),
 	 .line_A			(line_A1),
@@ -121,7 +126,7 @@ ARINC_429_1
 
 ARINC_429
 ARINC_429_2(
-	 .clock		(clk_400kHz),
+	 .clock		(clock),
 	 .reset		(reset),
 	 .inp_clk	(inp_clk),
 	 .line_A		(line_A2),
@@ -133,7 +138,7 @@ ARINC_429_2(
 
 ARINC_429
 ARINC_429_3(
-	 .clock		(clk_400kHz),
+	 .clock		(clock),
 	 .reset		(reset),
 	 .inp_clk	(inp_clk),
 	 .line_A		(line_A3),
@@ -145,7 +150,7 @@ ARINC_429_3(
 
 ARINC_429
 ARINC_429_4(
-	 .clock		(clk_400kHz),
+	 .clock		(clock),
 	 .reset		(reset),
 	 .inp_clk	(inp_clk),
 	 .line_A		(line_A4),
@@ -157,7 +162,7 @@ ARINC_429_4(
 
 ARINC_429
 ARINC_429_5(
-	 .clock		(clk_400kHz),
+	 .clock		(clock),
 	 .reset		(reset),
 	 .inp_clk	(inp_clk),
 	 .line_A		(line_A5),
@@ -169,7 +174,7 @@ ARINC_429_5(
 
 ARINC_429
 ARINC_429_6(
-	 .clock		(clk_400kHz),
+	 .clock		(clock),
 	 .reset		(reset),
 	 .inp_clk	(inp_clk),
 	 .line_A		(line_A6),

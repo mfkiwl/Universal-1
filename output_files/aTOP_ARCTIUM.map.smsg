@@ -1,0 +1,14 @@
+Info (10281): Verilog HDL Declaration information at aTOP_ARCTIUM.v(39): object "AUD1" differs only in case from object "aud1" in the same scope
+Info (10281): Verilog HDL Declaration information at GPS.v(50): object "byte" differs only in case from object "BYTE" in the same scope
+Info (10281): Verilog HDL Declaration information at GPS.v(152): object "speed" differs only in case from object "SPEED" in the same scope
+Info (10281): Verilog HDL Declaration information at GPS.v(153): object "course" differs only in case from object "COURSE" in the same scope
+Info (10281): Verilog HDL Declaration information at GPS.v(132): object "altitude" differs only in case from object "ALTITUDE" in the same scope
+Info (10281): Verilog HDL Declaration information at Get_All_and_Trans_TOP.v(189): object "cnt" differs only in case from object "CNT" in the same scope
+Info (10281): Verilog HDL Declaration information at LPC_tx.v(53): object "delay" differs only in case from object "Delay" in the same scope
+Info (10281): Verilog HDL Declaration information at CC_transmit.v(52): object "delay" differs only in case from object "Delay" in the same scope
+Info (10281): Verilog HDL Declaration information at UARTx.v(93): object "delay" differs only in case from object "DELAY" in the same scope
+Info (10281): Verilog HDL Declaration information at ADC.v(49): object "start" differs only in case from object "START" in the same scope
+Info (10281): Verilog HDL Declaration information at Flight_data.v(67): object "cnt" differs only in case from object "CNT" in the same scope
+Info (10281): Verilog HDL Declaration information at Flight_data.v(70): object "subframe" differs only in case from object "SUBFRAME" in the same scope
+Info (10281): Verilog HDL Declaration information at SUBFRAME_FORMER.v(72): object "cnt" differs only in case from object "CNT" in the same scope
+Info (10281): Verilog HDL Declaration information at SUBFRAME_FORMER.v(75): object "subframe" differs only in case from object "SUBFRAME" in the same scope

@@ -1,5 +1,5 @@
 /*
-wire [6:0] 	rd_FLIGHT;
+wire [7:0] 	rd_FLIGHT;
 wire [31:0] FLIGHT_out;
 
 SUBFRAME_FORMER 
@@ -57,7 +57,7 @@ module SUBFRAME_FORMER
 	output reg [8:0] 		rd_adau;
 	input wire [15:0] 	q_adau;
 		
-	input  wire [6:0] 	rd_FLIGHT;
+	input  wire [7:0] 	rd_FLIGHT;
 	output wire [31:0] 	FLIGHT_out;
 	
 	input wire [31:0] 	serial_number;
@@ -264,14 +264,15 @@ always @(posedge reset or posedge clock)begin
 	end
 end
 
-fdau_ram 
-fdau_ram_Unit
+subframe_ram  //512
+subframe_ram_Unit
 (
 	 .clock			(clock),
 	 .data			(data),			// [15:0]
-	 .rdaddress		(rd_FLIGHT),	// [6:0]
-	 .wraddress		(wraddress),	// [7:0]
+	 .rdaddress		(rd_FLIGHT),	// [7:0]
+	 .wraddress		(wraddress),	// [8:0]
 	 .wren			(wren),
 	 .q				(FLIGHT_out)	// [31:0]
 );
+
 endmodule

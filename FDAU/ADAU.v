@@ -241,7 +241,7 @@ AD7983
 	 .CNV				(CNV),
 	 .SDI				(SDI),
 	 .CLK				(CLK),
-	 .SDO		(SDO),
+	 .SDO				(SDO),
 	 
 	 .sample_rdy	(sample_rdy),
 	 .ADC_sample	(ADC_sample)
@@ -254,7 +254,7 @@ wire busy;
 
 	parameter FAST_clk = 48, SLOW_clk = 217;
 
-	wire [15:0]	ADC_sample;		assign ADC_sample = s_word ? sync_word	: ADC_sample;
+	wire [15:0]	SEND_pack;		assign SEND_pack  = s_word ? sync_word	: ADC_sample;
 	wire 			SEND_start;		assign SEND_start = s_word ? 1'b1		: sample_rdy;
 
 	UARTx  
@@ -264,7 +264,7 @@ wire busy;
 		 .clock		(clock),
 		 .reset		(reset),	
 		 .busy		(busy),	
-		 .DATA		(ADC_sample),
+		 .DATA		(SEND_pack),
 		 .ENA			(SEND_start),	
 		 .tx			(TX)
 	);

@@ -18,9 +18,12 @@ RTCUnit
 (	 
 	 .mclock		(inp_clk),		
 	 .reset		(reset),		
+	 .SYNC		(SYNC),
+	 
 	 .msec		(msec),			
 	 .sec			(sec),			
-	 .delay		(delay)			
+	 .delay		(delay)	
+	 
 	 .LED_FPGA	(LED),
 	 
 	 .clk_5Mhz		(clk_5Mhz),
@@ -34,6 +37,7 @@ RTCUnit
 module RTC (
  	 mclock,
 	 reset,
+	 SYNC,
 	 
 	 msec,
 	 sec,
@@ -47,19 +51,34 @@ module RTC (
 	 clk_400kHz
 	);
 
-input	wire mclock;
-output 	wire clk_5Mhz, clk_1MHz, clk_10MHz, clk_400kHz;
+input	wire 	mclock,
+				SYNC;
+
+output wire clk_5Mhz,
+				clk_1MHz,
+				clk_10MHz,
+				clk_400kHz;
 
 
-output reg reset, LED;
-output reg sec, msec, delay;
+output reg 	reset,
+				msec,
+				sec,
+				delay;
 
+output reg 	LED_FPGA;
+
+
+`ifdef USE_SYNC
+	parameter synchro = 1;
+`else 
+	parameter synchro = 0;
+`endif
 
 
 parameter 	secs_delay 	= 10, 
-			clk_persec 	= 400_000,	// main clk for SEC & MSEC
-			every_sec	= 25_000, 	// clk_persec/every_sec = 400_000 / 25_000 = 16
-			delay_low	= 3;		// clocks per HIGH SEC & MSEC
+				clk_persec 	= 400_000,	// main clk for SEC & MSEC
+				every_sec	= 25_000, 	// clk_persec/every_sec = 400_000 / 25_000 = 16
+				delay_low	= 3;		// clocks per HIGH SEC & MSEC
 			
 			
 /*
@@ -158,9 +177,8 @@ reg [31:0] msec_cnt;
 
 always @ (posedge clk_400kHz or posedge reset) begin
 	if (reset) begin
+		msec			<= 1'b0;
 		msec_cnt 	<= 32'b1;
-		msec		<= 1'b0;
-		//LED			<= 1'b0;
 	end
 	
 	else begin
@@ -168,9 +186,8 @@ always @ (posedge clk_400kHz or posedge reset) begin
 		 
 			1: begin
 				if (msec_cnt == every_sec)begin
-					msec 		<= 1'b1;
+					msec 			<= 1'b1;
 					msec_cnt 	<= 32'b1;
-					//LED		<= ~LED;
 				end
 				
 				else begin
@@ -182,8 +199,8 @@ always @ (posedge clk_400kHz or posedge reset) begin
 			end
 			
 			0: begin
-				msec_cnt <= 32'b1;
 				msec		<= 1'b0;
+				msec_cnt <= 32'b1;
 			end
 			
 		endcase
@@ -199,7 +216,7 @@ end
 reg [1:0] state/* synthesis syn_encoding = "safe, one-hot" */;
 reg [7:0] sync_tmr;
 
-	localparam 	IDDLE		= 2'b00,
+localparam 	IDDLE		= 2'b00,
 				BLINK		= 2'b01,
 				END		= 2'b10;
 					
@@ -210,7 +227,7 @@ always @ (posedge msec or posedge reset) begin
 	end
 
 	else begin
-		if (`USE_SYNC) begin
+		if (synchro) begin
 			
 			case (state)
 				IDDLE: begin
@@ -241,10 +258,12 @@ always @ (posedge msec or posedge reset) begin
 		end
 		
 		else  begin
+		
 			if (sync_tmr	== 31) begin
-				LED_FPGA	<= ~LED_FPGA;
+				LED_FPGA		<= ~LED_FPGA;
 				sync_tmr		<= 8'b0;
 			end
+			
 			else sync_tmr	<= sync_tmr + 8'b1;
 			
 		end

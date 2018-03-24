@@ -1,9 +1,8 @@
 
 //`include "defines.vh"
 
-parameter serial_number = "RP24";
-
-`define CFDR /* CC_transmit.v */ /* bytes sent to CC 
+//`define CFDR /* CC_transmit.v */ 
+								/* bytes sent to CC 
 									if (CFDR) => subframe 2048
 									else	  => subframe 2048
 								 */
@@ -12,16 +11,19 @@ parameter serial_number = "RP24";
 
 	`define RP 
 	
-	`define AUDIO  	/*  aTOP_ARCTIUM					// USE one phisical channel of SOUND
-						Get_All_and_Trans_TOP */ 
+	`define AUDIO  		// USE one phisical channel of SOUND 
+/*  aTOP_ARCTIUM					
+	Get_All_and_Trans_TOP */ 
 
-	`define RAW_ADC /* ADAU <- sets UARTx to trans all data from ADC*/
+	`define RAW_ADC 	/* ADAU <- sets UARTx to trans all data from ADC*/
+	
+	`define USE_SYNC 0
 	
 `else 
 
 	`define LPC			/* Get_All_and_Trans_TOP */  	// USEs modules to trans to LPC
 	
-	`define USE_SYNC  	/* RTC */						// Sync signal on cross 
+	`define USE_SYNC 1 	/* RTC */						// Sync signal on cross 
 	
 `endif
 

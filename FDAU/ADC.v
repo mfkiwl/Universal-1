@@ -18,7 +18,7 @@ ADC  AD7983(
 	 .CNV				(CNV),
 	 .IRQ				(IRQ),
 	 .CLK				(CLK),
-	 .DATA_in		(DATA_in),
+	 .SDO		(SDO),
 	 
 	 .sample_rdy	(sample_rdy),
 	 .ADC_buff	(ADC_buff)
@@ -37,7 +37,7 @@ module ADC (
 	CNV,
 	SDI,
 	CLK,
-	DATA_in,
+	SDO,
 	
 	sample_rdy,
 	ADC_sample
@@ -47,7 +47,7 @@ module ADC (
 input wire 	clock, 
 				reset,
 				start, 
-				DATA_in;
+				SDO;
 
 output wire CLK;
 output reg 	CNV,
@@ -57,9 +57,8 @@ output reg 	CNV,
 output reg [15:0] ADC_sample;
 
 
-wire IRQ;	assign IRQ = DATA_in;
+wire IRQ;	assign IRQ = SDO;
 
-//assign CLK = clock;
 reg [15:0] 	ADC_buff;
 reg [4:0] 	bit_cnt;
 reg 			clk_ena;
@@ -78,6 +77,7 @@ localparam  IDDLE 	= 3'b000,
 
 always@(posedge reset or posedge clock) begin
 	if (reset) begin
+		
 		CNV			<= 1'b0;
 		SDI			<= 1'b0;
 		clk_ena 		<= 1'b0;
@@ -86,67 +86,81 @@ always@(posedge reset or posedge clock) begin
 		ADC_buff		<= 16'b0;
 		ADC_sample	<= 16'b0;
 		state			<= IDDLE;
+		
 	end
 	
 	else begin
 		case (state) 
 			IDDLE: begin
+				
 				SDI			<= 1'b1;
 				sample_rdy	<= 1'b0;
+				
 				if (start) 	state <= START;
+				
 				else 			state	<= IDDLE;
+				
 			end
 			
 			START: begin
+				
 				CNV		<= 1'b1;
 				state		<= WT_RDY;
 				clk_ena 	<= 1'b1;
-//				if (bit_cnt == 16) begin
-//					bit_cnt	<= 5'd17;
-//				end
-//				else bit_cnt		<= bit_cnt - 5'b1;
+				
 			end
 			
 			DELAY: begin
+				
 				state		<= DELAY2;
 	//=-----------------------------//
 				sample_rdy	<= 1'b1;
 				ADC_sample	<= ADC_buff;
+				
 			end
 			
 			DELAY2: begin
+				
 				state		<= IDDLE;
-				clk_ena 	<= 1'b0;	
+				clk_ena 	<= 1'b0;
+				
 			end
 			
 			WT_RDY: begin
+				
 				CNV	<= 1'b0;
+				
 				if (smpl_start) begin
+					
 					state 	<= SAMPLE;
 					
 					bit_cnt		<= bit_cnt - 5'b1;
-					ADC_buff[bit_cnt]	<= DATA_in;
+					ADC_buff[bit_cnt]	<= SDO;
 					
 				end
 				
 				else state	<= WT_RDY;
+				
 			end
 			
 			SAMPLE: begin
-			
-				ADC_buff[bit_cnt]	<= DATA_in;
+			 
+				ADC_buff[bit_cnt]	<= SDO;
 				
 					if (bit_cnt == 0) begin
 					//sample_rdy	<= 1'b1;
 					bit_cnt		<= 5'd15;
 					//state 		<= IDDLE;
 					//clk_ena 		<= 1'b0;	
-					state 		<= DELAY;				
+					state 		<= DELAY;	
+					
 				end
 				
 				else begin
+					
 					bit_cnt		<= bit_cnt - 5'b1;
 					state			<= SAMPLE;
+					
 				end
 				
 			end
@@ -159,51 +173,12 @@ end
 reg smpl_start;
 
 always @ (negedge clock) begin
+	
 	if ((~IRQ)&&(~sample_rdy))  smpl_start <= 1'b1;
+	
 	else  smpl_start <= 1'b0;
+	
 end
-
-//
-//reg 	nstate /* synthesis syn_encoding = "safe, one-hot" */;
-//localparam  iDLE 		= 1'b0,
-//				sAMPLE	= 1'b1;
-// 
-//	
-//always @ (posedge reset or negedge CLK or negedge IRQ) begin
-//	if (reset) begin
-//		sample_rdy	<= 1'b0;
-//		bit_cnt		<= 4'd15;
-//		ADC_buff	<= 16'b0;
-//		nstate 		<= iDLE;
-//	end
-//	
-//	else begin
-//		case (nstate)
-//			iDLE: begin
-//				sample_rdy	<= 1'b0;
-//				nstate		<= sAMPLE;
-//			end
-//			
-//			sAMPLE: begin
-//			
-//				ADC_buff[bit_cnt]	<= DATA_in;
-//				
-//				if (bit_cnt == 0) begin
-//					sample_rdy	<= 1'b1;
-//					bit_cnt		<= 4'd15;
-//					nstate 		<= iDLE;					
-//				end
-//				
-//				else begin
-//					bit_cnt		<= bit_cnt - 4'b1;
-//					nstate		<= sAMPLE;
-//				end
-//				
-//			end
-//		endcase
-//	end	
-//end
-
 
 
 endmodule
