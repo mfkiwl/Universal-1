@@ -6,8 +6,8 @@
 13.06.17: 
 
 
-wire 	[8:0] 	rd_adau;
-wire [15:0] 	q_adau;
+wire 	[8:0] 	rd_fdau;
+wire [15:0] 	q_fdau;
 
 FDAU 
 FDAU
@@ -47,8 +47,8 @@ FDAU
 	 .taho2			(taho2),
 	 .impuls			(impuls),
 	 
-	 .rd_adau	(rd_adau),
-	 .q_adau		(q_adau)
+	 .rd_fdau	(rd_fdau),
+	 .q_fdau		(q_fdau)
 );
 
 
@@ -86,8 +86,8 @@ module FDAU
 	taho2,
 	impuls,
 	
-	rd_adau,
-	q_adau
+	rd_fdau,
+	q_fdau
 );
 
 input  wire clock, 
@@ -132,8 +132,8 @@ output wire [3:0] ADDR,
 						ENA;
                  	
 
-input wire 	[8:0] 	rd_adau;
-output wire [15:0] 	q_adau;
+input wire 	[8:0] 	rd_fdau;
+output wire [15:0] 	q_fdau;
 
 
 
@@ -252,8 +252,8 @@ reg [4:0]  	rd_arinc1,
 				rd_arinc5,
 				rd_arinc6;
 	
-	
-reg [4:0]	st_m	/* synthesis syn_encoding = "safe, one-hot" */;
+reg [4:0]	st_m;	
+//(* syn_encoding = "safe" *) 
 
 localparam  Iddle 			= 1,//5'b00000,
 				Wr_data			= 2,//5'b00001,
@@ -280,12 +280,14 @@ localparam  Iddle 			= 1,//5'b00000,
 	
 always @ (posedge reset or posedge clock) begin
 	if (reset) begin
+	 
+		st_m				<= Iddle;
+		
 		wr_en				<= 1'b0;
 		word_cnt			<= 8'b0;
 		wraddress		<=	9'b0;
 		data_adau		<=	16'b0;
 		digi_channel	<= 4'b0;	
-		
 		
 		rd_arinc1 		<= 5'b0;
 		rd_arinc2 		<= 5'b0;
@@ -315,12 +317,13 @@ always @ (posedge reset or posedge clock) begin
 			
 			Wr_data:begin
 				if (sample_rdy) begin
+					st_m			<= WAIT_Low_send;
+					
 					wr_en			<= 1'b1;
 					data_adau 	<= ADC_sample;
 					
 					word_cnt		<= word_cnt + 8'b1;
 					
-					st_m			<= WAIT_Low_send;
 				end
 				
 				else st_m <= Wr_data;
@@ -328,19 +331,20 @@ always @ (posedge reset or posedge clock) begin
 			
 			WAIT_Low_send: begin
 				if (~sample_rdy) 	st_m	<= Check;
+				
 				else 					st_m	<= WAIT_Low_send;
 			end
 			
 			Check: begin
 				if (word_cnt == 65) begin
-					wr_en		<= 1'b1;
 					st_m 		<= READ_TAHO_1;
+					wr_en		<= 1'b1;
 					word_cnt	<= 8'b0;
 				end
 				
 				else begin
-					wr_en			<= 1'b0;
 					st_m			<= Wr_data;
+					wr_en			<= 1'b0;
 					wraddress	<= wraddress + 9'b1;
 				end
 				
@@ -365,11 +369,11 @@ always @ (posedge reset or posedge clock) begin
 			end			
 			
 			READ_DIGI_1: begin
+			
+				st_m		 	<= WAIT_one_clk;		
 			 
 				data_adau	<= arinc_1_outp; 
-				wraddress	<= wraddress + 9'b1;
-				
-				st_m		 	<= WAIT_one_clk;		
+				wraddress	<= wraddress + 9'b1;				
 			 
 				if (rd_arinc1 == 31) begin 	
 					rd_arinc1 		<= 5'b0;
@@ -380,12 +384,12 @@ always @ (posedge reset or posedge clock) begin
 			end
 			
 			READ_DIGI_2: begin
-			 
+			
+				st_m		 	<= WAIT_one_clk;		
+			  
 				data_adau	<= arinc_2_outp; 
 				wraddress	<= wraddress + 9'b1;
 				
-				st_m		 	<= WAIT_one_clk;		
-			 
 				if (rd_arinc2 == 31) begin 	
 					rd_arinc2 		<= 5'b0;
 					digi_channel	<= digi_channel + 4'b1;				
@@ -397,11 +401,11 @@ always @ (posedge reset or posedge clock) begin
 			
 			READ_DIGI_3: begin
 			 
+				st_m		 	<= WAIT_one_clk;		
+			 
 				data_adau	<= arinc_3_outp; 
 				wraddress	<= wraddress + 9'b1;
 				
-				st_m		 	<= WAIT_one_clk;		
-			 
 				if (rd_arinc3 == 31) begin 	
 					rd_arinc3 		<= 5'b0;
 					digi_channel	<= digi_channel + 4'b1;				
@@ -413,11 +417,11 @@ always @ (posedge reset or posedge clock) begin
 			
 			READ_DIGI_4: begin
 			 
+				st_m		 	<= WAIT_one_clk;		
+			 
 				data_adau	<= arinc_4_outp; 
 				wraddress	<= wraddress + 9'b1;
 				
-				st_m		 	<= WAIT_one_clk;		
-			 
 				if (rd_arinc4 == 31) begin 	
 					rd_arinc4 		<= 5'b0;
 					digi_channel	<= digi_channel + 4'b1;				
@@ -429,11 +433,11 @@ always @ (posedge reset or posedge clock) begin
 			
 			READ_DIGI_5: begin
 			 
+				st_m		 	<= WAIT_one_clk;		
+			 
 				data_adau	<= arinc_5_outp; 
 				wraddress	<= wraddress + 9'b1;
 					
-				st_m		 	<= WAIT_one_clk;		
-			 
 				if (rd_arinc5 == 31) begin 	
 					rd_arinc5 		<= 5'b0;
 					digi_channel	<= digi_channel + 4'b1;				
@@ -445,11 +449,11 @@ always @ (posedge reset or posedge clock) begin
 			
 			READ_DIGI_6: begin
 			 
+				st_m		 	<= WAIT_one_clk;		
+			 
 				data_adau	<= arinc_6_outp; 
 				wraddress	<= wraddress + 9'b1;
 					
-				st_m		 	<= WAIT_one_clk;		
-			 
 				if (rd_arinc6 == 31) begin 	
 					rd_arinc6 		<= 5'b0;
 					digi_channel	<= digi_channel + 4'b1;				
@@ -479,10 +483,10 @@ fdau_ram // 512 words
 fdau_ram_UNIT(
 	 .clock			(clock),
 	 .data			(data_adau), // [15:0]
-	 .rdaddress		(rd_adau),	 // [8:0]
+	 .rdaddress		(rd_fdau),	 // [8:0]
 	 .wraddress		(wraddress), // [8:0]
 	 .wren			(wr_en),
-	 .q				(q_adau)		 // [15:0]
+	 .q				(q_fdau)		 // [15:0]
 );
 
 

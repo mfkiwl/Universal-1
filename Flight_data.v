@@ -38,7 +38,7 @@ module Flight_data (
 	rd_FLIGHT,
 	FLIGHT_out,
 	
-	Serial_number,
+	Serial_number
 );
 
 	input wire clock, reset, frame;

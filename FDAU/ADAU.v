@@ -76,7 +76,7 @@ output wire [15:0]	ADC_sample;
 
 
 wire	[7:0]  new_frame;
-wire	[7:0]  new_frame_addr;
+wire	[6:0]  new_frame_addr;
 wire	  wren;	assign wren = 1'b1;
 wire	[7:0]  channel;
 
@@ -111,7 +111,7 @@ parameter delay_clocks = 1220;
 				
 
 reg s_word, ADC_start; 
-reg [7:0] 	rd_channel;
+reg [6:0] 	rd_channel;
 reg [15:0]	sync_word;
 reg [31:0] 	cnt;
 

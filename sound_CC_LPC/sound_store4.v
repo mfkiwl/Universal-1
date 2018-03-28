@@ -192,7 +192,7 @@ s_Buff4 s_BuffUnit(
 	 .clock			(clock),
 	 .data			(data),			// [15:0] 
 	 .rdaddress		(rdaddress),	// [8:0]
-	 .wraddress		(wraddress),	// [8:0]
+	 .wraddress		(wraddress),	// [9:0]
 	 .wren			(wren),
 	 .q				(q)				// [15:0]
 );

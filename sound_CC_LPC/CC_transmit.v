@@ -41,7 +41,7 @@ output reg 	tx;
 `ifdef	CFDR	// look in "defines.vh"
 	parameter SUBFRAME = 2048;
 `else 
-	parameter SUBFRAME = 2048;
+	parameter SUBFRAME = 48;
 `endif	
 
 	parameter delay_val = 48;	

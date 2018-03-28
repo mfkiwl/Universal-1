@@ -72,7 +72,7 @@ output wire [3:0] ADDR,
 						ENA;
 
 input  wire 	taho1			/* synthesis altera_chip_pin_lc="@31" */;
-input  wire 	taho2			/* synthesis altera_chip_pin_lc="@39" */;
+input  wire 	taho2			/* synthesis altera_chip_pin_lc="@32" */;
 input  wire 	impuls		/* synthesis altera_chip_pin_lc="@142" */;
 	
 output wire 	TX_data 		/* synthesis altera_chip_pin_lc="@143" */;	//	LPC & MK	
@@ -128,7 +128,7 @@ RTCUnit
 	 .msec		(msec),			
 	 .sec			(sec),			
 	 .delay		(delay),		
-	 .LED_FPGA	(LED),
+	 .LED_FPGA	(LED_FPGA),
 	 
 	 .clk_5Mhz		(clk_5Mhz),
 	 .clk_1MHz		(clk_1MHz),
@@ -154,8 +154,8 @@ GPS_Unit
 /*
 	Inner FDAU of register
 */
-wire 	[8:0] 	rd_adau;
-wire [15:0] 	q_adau;
+wire 	[8:0] 	rd_fdau;
+wire [15:0] 	q_fdau;
 
 FDAU 
 FDAU
@@ -195,9 +195,10 @@ FDAU
 	 .taho2			(taho2),
 	 .impuls			(impuls),
 	 
-	 .rd_adau	(rd_adau),
-	 .q_adau		(q_adau)
+	 .rd_fdau	(rd_fdau),
+	 .q_fdau		(q_fdau)
 );
+
 
 /*
 	Prev Flight_DATA -> all parametric data available
@@ -218,8 +219,8 @@ SUBFRAME_FORMER_UNIT
 	 .GPS_DATA		(GPS_DATA),		// [223:0]		
 	 .I2C_DATA		(I2C_DATA),		// [159:0] 
 	 
-	 .rd_adau		(rd_adau),
-	 .q_adau			(q_adau),
+	 .rd_fdau		(rd_fdau),
+	 .q_fdau			(q_fdau),
 	 
 	 .rd_FLIGHT		(rd_FLIGHT),	// [7:0]
 	 .FLIGHT_out	(FLIGHT_out),	// [31:0]
@@ -237,12 +238,8 @@ SUBFRAME_FORMER_UNIT
 */
 
 `ifdef AUDIO // "defines.vh"
-	wire aud2; 
-`else 	
-	wire aud2; assign aud2 = AUD2;
+	wire AUD2; 
 `endif 
-
-wire aud1; assign aud1 = AUD1;
 
 wire			frame_rdy;
 wire [3:0]	frame_cnt;
@@ -255,19 +252,20 @@ Get_All_and_Trans_TOP_UNIT
 	 .timer			(delay),		// start of sound sampling
 	 .msec			(msec),		// interupt for packages	 
 	 
-	 .aud1			(aud1), 
-	 .aud2			(aud2),
+	 .aud1			(AUD1), 
+	 .aud2			(AUD2),
 	 .CC_tx			(CC_tx),
 	 
 	 .frame_rdy 	(frame_rdy),
 	 .frame_cnt		(frame_cnt),
 	 
 	 .rd_FLIGHT		(rd_FLIGHT),	// [6:0]
-	 .FLIGHT_out	(FLIGHT_out),	// [31:0]
+	 .FLIGHT_out	(FLIGHT_out)	// [31:0]
 
-`ifdef LPC	    
+`ifdef LPC
+	 ,	    
 	 .LPC_bsy		(LPC_bsy),	// busy flag from LPC	
-	 .Tx_sound		(Tx_sound1),    
+	 .Tx_sound		(Tx_sound1)    
 `endif
 	 
 );

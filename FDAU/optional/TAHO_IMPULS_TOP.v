@@ -59,7 +59,7 @@ TAHO_Unit1
 	 .clock		(clock),
 	 .reset		(reset),
 	 .sec			(sec),	 
-	 .taho		(TAHO1),	 
+	 .taho		(taho1),	 
 	 .freq		(freq1)
 );
 
@@ -69,7 +69,7 @@ TAHO_Unit2
 	 .clock		(clock),
 	 .reset		(reset),
 	 .sec			(sec),	 
-	 .taho		(TAHO1),	 
+	 .taho		(taho2),	 
 	 .freq		(freq2)
 );
 

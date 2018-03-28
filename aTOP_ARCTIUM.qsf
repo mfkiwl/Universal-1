@@ -74,7 +74,6 @@ set_global_assignment -name VERILOG_FILE FDAU/ADC.v
 set_global_assignment -name QIP_FILE FDAU/adau_ram.qip
 set_global_assignment -name VERILOG_FILE FDAU/ADAU.v
 set_global_assignment -name VERILOG_FILE Sync_input.v
-set_global_assignment -name VERILOG_FILE Flight_data.v
 set_global_assignment -name QIP_FILE CLK.qip
 set_global_assignment -name VERILOG_FILE FDAU/SUBFRAME_FORMER.v
 set_global_assignment -name VERILOG_FILE FDAU/FDAU.v
@@ -84,4 +83,658 @@ set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_RO
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_global_assignment -name QIP_FILE FDAU/frame.qip
 set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "2.5 V"
+set_global_assignment -name VERILOG_INCLUDE_FILE defines.vh
+set_location_assignment PIN_59 -to ADDR[3]
+set_location_assignment PIN_58 -to ADDR[2]
+set_location_assignment PIN_55 -to ADDR[1]
+set_location_assignment PIN_54 -to ADDR[0]
+set_location_assignment PIN_71 -to ENA[3]
+set_location_assignment PIN_70 -to ENA[2]
+set_location_assignment PIN_68 -to ENA[1]
+set_location_assignment PIN_60 -to ENA[0]
+set_global_assignment -name ENABLE_SIGNALTAP ON
+set_global_assignment -name USE_SIGNALTAP_FILE debug/fdau&subframe.stp
+set_global_assignment -name SIGNALTAP_FILE debug/fdau&subframe.stp
+set_global_assignment -name SLD_NODE_CREATOR_ID 110 -section_id fdau_debug
+set_global_assignment -name SLD_NODE_ENTITY_NAME sld_signaltap -section_id fdau_debug
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_RAM_BLOCK_TYPE=AUTO" -section_id fdau_debug
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_NODE_INFO=805334528" -section_id fdau_debug
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_POWER_UP_TRIGGER=0" -section_id fdau_debug
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_STORAGE_QUALIFIER_INVERSION_MASK_LENGTH=0" -section_id fdau_debug
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_ATTRIBUTE_MEM_MODE=OFF" -section_id fdau_debug
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_STATE_FLOW_USE_GENERATED=0" -section_id fdau_debug
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_STATE_BITS=11" -section_id fdau_debug
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_BUFFER_FULL_STOP=1" -section_id fdau_debug
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_CURRENT_RESOURCE_WIDTH=1" -section_id fdau_debug
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_LEVEL=1" -section_id fdau_debug
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_IN_ENABLED=0" -section_id fdau_debug
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_ADVANCED_TRIGGER_ENTITY=basic,1," -section_id fdau_debug
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_LEVEL_PIPELINE=1" -section_id fdau_debug
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_ENABLE_ADVANCED_TRIGGER=0" -section_id fdau_debug
+set_global_assignment -name SLD_NODE_CREATOR_ID 110 -section_id subfarame_dbg
+set_global_assignment -name SLD_NODE_ENTITY_NAME sld_signaltap -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[0] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|byte_cnt[0]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[1] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|byte_cnt[1]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[2] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|byte_cnt[2]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[3] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|byte_cnt[3]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[4] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|byte_cnt[4]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[5] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|byte_cnt[5]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[6] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|data[0]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[7] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|data[10]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[8] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|data[11]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[9] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|data[12]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[10] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|data[13]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[11] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|data[14]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[12] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|data[15]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[13] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|data[1]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[14] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|data[2]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[15] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|data[3]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[16] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|data[4]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[17] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|data[5]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[18] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|data[6]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[19] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|data[7]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[20] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|data[8]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[21] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|data[9]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[22] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|frame_cnt[2]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[23] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|frame_cnt[3]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[24] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|rd_fdau[0]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[25] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|rd_fdau[1]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[26] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|rd_fdau[2]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[27] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|rd_fdau[3]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[28] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|rd_fdau[4]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[29] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|rd_fdau[5]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[30] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|rd_fdau[6]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[31] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|rd_fdau[7]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[32] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|rd_fdau[8]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[33] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|state.CNT" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[34] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|state.IDDLE" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[35] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|state.PUT_SERIAL_1" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[36] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|state.PUT_SERIAL_2" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[37] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|state.READ_DOP" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[38] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|state.READ_GPS" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[39] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|state.READ_I2C" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[40] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|state.READ_MSRP" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[41] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|state.SUBFRAME" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[42] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|state.WAIT_CYCLE" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[43] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|state.WAIT_LOW" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[44] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|wraddress[0]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[45] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|wraddress[1]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[46] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|wraddress[2]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[47] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|wraddress[3]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[48] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|wraddress[4]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[49] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|wraddress[5]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[50] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|wraddress[6]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[51] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|wraddress[7]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[52] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|wraddress[8]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[0] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|byte_cnt[0]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[1] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|byte_cnt[1]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[2] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|byte_cnt[2]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[3] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|byte_cnt[3]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[4] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|byte_cnt[4]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[5] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|byte_cnt[5]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[6] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|data[0]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[7] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|data[10]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[8] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|data[11]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[9] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|data[12]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[10] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|data[13]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[11] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|data[14]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[12] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|data[15]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[13] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|data[1]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[14] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|data[2]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[15] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|data[3]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[16] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|data[4]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[17] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|data[5]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[18] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|data[6]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[19] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|data[7]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[20] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|data[8]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[21] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|data[9]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[22] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|frame_cnt[2]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[23] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|frame_cnt[3]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[24] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|rd_fdau[0]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[25] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|rd_fdau[1]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[26] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|rd_fdau[2]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[27] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|rd_fdau[3]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[28] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|rd_fdau[4]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[29] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|rd_fdau[5]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[30] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|rd_fdau[6]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[31] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|rd_fdau[7]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[32] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|rd_fdau[8]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[33] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|state.CNT" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[34] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|state.IDDLE" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[35] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|state.PUT_SERIAL_1" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[36] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|state.PUT_SERIAL_2" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[37] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|state.READ_DOP" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[38] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|state.READ_GPS" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[39] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|state.READ_I2C" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[40] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|state.READ_MSRP" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[41] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|state.SUBFRAME" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[42] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|state.WAIT_CYCLE" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[43] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|state.WAIT_LOW" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[44] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|wraddress[0]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[45] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|wraddress[1]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[46] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|wraddress[2]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[47] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|wraddress[3]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[48] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|wraddress[4]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[49] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|wraddress[5]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[50] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|wraddress[6]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[51] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|wraddress[7]" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[52] -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|wraddress[8]" -section_id subfarame_dbg
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_RAM_BLOCK_TYPE=AUTO" -section_id subfarame_dbg
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_DATA_BITS=53" -section_id subfarame_dbg
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_BITS=53" -section_id subfarame_dbg
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_NODE_INFO=805334529" -section_id subfarame_dbg
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_POWER_UP_TRIGGER=0" -section_id subfarame_dbg
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_STORAGE_QUALIFIER_INVERSION_MASK_LENGTH=0" -section_id subfarame_dbg
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_ATTRIBUTE_MEM_MODE=OFF" -section_id subfarame_dbg
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_STATE_FLOW_USE_GENERATED=0" -section_id subfarame_dbg
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_STATE_BITS=11" -section_id subfarame_dbg
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_BUFFER_FULL_STOP=1" -section_id subfarame_dbg
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_CURRENT_RESOURCE_WIDTH=1" -section_id subfarame_dbg
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_LEVEL=1" -section_id subfarame_dbg
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_IN_ENABLED=0" -section_id subfarame_dbg
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_ADVANCED_TRIGGER_ENTITY=basic,1," -section_id subfarame_dbg
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_LEVEL_PIPELINE=1" -section_id subfarame_dbg
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_ENABLE_ADVANCED_TRIGGER=0" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_clk -to "FDAU:FDAU|clock" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_clk -to "SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|clock" -section_id subfarame_dbg
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_NODE_CRC_LOWORD=49945" -section_id subfarame_dbg
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_SEGMENT_SIZE=512" -section_id fdau_debug
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_SAMPLE_DEPTH=512" -section_id fdau_debug
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_INVERSION_MASK=0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000" -section_id subfarame_dbg
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_INVERSION_MASK_LENGTH=181" -section_id subfarame_dbg
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_SEGMENT_SIZE=256" -section_id subfarame_dbg
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_NODE_CRC_HIWORD=6632" -section_id subfarame_dbg
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_SAMPLE_DEPTH=256" -section_id subfarame_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[0] -to "FDAU:FDAU|ADAU:ADAU_FRAME|sample_rdy" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[1] -to "FDAU:FDAU|data_adau[0]" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[2] -to "FDAU:FDAU|data_adau[10]" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[3] -to "FDAU:FDAU|data_adau[11]" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[4] -to "FDAU:FDAU|data_adau[12]" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[5] -to "FDAU:FDAU|data_adau[13]" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[6] -to "FDAU:FDAU|data_adau[14]" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[7] -to "FDAU:FDAU|data_adau[15]" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[8] -to "FDAU:FDAU|data_adau[1]" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[9] -to "FDAU:FDAU|data_adau[2]" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[10] -to "FDAU:FDAU|data_adau[3]" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[11] -to "FDAU:FDAU|data_adau[4]" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[12] -to "FDAU:FDAU|data_adau[5]" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[13] -to "FDAU:FDAU|data_adau[6]" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[14] -to "FDAU:FDAU|data_adau[7]" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[15] -to "FDAU:FDAU|data_adau[8]" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[16] -to "FDAU:FDAU|data_adau[9]" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[17] -to "FDAU:FDAU|digi_channel[0]" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[18] -to "FDAU:FDAU|digi_channel[1]" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[19] -to "FDAU:FDAU|digi_channel[2]" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[20] -to "FDAU:FDAU|digi_channel[3]" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[21] -to "FDAU:FDAU|sec" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[22] -to "FDAU:FDAU|st_m.Check" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[23] -to "FDAU:FDAU|st_m.Iddle" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[24] -to "FDAU:FDAU|st_m.READ_DIGI_1" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[25] -to "FDAU:FDAU|st_m.READ_DIGI_2" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[26] -to "FDAU:FDAU|st_m.READ_DIGI_3" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[27] -to "FDAU:FDAU|st_m.READ_DIGI_4" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[28] -to "FDAU:FDAU|st_m.READ_DIGI_5" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[29] -to "FDAU:FDAU|st_m.READ_DIGI_6" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[30] -to "FDAU:FDAU|st_m.READ_IMPULS" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[31] -to "FDAU:FDAU|st_m.READ_TAHO_1" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[32] -to "FDAU:FDAU|st_m.READ_TAHO_2" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[33] -to "FDAU:FDAU|st_m.WAIT_Low_send" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[34] -to "FDAU:FDAU|st_m.WAIT_one_clk" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[35] -to "FDAU:FDAU|st_m.Wr_data" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[36] -to "FDAU:FDAU|word_cnt[0]" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[37] -to "FDAU:FDAU|word_cnt[1]" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[38] -to "FDAU:FDAU|word_cnt[2]" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[39] -to "FDAU:FDAU|word_cnt[3]" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[40] -to "FDAU:FDAU|word_cnt[4]" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[41] -to "FDAU:FDAU|word_cnt[5]" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[42] -to "FDAU:FDAU|word_cnt[6]" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[43] -to "FDAU:FDAU|word_cnt[7]" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[44] -to "FDAU:FDAU|wr_en" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[45] -to "FDAU:FDAU|wraddress[0]" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[46] -to "FDAU:FDAU|wraddress[1]" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[47] -to "FDAU:FDAU|wraddress[2]" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[48] -to "FDAU:FDAU|wraddress[3]" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[49] -to "FDAU:FDAU|wraddress[4]" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[50] -to "FDAU:FDAU|wraddress[5]" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[51] -to "FDAU:FDAU|wraddress[6]" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[52] -to "FDAU:FDAU|wraddress[7]" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[53] -to "FDAU:FDAU|wraddress[8]" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[0] -to "FDAU:FDAU|ADAU:ADAU_FRAME|sample_rdy" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[1] -to "FDAU:FDAU|data_adau[0]" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[2] -to "FDAU:FDAU|data_adau[10]" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[3] -to "FDAU:FDAU|data_adau[11]" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[4] -to "FDAU:FDAU|data_adau[12]" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[5] -to "FDAU:FDAU|data_adau[13]" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[6] -to "FDAU:FDAU|data_adau[14]" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[7] -to "FDAU:FDAU|data_adau[15]" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[8] -to "FDAU:FDAU|data_adau[1]" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[9] -to "FDAU:FDAU|data_adau[2]" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[10] -to "FDAU:FDAU|data_adau[3]" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[11] -to "FDAU:FDAU|data_adau[4]" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[12] -to "FDAU:FDAU|data_adau[5]" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[13] -to "FDAU:FDAU|data_adau[6]" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[14] -to "FDAU:FDAU|data_adau[7]" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[15] -to "FDAU:FDAU|data_adau[8]" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[16] -to "FDAU:FDAU|data_adau[9]" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[17] -to "FDAU:FDAU|digi_channel[0]" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[18] -to "FDAU:FDAU|digi_channel[1]" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[19] -to "FDAU:FDAU|digi_channel[2]" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[20] -to "FDAU:FDAU|digi_channel[3]" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[21] -to "FDAU:FDAU|sec" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[22] -to "FDAU:FDAU|st_m.Check" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[23] -to "FDAU:FDAU|st_m.Iddle" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[24] -to "FDAU:FDAU|st_m.READ_DIGI_1" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[25] -to "FDAU:FDAU|st_m.READ_DIGI_2" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[26] -to "FDAU:FDAU|st_m.READ_DIGI_3" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[27] -to "FDAU:FDAU|st_m.READ_DIGI_4" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[28] -to "FDAU:FDAU|st_m.READ_DIGI_5" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[29] -to "FDAU:FDAU|st_m.READ_DIGI_6" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[30] -to "FDAU:FDAU|st_m.READ_IMPULS" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[31] -to "FDAU:FDAU|st_m.READ_TAHO_1" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[32] -to "FDAU:FDAU|st_m.READ_TAHO_2" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[33] -to "FDAU:FDAU|st_m.WAIT_Low_send" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[34] -to "FDAU:FDAU|st_m.WAIT_one_clk" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[35] -to "FDAU:FDAU|st_m.Wr_data" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[36] -to "FDAU:FDAU|word_cnt[0]" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[37] -to "FDAU:FDAU|word_cnt[1]" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[38] -to "FDAU:FDAU|word_cnt[2]" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[39] -to "FDAU:FDAU|word_cnt[3]" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[40] -to "FDAU:FDAU|word_cnt[4]" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[41] -to "FDAU:FDAU|word_cnt[5]" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[42] -to "FDAU:FDAU|word_cnt[6]" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[43] -to "FDAU:FDAU|word_cnt[7]" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[44] -to "FDAU:FDAU|wr_en" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[45] -to "FDAU:FDAU|wraddress[0]" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[46] -to "FDAU:FDAU|wraddress[1]" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[47] -to "FDAU:FDAU|wraddress[2]" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[48] -to "FDAU:FDAU|wraddress[3]" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[49] -to "FDAU:FDAU|wraddress[4]" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[50] -to "FDAU:FDAU|wraddress[5]" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[51] -to "FDAU:FDAU|wraddress[6]" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[52] -to "FDAU:FDAU|wraddress[7]" -section_id fdau_debug
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[53] -to "FDAU:FDAU|wraddress[8]" -section_id fdau_debug
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_DATA_BITS=54" -section_id fdau_debug
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_BITS=54" -section_id fdau_debug
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_INVERSION_MASK=00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000" -section_id fdau_debug
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_INVERSION_MASK_LENGTH=185" -section_id fdau_debug
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_NODE_CRC_LOWORD=9592" -section_id fdau_debug
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_NODE_CRC_HIWORD=35825" -section_id fdau_debug
+set_global_assignment -name SLD_NODE_CREATOR_ID 110 -section_id impuls_dbg
+set_global_assignment -name SLD_NODE_ENTITY_NAME sld_signaltap -section_id impuls_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_clk -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|IMPULS:IMPULS_Unit|clock" -section_id impuls_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[0] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|IMPULS:IMPULS_Unit|imp[0]" -section_id impuls_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[1] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|IMPULS:IMPULS_Unit|imp[10]" -section_id impuls_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[2] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|IMPULS:IMPULS_Unit|imp[11]" -section_id impuls_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[3] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|IMPULS:IMPULS_Unit|imp[12]" -section_id impuls_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[4] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|IMPULS:IMPULS_Unit|imp[13]" -section_id impuls_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[5] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|IMPULS:IMPULS_Unit|imp[14]" -section_id impuls_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[6] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|IMPULS:IMPULS_Unit|imp[15]" -section_id impuls_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[7] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|IMPULS:IMPULS_Unit|imp[1]" -section_id impuls_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[8] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|IMPULS:IMPULS_Unit|imp[2]" -section_id impuls_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[9] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|IMPULS:IMPULS_Unit|imp[3]" -section_id impuls_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[10] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|IMPULS:IMPULS_Unit|imp[4]" -section_id impuls_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[11] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|IMPULS:IMPULS_Unit|imp[5]" -section_id impuls_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[12] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|IMPULS:IMPULS_Unit|imp[6]" -section_id impuls_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[13] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|IMPULS:IMPULS_Unit|imp[7]" -section_id impuls_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[14] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|IMPULS:IMPULS_Unit|imp[8]" -section_id impuls_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[15] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|IMPULS:IMPULS_Unit|imp[9]" -section_id impuls_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[16] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|IMPULS:IMPULS_Unit|impuls" -section_id impuls_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[17] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|IMPULS:IMPULS_Unit|msec" -section_id impuls_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[18] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|IMPULS:IMPULS_Unit|msec_cnt[0]" -section_id impuls_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[19] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|IMPULS:IMPULS_Unit|msec_cnt[1]" -section_id impuls_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[20] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|IMPULS:IMPULS_Unit|msec_cnt[2]" -section_id impuls_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[21] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|IMPULS:IMPULS_Unit|msec_cnt[3]" -section_id impuls_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[22] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|IMPULS:IMPULS_Unit|state.cntH" -section_id impuls_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[23] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|IMPULS:IMPULS_Unit|state.cntL" -section_id impuls_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[24] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|IMPULS:IMPULS_Unit|state.decision" -section_id impuls_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[25] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|IMPULS:IMPULS_Unit|state.iddle" -section_id impuls_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[26] -to impuls -section_id impuls_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[0] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|IMPULS:IMPULS_Unit|imp[0]" -section_id impuls_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[1] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|IMPULS:IMPULS_Unit|imp[10]" -section_id impuls_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[2] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|IMPULS:IMPULS_Unit|imp[11]" -section_id impuls_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[3] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|IMPULS:IMPULS_Unit|imp[12]" -section_id impuls_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[4] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|IMPULS:IMPULS_Unit|imp[13]" -section_id impuls_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[5] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|IMPULS:IMPULS_Unit|imp[14]" -section_id impuls_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[6] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|IMPULS:IMPULS_Unit|imp[15]" -section_id impuls_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[7] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|IMPULS:IMPULS_Unit|imp[1]" -section_id impuls_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[8] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|IMPULS:IMPULS_Unit|imp[2]" -section_id impuls_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[9] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|IMPULS:IMPULS_Unit|imp[3]" -section_id impuls_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[10] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|IMPULS:IMPULS_Unit|imp[4]" -section_id impuls_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[11] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|IMPULS:IMPULS_Unit|imp[5]" -section_id impuls_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[12] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|IMPULS:IMPULS_Unit|imp[6]" -section_id impuls_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[13] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|IMPULS:IMPULS_Unit|imp[7]" -section_id impuls_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[14] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|IMPULS:IMPULS_Unit|imp[8]" -section_id impuls_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[15] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|IMPULS:IMPULS_Unit|imp[9]" -section_id impuls_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[16] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|IMPULS:IMPULS_Unit|impuls" -section_id impuls_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[17] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|IMPULS:IMPULS_Unit|msec" -section_id impuls_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[18] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|IMPULS:IMPULS_Unit|msec_cnt[0]" -section_id impuls_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[19] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|IMPULS:IMPULS_Unit|msec_cnt[1]" -section_id impuls_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[20] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|IMPULS:IMPULS_Unit|msec_cnt[2]" -section_id impuls_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[21] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|IMPULS:IMPULS_Unit|msec_cnt[3]" -section_id impuls_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[22] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|IMPULS:IMPULS_Unit|state.cntH" -section_id impuls_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[23] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|IMPULS:IMPULS_Unit|state.cntL" -section_id impuls_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[24] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|IMPULS:IMPULS_Unit|state.decision" -section_id impuls_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[25] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|IMPULS:IMPULS_Unit|state.iddle" -section_id impuls_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[26] -to impuls -section_id impuls_dbg
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_RAM_BLOCK_TYPE=AUTO" -section_id impuls_dbg
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_DATA_BITS=27" -section_id impuls_dbg
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_BITS=27" -section_id impuls_dbg
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_NODE_INFO=805334530" -section_id impuls_dbg
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_POWER_UP_TRIGGER=0" -section_id impuls_dbg
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_INVERSION_MASK=000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000" -section_id impuls_dbg
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_INVERSION_MASK_LENGTH=102" -section_id impuls_dbg
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_STORAGE_QUALIFIER_INVERSION_MASK_LENGTH=0" -section_id impuls_dbg
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_SEGMENT_SIZE=128" -section_id impuls_dbg
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_ATTRIBUTE_MEM_MODE=OFF" -section_id impuls_dbg
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_STATE_FLOW_USE_GENERATED=0" -section_id impuls_dbg
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_STATE_BITS=11" -section_id impuls_dbg
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_BUFFER_FULL_STOP=1" -section_id impuls_dbg
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_CURRENT_RESOURCE_WIDTH=1" -section_id impuls_dbg
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_NODE_CRC_LOWORD=38125" -section_id impuls_dbg
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_NODE_CRC_HIWORD=3635" -section_id impuls_dbg
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_LEVEL=1" -section_id impuls_dbg
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_SAMPLE_DEPTH=128" -section_id impuls_dbg
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_IN_ENABLED=0" -section_id impuls_dbg
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_ADVANCED_TRIGGER_ENTITY=basic,1," -section_id impuls_dbg
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_LEVEL_PIPELINE=1" -section_id impuls_dbg
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_ENABLE_ADVANCED_TRIGGER=0" -section_id impuls_dbg
+set_global_assignment -name SLD_NODE_CREATOR_ID 110 -section_id taho_dbg
+set_global_assignment -name SLD_NODE_ENTITY_NAME sld_signaltap -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_clk -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|clock" -section_id taho_dbg
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_RAM_BLOCK_TYPE=AUTO" -section_id taho_dbg
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_NODE_INFO=805334531" -section_id taho_dbg
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_POWER_UP_TRIGGER=0" -section_id taho_dbg
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_STORAGE_QUALIFIER_INVERSION_MASK_LENGTH=0" -section_id taho_dbg
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_SEGMENT_SIZE=1024" -section_id taho_dbg
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_ATTRIBUTE_MEM_MODE=OFF" -section_id taho_dbg
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_STATE_FLOW_USE_GENERATED=0" -section_id taho_dbg
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_STATE_BITS=11" -section_id taho_dbg
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_BUFFER_FULL_STOP=1" -section_id taho_dbg
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_CURRENT_RESOURCE_WIDTH=1" -section_id taho_dbg
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_LEVEL=1" -section_id taho_dbg
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_SAMPLE_DEPTH=1024" -section_id taho_dbg
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_IN_ENABLED=0" -section_id taho_dbg
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_ADVANCED_TRIGGER_ENTITY=basic,1," -section_id taho_dbg
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_LEVEL_PIPELINE=1" -section_id taho_dbg
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_ENABLE_ADVANCED_TRIGGER=0" -section_id taho_dbg
+set_global_assignment -name SLD_NODE_CREATOR_ID 110 -section_id auto_signaltap_4
+set_global_assignment -name SLD_NODE_ENTITY_NAME sld_signaltap -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_clk -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|clock" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[0] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|Sync_input:Sync_TAHO|signal_sync" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[1] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|cnt[0]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[2] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|cnt[10]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[3] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|cnt[11]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[4] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|cnt[12]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[5] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|cnt[13]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[6] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|cnt[14]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[7] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|cnt[15]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[8] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|cnt[1]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[9] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|cnt[2]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[10] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|cnt[3]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[11] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|cnt[4]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[12] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|cnt[5]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[13] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|cnt[6]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[14] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|cnt[7]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[15] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|cnt[8]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[16] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|cnt[9]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[17] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|freq[0]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[18] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|freq[10]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[19] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|freq[11]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[20] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|freq[12]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[21] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|freq[13]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[22] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|freq[14]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[23] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|freq[15]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[24] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|freq[1]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[25] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|freq[2]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[26] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|freq[3]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[27] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|freq[4]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[28] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|freq[5]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[29] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|freq[6]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[30] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|freq[7]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[31] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|freq[8]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[32] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|freq[9]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[33] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|sec" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[34] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|st.IDDLE" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[35] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|st.NEGATIV" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[36] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|st.POSITIV" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[37] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|state.FILTR" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[38] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|state.FILTR2" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[39] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|state.IDDLE" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[40] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|state.NEGATIV" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[41] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|state.POSITIV" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[42] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|t_cnt[0]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[43] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|t_cnt[10]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[44] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|t_cnt[11]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[45] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|t_cnt[12]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[46] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|t_cnt[13]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[47] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|t_cnt[14]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[48] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|t_cnt[15]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[49] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|t_cnt[1]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[50] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|t_cnt[2]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[51] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|t_cnt[3]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[52] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|t_cnt[4]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[53] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|t_cnt[5]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[54] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|t_cnt[6]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[55] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|t_cnt[7]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[56] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|t_cnt[8]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[57] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|t_cnt[9]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[58] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|taho" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[59] -to taho2 -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[0] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|Sync_input:Sync_TAHO|signal_sync" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[1] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|cnt[0]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[2] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|cnt[10]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[3] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|cnt[11]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[4] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|cnt[12]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[5] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|cnt[13]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[6] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|cnt[14]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[7] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|cnt[15]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[8] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|cnt[1]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[9] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|cnt[2]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[10] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|cnt[3]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[11] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|cnt[4]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[12] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|cnt[5]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[13] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|cnt[6]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[14] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|cnt[7]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[15] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|cnt[8]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[16] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|cnt[9]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[17] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|freq[0]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[18] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|freq[10]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[19] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|freq[11]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[20] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|freq[12]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[21] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|freq[13]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[22] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|freq[14]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[23] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|freq[15]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[24] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|freq[1]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[25] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|freq[2]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[26] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|freq[3]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[27] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|freq[4]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[28] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|freq[5]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[29] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|freq[6]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[30] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|freq[7]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[31] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|freq[8]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[32] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|freq[9]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[33] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|sec" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[34] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|st.IDDLE" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[35] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|st.NEGATIV" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[36] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|st.POSITIV" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[37] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|state.FILTR" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[38] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|state.FILTR2" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[39] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|state.IDDLE" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[40] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|state.NEGATIV" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[41] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|state.POSITIV" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[42] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|t_cnt[0]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[43] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|t_cnt[10]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[44] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|t_cnt[11]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[45] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|t_cnt[12]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[46] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|t_cnt[13]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[47] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|t_cnt[14]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[48] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|t_cnt[15]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[49] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|t_cnt[1]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[50] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|t_cnt[2]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[51] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|t_cnt[3]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[52] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|t_cnt[4]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[53] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|t_cnt[5]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[54] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|t_cnt[6]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[55] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|t_cnt[7]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[56] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|t_cnt[8]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[57] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|t_cnt[9]" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[58] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|taho" -section_id auto_signaltap_4
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[59] -to taho2 -section_id auto_signaltap_4
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_RAM_BLOCK_TYPE=AUTO" -section_id auto_signaltap_4
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_DATA_BITS=60" -section_id auto_signaltap_4
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_BITS=60" -section_id auto_signaltap_4
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_NODE_INFO=805334532" -section_id auto_signaltap_4
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_POWER_UP_TRIGGER=0" -section_id auto_signaltap_4
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_STORAGE_QUALIFIER_INVERSION_MASK_LENGTH=0" -section_id auto_signaltap_4
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_ATTRIBUTE_MEM_MODE=OFF" -section_id auto_signaltap_4
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_STATE_FLOW_USE_GENERATED=0" -section_id auto_signaltap_4
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_STATE_BITS=11" -section_id auto_signaltap_4
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_BUFFER_FULL_STOP=1" -section_id auto_signaltap_4
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_CURRENT_RESOURCE_WIDTH=1" -section_id auto_signaltap_4
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_NODE_CRC_LOWORD=30329" -section_id auto_signaltap_4
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_LEVEL=1" -section_id auto_signaltap_4
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_IN_ENABLED=0" -section_id auto_signaltap_4
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_ADVANCED_TRIGGER_ENTITY=basic,1," -section_id auto_signaltap_4
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_LEVEL_PIPELINE=1" -section_id auto_signaltap_4
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_ENABLE_ADVANCED_TRIGGER=0" -section_id auto_signaltap_4
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_INVERSION_MASK=000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000" -section_id auto_signaltap_4
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_INVERSION_MASK_LENGTH=204" -section_id auto_signaltap_4
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_SEGMENT_SIZE=1024" -section_id auto_signaltap_4
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_NODE_CRC_HIWORD=7328" -section_id auto_signaltap_4
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_SAMPLE_DEPTH=1024" -section_id auto_signaltap_4
+set_location_assignment PIN_32 -to taho2
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[0] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|Sync_input:Sync_TAHO|signal_sync" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[1] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|cnt[0]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[2] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|cnt[10]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[3] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|cnt[11]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[4] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|cnt[12]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[5] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|cnt[13]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[6] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|cnt[14]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[7] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|cnt[15]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[8] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|cnt[1]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[9] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|cnt[2]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[10] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|cnt[3]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[11] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|cnt[4]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[12] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|cnt[5]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[13] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|cnt[6]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[14] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|cnt[7]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[15] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|cnt[8]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[16] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|cnt[9]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[17] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|freq[0]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[18] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|freq[10]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[19] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|freq[11]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[20] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|freq[12]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[21] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|freq[13]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[22] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|freq[14]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[23] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|freq[15]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[24] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|freq[1]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[25] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|freq[2]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[26] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|freq[3]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[27] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|freq[4]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[28] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|freq[5]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[29] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|freq[6]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[30] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|freq[7]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[31] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|freq[8]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[32] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|freq[9]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[33] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|sec" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[34] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|st.IDDLE" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[35] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|st.NEGATIV" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[36] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|st.POSITIV" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[37] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|state.FILTR" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[38] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|state.FILTR2" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[39] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|state.IDDLE" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[40] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|state.NEGATIV" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[41] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|state.POSITIV" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[42] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|state.WT_sec" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[43] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|t_cnt[0]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[44] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|t_cnt[10]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[45] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|t_cnt[11]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[46] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|t_cnt[12]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[47] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|t_cnt[13]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[48] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|t_cnt[14]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[49] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|t_cnt[15]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[50] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|t_cnt[1]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[51] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|t_cnt[2]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[52] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|t_cnt[3]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[53] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|t_cnt[4]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[54] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|t_cnt[5]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[55] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|t_cnt[6]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[56] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|t_cnt[7]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[57] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|t_cnt[8]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[58] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|t_cnt[9]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[59] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|taho" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[60] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|Sync_input:Sync_TAHO|signal_sync" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[61] -to taho1 -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[62] -to taho2 -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[0] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|Sync_input:Sync_TAHO|signal_sync" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[1] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|cnt[0]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[2] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|cnt[10]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[3] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|cnt[11]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[4] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|cnt[12]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[5] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|cnt[13]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[6] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|cnt[14]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[7] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|cnt[15]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[8] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|cnt[1]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[9] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|cnt[2]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[10] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|cnt[3]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[11] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|cnt[4]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[12] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|cnt[5]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[13] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|cnt[6]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[14] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|cnt[7]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[15] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|cnt[8]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[16] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|cnt[9]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[17] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|freq[0]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[18] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|freq[10]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[19] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|freq[11]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[20] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|freq[12]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[21] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|freq[13]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[22] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|freq[14]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[23] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|freq[15]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[24] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|freq[1]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[25] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|freq[2]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[26] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|freq[3]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[27] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|freq[4]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[28] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|freq[5]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[29] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|freq[6]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[30] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|freq[7]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[31] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|freq[8]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[32] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|freq[9]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[33] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|sec" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[34] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|st.IDDLE" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[35] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|st.NEGATIV" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[36] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|st.POSITIV" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[37] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|state.FILTR" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[38] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|state.FILTR2" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[39] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|state.IDDLE" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[40] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|state.NEGATIV" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[41] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|state.POSITIV" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[42] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|state.WT_sec" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[43] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|t_cnt[0]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[44] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|t_cnt[10]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[45] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|t_cnt[11]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[46] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|t_cnt[12]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[47] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|t_cnt[13]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[48] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|t_cnt[14]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[49] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|t_cnt[15]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[50] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|t_cnt[1]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[51] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|t_cnt[2]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[52] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|t_cnt[3]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[53] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|t_cnt[4]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[54] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|t_cnt[5]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[55] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|t_cnt[6]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[56] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|t_cnt[7]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[57] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|t_cnt[8]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[58] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|t_cnt[9]" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[59] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|taho" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[60] -to "FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|Sync_input:Sync_TAHO|signal_sync" -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[61] -to taho1 -section_id taho_dbg
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[62] -to taho2 -section_id taho_dbg
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_DATA_BITS=63" -section_id taho_dbg
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_BITS=63" -section_id taho_dbg
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_INVERSION_MASK=000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000" -section_id taho_dbg
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_INVERSION_MASK_LENGTH=213" -section_id taho_dbg
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_NODE_CRC_LOWORD=6527" -section_id taho_dbg
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_NODE_CRC_HIWORD=22803" -section_id taho_dbg
+set_location_assignment PIN_30 -to CC_tx
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
+set_global_assignment -name SLD_FILE db/fdau&subframe_auto_stripped.stp

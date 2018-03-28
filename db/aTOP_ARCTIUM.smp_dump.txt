@@ -66,13 +66,12 @@ state.cntL 0 1 0 1
 state.decision 1 0 0 1 
 
 State Machine - |aTOP_ARCTIUM|FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|state
-Name state.FILTR2 state.FILTR state.WT_sec state.NEGATIV state.POSITIV state.IDDLE 
-state.IDDLE 0 0 0 0 0 0 
-state.POSITIV 0 0 0 0 1 1 
-state.NEGATIV 0 0 0 1 0 1 
-state.WT_sec 0 0 1 0 0 1 
-state.FILTR 0 1 0 0 0 1 
-state.FILTR2 1 0 0 0 0 1 
+Name state.FILTR2 state.FILTR state.POSITIV state.IDDLE state.NEGATIV 
+state.IDDLE 0 0 0 0 0 
+state.POSITIV 0 0 1 1 0 
+state.NEGATIV 0 0 0 1 1 
+state.FILTR 0 1 0 1 0 
+state.FILTR2 1 0 0 1 0 
 
 State Machine - |aTOP_ARCTIUM|FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit2|st
 Name st.IDDLE st.NEGATIV st.POSITIV 
@@ -81,13 +80,12 @@ st.POSITIV 1 0 1
 st.NEGATIV 1 1 0 
 
 State Machine - |aTOP_ARCTIUM|FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|state
-Name state.FILTR2 state.FILTR state.WT_sec state.NEGATIV state.POSITIV state.IDDLE 
-state.IDDLE 0 0 0 0 0 0 
-state.POSITIV 0 0 0 0 1 1 
-state.NEGATIV 0 0 0 1 0 1 
-state.WT_sec 0 0 1 0 0 1 
-state.FILTR 0 1 0 0 0 1 
-state.FILTR2 1 0 0 0 0 1 
+Name state.FILTR2 state.FILTR state.POSITIV state.IDDLE state.NEGATIV 
+state.IDDLE 0 0 0 0 0 
+state.POSITIV 0 0 1 1 0 
+state.NEGATIV 0 0 0 1 1 
+state.FILTR 0 1 0 1 0 
+state.FILTR2 1 0 0 1 0 
 
 State Machine - |aTOP_ARCTIUM|FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|TAHO:TAHO_Unit1|st
 Name st.IDDLE st.NEGATIV st.POSITIV 
@@ -152,9 +150,3 @@ Name state.IDLE state.START state.BYTE
 state.IDLE 0 0 0 
 state.BYTE 1 0 1 
 state.START 1 1 0 
-
-State Machine - |aTOP_ARCTIUM|RTC:RTCUnit|state
-Name state.IDDLE state.END state.BLINK 
-state.IDDLE 0 0 0 
-state.BLINK 1 0 1 
-state.END 1 1 0 

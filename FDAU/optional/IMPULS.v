@@ -38,7 +38,7 @@ Sync_impuls(
 	 .signal_sync	(impuls_sync)
 );
 
-reg [3:0] msec_cnt;
+reg [4:0] msec_cnt;
 
 reg [1:0] state;
 
@@ -52,7 +52,7 @@ always @ (posedge clock or posedge reset) begin
 
 	if (reset) begin
 		imp		<= 16'b0;
-		msec_cnt <= 4'b0;
+		msec_cnt <= 5'b0;
 		state 	<= iddle;
 	end
 	
@@ -66,13 +66,13 @@ always @ (posedge clock or posedge reset) begin
 				else begin
 					state <= iddle;
 					imp		<= 16'b0;
-					msec_cnt <= 4'b0;
+					msec_cnt <= 5'b0;
 				end
 			end
 			
 			cntH: begin
 				if (msec) begin
-					msec_cnt <= msec_cnt + 4'b1;
+					msec_cnt <= msec_cnt + 5'b1;
 					state 	<= decision;
 				end
 			end
@@ -80,8 +80,8 @@ always @ (posedge clock or posedge reset) begin
 			cntL: if (~msec)	state <= cntH;
 			
 			decision: begin
-				if (msec_cnt > 10) state 	<= iddle;
-				else 					 state 	<= cntL;
+				if (msec_cnt == 18) 	state 	<= iddle;
+				else 					 	state 	<= cntL;
 			end
 		endcase
 	end 

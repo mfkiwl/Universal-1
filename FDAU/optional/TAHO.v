@@ -42,25 +42,37 @@ Sync_TAHO(
 	NEW taho counter
 */
 
+reg new_sec;
 reg [2:0] st;
 
 always @ (posedge reset or posedge clock) begin
 	if (reset) begin
-		freq <= 16'b0;
-		st		<= IDDLE;
+		freq 	 <= 16'b0;
+		st			<= IDDLE;
+		new_sec	<= 1'b0;
 	end	
 	
 	else begin
 		case (st)
 		 
-			IDDLE: 	if (sec) 	st <= POSITIV;
-			
-			POSITIV: begin
-				freq 	<= t_cnt;
-				st		<= NEGATIV;
+			IDDLE: begin
+			 
+				new_sec	<= 1'b0;
+				
+				if (sec) st <= POSITIV;
+				else 		st <= IDDLE;	
 			end
 			
-			NEGATIV: if (~sec) 	st <= IDDLE;
+			POSITIV: begin
+				freq 		<= t_cnt;
+				st			<= NEGATIV;
+				new_sec	<= 1'b1;
+			end
+			
+			NEGATIV: begin
+				if (~sec) 	st <= IDDLE;
+				else 			st	<= NEGATIV;
+			end
 			
 		endcase
 	end
@@ -73,11 +85,11 @@ localparam 	IDDLE		= 3'b000,
 				FILTR		= 3'b100,
 				FILTR2	= 3'b101;
 
-reg [16:0] t_cnt,cnt;
+reg [15:0] t_cnt,cnt;
 reg [2:0]  state;
 
-always @ (posedge reset or posedge clock) begin
-	if (reset) begin
+always @ (posedge reset or posedge clock or posedge new_sec) begin
+	if (reset || new_sec) begin
 		
 		t_cnt		<= 16'b0;
 		cnt		<= 16'b0;
@@ -90,9 +102,10 @@ always @ (posedge reset or posedge clock) begin
 		 
 			IDDLE: begin				
 				
-				if (sec) 				state <= WT_sec;		
-				else if (TAHO_sync) 	state <= FILTR;		
-				else 						state <= IDDLE;	
+//				if (sec) 				state <= WT_sec;		
+//				else
+				if (TAHO_sync) 	state <= FILTR;		
+				else 					state <= IDDLE;	
 				
 			end
 			
@@ -122,21 +135,23 @@ always @ (posedge reset or posedge clock) begin
 			
 			NEGATIV: begin
 			 
-				if (sec) 				state 	<= WT_sec;
-				else if (~TAHO_sync) state 	<= IDDLE;
-				else 						state 	<= NEGATIV;
+//				if (sec) 				state 	<= WT_sec;
+//				else 
+				if (~TAHO_sync) state 	<= IDDLE;
+				else 				 state 	<= NEGATIV;
 				
 			end
 			
-			WT_sec: begin			
-			 
-				if (~sec) begin
-					t_cnt	<= 16'b0;
-					state	<= IDDLE;
-				end
-				else 	state <= WT_sec;
-				
-			end
+//			WT_sec: begin			
+//			 
+//				if (~sec) begin
+//					t_cnt	<= 16'b0;
+//					state	<= IDDLE;
+//				end
+//				
+//				else 	state <= WT_sec;
+//				
+//			end
 		endcase
 	end
 end

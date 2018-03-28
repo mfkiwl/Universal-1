@@ -14,8 +14,8 @@ SUBFRAME_FORMER_UNIT
 	 .GPS_DATA		(GPS_DATA),		// [223:0]		
 	 .I2C_DATA		(I2C_DATA),		// [159:0] 
 	 
-	 .rd_adau		(rd_adau),
-	 .q_adau			(q_adau),
+	 .rd_fdau		(rd_fdau),
+	 .q_fdau			(q_fdau),
 	 
 	 .rd_FLIGHT		(rd_FLIGHT),	// [6:0]
 	 .FLIGHT_out	(FLIGHT_out),	// [31:0]
@@ -35,8 +35,8 @@ module SUBFRAME_FORMER
 	GPS_DATA,
 	I2C_DATA,
 	
-	rd_adau,
-	q_adau,
+	rd_fdau,
+	q_fdau,
 	
 	rd_FLIGHT,
 	FLIGHT_out,
@@ -54,8 +54,8 @@ module SUBFRAME_FORMER
 	input wire [159:0] I2C_DATA;	
 	
 	
-	output reg [8:0] 		rd_adau;
-	input wire [15:0] 	q_adau;
+	output reg [8:0] 		rd_fdau;
+	input wire [15:0] 	q_fdau;
 		
 	input  wire [7:0] 	rd_FLIGHT;
 	output wire [31:0] 	FLIGHT_out;
@@ -68,7 +68,7 @@ module SUBFRAME_FORMER
 	
 	reg wren;
 	reg [5:0] 	byte_cnt;
-	reg [7:0] 	wraddress;
+	reg [8:0] 	wraddress;
 	reg [15:0]	data, cnt;
 	
 //---------------------------------------------
@@ -97,12 +97,12 @@ always @(posedge reset or posedge clock)begin
 		
 		wren 			<= 1'b0;
 		data			<= 16'h0;
-		wraddress	<= 8'b0;
+		wraddress	<= 9'b0;
 		
 		GPS_buff		<= 224'b0;
 		I2C_buff		<= 160'b0;
 		
-		rd_adau		<= 9'b0;
+		rd_fdau		<= 9'b0;
 		
 		byte_cnt 	<= 6'b0;	
 		cnt			<= 16'b0;
@@ -131,7 +131,7 @@ always @(posedge reset or posedge clock)begin
 					state			<= IDDLE;
 					wren 			<= 1'b0;
 					data			<= 16'h0;
-					wraddress	<= 8'b0;					
+					wraddress	<= 9'b0;					
 					byte_cnt		<= 6'b0;
 					
 				end
@@ -140,10 +140,26 @@ always @(posedge reset or posedge clock)begin
 			SUBFRAME: begin
 				state <= CNT;
 				case(subframe)
-					2'b00:	rd_adau	<= 9'b0;
-					2'b01:	rd_adau	<= 9'd64;
-					2'b10:	rd_adau	<= 9'd128;
-					2'b11:	rd_adau	<= 9'd192;
+					2'b00: begin
+						cnt 		<= 16'h0247;
+						rd_fdau	<= 9'b0;		
+					end
+						
+					2'b01:  begin
+						cnt 		<= 16'h05b8;
+						rd_fdau	<= 9'd64;		
+					end
+						
+					2'b10:  begin
+						cnt 		<= 16'h0a47;
+						rd_fdau	<= 9'd128;		
+					end
+						
+					2'b11:  begin
+						cnt 		<= 16'h0db8;
+						rd_fdau	<= 9'd192;		
+					end
+						
 				endcase
 			end
 			
@@ -151,8 +167,8 @@ always @(posedge reset or posedge clock)begin
 				
 				state 		<= READ_I2C;
 				data			<= cnt;
-				cnt 			<= cnt + 16'b1;				
-				wraddress	<= wraddress + 8'b1;	
+//				cnt 			<= cnt + 16'b1;				
+				wraddress	<= wraddress + 9'b1;	
 				
 			end
 			
@@ -171,7 +187,7 @@ always @(posedge reset or posedge clock)begin
 					byte_cnt 	<= byte_cnt + 6'b1;
 					
 					data 			<= I2C_buff [15:0];
-					wraddress	<= wraddress + 8'b1;
+					wraddress	<= wraddress + 9'b1;
 					I2C_buff 	<= I2C_buff >> 16;				
 					
 				end
@@ -193,7 +209,7 @@ always @(posedge reset or posedge clock)begin
 					byte_cnt 	<= byte_cnt + 6'b1;
 					
 					data 			<= GPS_buff [15:0];
-					wraddress	<= wraddress + 8'b1;
+					wraddress	<= wraddress + 9'b1;
 					GPS_buff 	<= GPS_buff >> 16;				
 					
 				end
@@ -202,10 +218,10 @@ always @(posedge reset or posedge clock)begin
 			
 			READ_MSRP: begin
 				
-				data			<= q_adau;
-				rd_adau		<= rd_adau + 9'b1;
+				data			<= q_fdau;
+				rd_fdau		<= rd_fdau + 9'b1;
 				byte_cnt 	<= byte_cnt + 6'b1;
-				wraddress	<= wraddress + 8'b1;
+				wraddress	<= wraddress + 9'b1;
 				
 				if (byte_cnt == 63) 	state 	<= READ_DOP;
 				
@@ -227,7 +243,7 @@ always @(posedge reset or posedge clock)begin
 					byte_cnt 	<= byte_cnt + 6'b1;
 					
 					data 			<= 16'b0;//ZAK_buff [15:0];
-					wraddress	<= wraddress + 8'b1;
+					wraddress	<= wraddress + 9'b1;
 					//ZAK_buff 	<= ZAK_buff >> 16;				
 					
 				end
@@ -239,7 +255,7 @@ always @(posedge reset or posedge clock)begin
 				state 		<= PUT_SERIAL_2;
 				
 				data 			<= {serial_number [23:16],serial_number [31:24]};
-				wraddress	<= wraddress + 8'b1;		
+				wraddress	<= wraddress + 9'b1;		
 				
 			end
 			
@@ -248,7 +264,7 @@ always @(posedge reset or posedge clock)begin
 				state 		<= WAIT_LOW;
 				
 				data 			<= {serial_number [7:0],serial_number [15:8]};
-				wraddress	<= wraddress + 8'b1;			
+				wraddress	<= wraddress + 9'b1;			
 				
 			end
 			

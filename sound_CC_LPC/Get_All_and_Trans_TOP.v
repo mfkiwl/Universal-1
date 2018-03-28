@@ -52,10 +52,10 @@ module Get_All_and_Trans_TOP
 	frame_cnt,
 	
 	rd_FLIGHT,
-	FLIGHT_out,
+	FLIGHT_out
 	
 `ifdef LPC	
-    
+    ,
 	LPC_bsy,
 	Tx_sound
     
@@ -82,6 +82,7 @@ module Get_All_and_Trans_TOP
 	output wire 	Tx_sound;
     
 `endif
+
 	
 /*
 ======================================================================
@@ -127,6 +128,14 @@ end
 /*================================================================*/
 `ifdef AUDIO	//	FOUR channels of SOUND	from ONE source ("defines.vh")
 /*================================================================*/	
+	wire aud1_sync;
+
+	Sync_input 
+	Sync_AUD1(
+		 .clock			(clock),
+		 .signal			(aud1),
+		 .signal_sync	(aud1_sync)
+	);
 	
 	wire 	[31:0]	s_data;	
 	reg 	[8:0] 	rd_SOUND;			
@@ -137,7 +146,7 @@ end
 		 .rst				(frame),
 		 .clock			(clock),
 		  
-		 .Rx					(aud1),
+		 .Rx					(aud1_sync),
 		 .bytes_written	(bytes_written),			// [13:0]	
 		 .rdaddress			(rd_SOUND),					// [8:0]
 		 .q					(s_data)					//	[15:0]	
@@ -148,6 +157,15 @@ wire [31:0] sound; assign sound = s_data;
 /*================================================================*/
 `else 	//	FOUR channels of SOUND	from TWO sources
 /*================================================================*/
+	wire aud1_sync;
+
+	Sync_input 
+	Sync_AUD1(
+		 .clock			(clock),
+		 .signal			(aud1),
+		 .signal_sync	(aud1_sync)
+	);
+
 
 	wire [15:0]		s1_data,	s2_data;
 	reg 	[8:0] 	rd_SOUND;
@@ -158,18 +176,28 @@ wire [31:0] sound; assign sound = s_data;
 		 .rst				(frame),
 		 .clock			(clock),
 		  
-		 .Rx					(aud1),
+		 .Rx					(aud1_sync),
 		 .bytes_written	(bytes_written1),			// [13:0]	
 		 .rdaddress			(rd_SOUND),					// [8:0]
 		 .q					(s1_data)					//	[15:0]
 	);
 //--------------------------------------------
+		
+	wire aud2_sync;
+
+	Sync_input 
+	Sync_AUD2(
+		 .clock			(clock),
+		 .signal			(aud2),
+		 .signal_sync	(aud2_sync)
+	);
+
 	sound_store2 sound_storeUnit2(
 		 .reset			(reset),
 		 .rst				(frame),
 		 .clock			(clock),
 		  
-		 .Rx					(aud2),
+		 .Rx					(aud2_sync),
 		 .bytes_written	(bytes_written2),			// [13:0]	
 		 .rdaddress			(rd_SOUND),					// [8:0]
 		 .q					(s2_data)					//	[15:0]	
@@ -185,8 +213,7 @@ wire [31:0] sound; assign sound = {s2_data,s1_data};
 reg 			wren; 
 reg [9:0]  	cc_wr;
 reg [12:0]	wraddress;
-reg [31:0]  cc_in,
-				cnt;
+reg [31:0]  cc_in;
 
 reg [2:0] state/* synthesis syn_encoding = "safe, one-hot" */;
 localparam	WAIT_FRAME 		= 3'b000,
@@ -221,7 +248,6 @@ always @ (posedge reset or posedge clock) begin
 		
 		rd_FLIGHT		<= 8'b0;
 		
-		cnt				<= 32'b0;
 	end
 	
 	else begin
@@ -242,7 +268,7 @@ always @ (posedge reset or posedge clock) begin
 					frame_rdy	<= 1'b1;
 				//------------------------------------------
 					wren			<= 1'b1;
-					cc_in			<= sound;//{s2_data,s1_data};
+//					cc_in			<= sound;//{s2_data,s1_data};
 					cc_wr			<= 10'b0;
 					rd_SOUND		<= rd_SOUND  + 9'b1;
 					
@@ -266,8 +292,8 @@ always @ (posedge reset or posedge clock) begin
 			READ_SOUND: begin
 			//------------------------------------------
 				wren				<= 1'b1;
-				cc_in				<= sound;//{s2_data,s1_data};
-				cc_wr				<= cc_wr	+ 10'b1;	
+//				cc_in				<= sound;//{s2_data,s1_data};
+//				cc_wr				<= cc_wr	+ 10'b1;	
 				rd_SOUND			<= rd_SOUND  + 9'b1;
 				wraddress		<= wraddress + 13'b1;
 			//------------------------------------------	
@@ -297,10 +323,10 @@ always @ (posedge reset or posedge clock) begin
 					state 		<= READ_PARAM;
 					param_cnt	<= param_cnt + 8'b1;	
 				//------------------------------------------
-					cc_in				<= FLIGHT_out;			
+					cc_in				<= FLIGHT_out;	
+					cc_wr				<= cc_wr	+ 10'b1;				
 					rd_FLIGHT		<= rd_FLIGHT  + 8'b1;
 				//------------------------------------------
-					cc_wr				<= cc_wr	+ 10'b1;		
 				
 				end				
 			end
