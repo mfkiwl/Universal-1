@@ -41,22 +41,65 @@ state.PUT_SERIAL_1 0 0 1 0 0 0 0 0 0 0 1
 state.PUT_SERIAL_2 0 1 0 0 0 0 0 0 0 0 1 
 state.SUBFRAME 1 0 0 0 0 0 0 0 0 0 1 
 
-State Machine - |aTOP_ARCTIUM|FDAU:FDAU|st_m
-Name st_m.READ_IMPULS st_m.READ_TAHO_2 st_m.READ_TAHO_1 st_m.WAIT_one_clk st_m.READ_DIGI_6 st_m.READ_DIGI_5 st_m.READ_DIGI_4 st_m.READ_DIGI_3 st_m.READ_DIGI_2 st_m.READ_DIGI_1 st_m.WAIT_Low_send st_m.Check st_m.Wr_data st_m.Iddle 
-st_m.Iddle 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
-st_m.Wr_data 0 0 0 0 0 0 0 0 0 0 0 0 1 1 
-st_m.Check 0 0 0 0 0 0 0 0 0 0 0 1 0 1 
-st_m.WAIT_Low_send 0 0 0 0 0 0 0 0 0 0 1 0 0 1 
-st_m.READ_DIGI_1 0 0 0 0 0 0 0 0 0 1 0 0 0 1 
-st_m.READ_DIGI_2 0 0 0 0 0 0 0 0 1 0 0 0 0 1 
-st_m.READ_DIGI_3 0 0 0 0 0 0 0 1 0 0 0 0 0 1 
-st_m.READ_DIGI_4 0 0 0 0 0 0 1 0 0 0 0 0 0 1 
-st_m.READ_DIGI_5 0 0 0 0 0 1 0 0 0 0 0 0 0 1 
-st_m.READ_DIGI_6 0 0 0 0 1 0 0 0 0 0 0 0 0 1 
-st_m.WAIT_one_clk 0 0 0 1 0 0 0 0 0 0 0 0 0 1 
-st_m.READ_TAHO_1 0 0 1 0 0 0 0 0 0 0 0 0 0 1 
-st_m.READ_TAHO_2 0 1 0 0 0 0 0 0 0 0 0 0 0 1 
-st_m.READ_IMPULS 1 0 0 0 0 0 0 0 0 0 0 0 0 1 
+State Machine - |aTOP_ARCTIUM|FDAU:FDAU|c_st
+Name c_st.END_sample c_st.READ_DIGI_6 c_st.READ_DIGI_5 c_st.READ_DIGI_4 c_st.READ_DIGI_3 c_st.READ_DIGI_2 c_st.READ_DIGI_1 c_st.WAIT_one_clk c_st.READ_IMPULS c_st.READ_TAHO_2 c_st.READ_TAHO_1 c_st.Check c_st.Wr_data c_st.Iddle c_st.INIT 
+c_st.INIT 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+c_st.Iddle 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 
+c_st.Wr_data 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 
+c_st.Check 0 0 0 0 0 0 0 0 0 0 0 1 0 0 1 
+c_st.READ_TAHO_1 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 
+c_st.READ_TAHO_2 0 0 0 0 0 0 0 0 0 1 0 0 0 0 1 
+c_st.READ_IMPULS 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 
+c_st.WAIT_one_clk 0 0 0 0 0 0 0 1 0 0 0 0 0 0 1 
+c_st.READ_DIGI_1 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 
+c_st.READ_DIGI_2 0 0 0 0 0 1 0 0 0 0 0 0 0 0 1 
+c_st.READ_DIGI_3 0 0 0 0 1 0 0 0 0 0 0 0 0 0 1 
+c_st.READ_DIGI_4 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 
+c_st.READ_DIGI_5 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 
+c_st.READ_DIGI_6 0 1 0 0 0 0 0 0 0 0 0 0 0 0 1 
+c_st.END_sample 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+
+State Machine - |aTOP_ARCTIUM|FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|alt_429:ARINC_429_6|c_st
+Name c_st.WR_WORD c_st.PACKAGE c_st.START_frame c_st.INIT_ST 
+c_st.INIT_ST 0 0 0 0 
+c_st.START_frame 0 0 1 1 
+c_st.PACKAGE 0 1 0 1 
+c_st.WR_WORD 1 0 0 1 
+
+State Machine - |aTOP_ARCTIUM|FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|alt_429:ARINC_429_5|c_st
+Name c_st.WR_WORD c_st.PACKAGE c_st.START_frame c_st.INIT_ST 
+c_st.INIT_ST 0 0 0 0 
+c_st.START_frame 0 0 1 1 
+c_st.PACKAGE 0 1 0 1 
+c_st.WR_WORD 1 0 0 1 
+
+State Machine - |aTOP_ARCTIUM|FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|alt_429:ARINC_429_4|c_st
+Name c_st.WR_WORD c_st.PACKAGE c_st.START_frame c_st.INIT_ST 
+c_st.INIT_ST 0 0 0 0 
+c_st.START_frame 0 0 1 1 
+c_st.PACKAGE 0 1 0 1 
+c_st.WR_WORD 1 0 0 1 
+
+State Machine - |aTOP_ARCTIUM|FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|alt_429:ARINC_429_3|c_st
+Name c_st.WR_WORD c_st.PACKAGE c_st.START_frame c_st.INIT_ST 
+c_st.INIT_ST 0 0 0 0 
+c_st.START_frame 0 0 1 1 
+c_st.PACKAGE 0 1 0 1 
+c_st.WR_WORD 1 0 0 1 
+
+State Machine - |aTOP_ARCTIUM|FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|alt_429:ARINC_429_2|c_st
+Name c_st.WR_WORD c_st.PACKAGE c_st.START_frame c_st.INIT_ST 
+c_st.INIT_ST 0 0 0 0 
+c_st.START_frame 0 0 1 1 
+c_st.PACKAGE 0 1 0 1 
+c_st.WR_WORD 1 0 0 1 
+
+State Machine - |aTOP_ARCTIUM|FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|alt_429:ARINC_429_1|c_st
+Name c_st.WR_WORD c_st.PACKAGE c_st.START_frame c_st.INIT_ST 
+c_st.INIT_ST 0 0 0 0 
+c_st.START_frame 0 0 1 1 
+c_st.PACKAGE 0 1 0 1 
+c_st.WR_WORD 1 0 0 1 
 
 State Machine - |aTOP_ARCTIUM|FDAU:FDAU|TAHO_IMPULS_TOP:TAHO_IMPULS_TOPUnit|IMPULS:IMPULS_Unit|state
 Name state.decision state.cntL state.cntH state.iddle 

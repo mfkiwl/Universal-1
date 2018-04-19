@@ -1,0 +1,60 @@
+module pos_edge_det ( input sig,
+                      input clk,
+                      output pe);
+ 
+  reg   sig_dly;
+ 
+  always @ (posedge clk) begin
+    sig_dly <= sig;
+  end
+ 
+  assign pe = sig & ~sig_dly;
+endmodule 
+
+
+/*
+`timescale 1ps / 1ps
+
+module counter_tb();
+
+
+
+
+reg clock, reset, sign;	
+
+ initial begin
+    clock = 1'b0;
+    reset = 1'b1;
+    repeat(4) #1 clock = ~clock;
+    reset = 1'b0;
+    forever #1 clock = ~clock; // generate a clock
+  end
+
+ initial begin
+    sign = 1'b0;
+	#100
+    repeat(20) @(posedge clock)
+    sign = 1'b1;
+    repeat(4) @(posedge clock) // generate a clock
+	sign = 1'b0;
+	$finish;
+  end
+
+//--------------------------------------------//
+/*
+wire tick;
+mod_m_timer #(.N(16),.M(25000))
+mod_m_timer(
+ .clk	(clock),
+ .reset	(reset),
+ .tick	(tick)
+);
+
+wire pe;
+pos_edge_det pos_edge_det(
+ .sig	(sign),
+ .clk	(clock),
+ .pe	(pe)
+  );
+endmodule
+*/

@@ -144,20 +144,20 @@ div                          : 73        : output : 2.5 V             :         
 line_A1                      : 74        : input  : 2.5 V             :         : 5         : Y              
 line_B1                      : 75        : input  : 2.5 V             :         : 5         : Y              
 line_A2                      : 76        : input  : 2.5 V             :         : 5         : Y              
-RESERVED_INPUT_WITH_WEAK_PULLUP : 77        :        :                   :         : 5         :                
+line_A21                     : 77        : input  : 2.5 V             :         : 5         : Y              
 VCCINT                       : 78        : power  :                   : 1.2V    :           :                
 line_B2                      : 79        : input  : 2.5 V             :         : 5         : Y              
-RESERVED_INPUT_WITH_WEAK_PULLUP : 80        :        :                   :         : 5         :                
+line_B21                     : 80        : input  : 2.5 V             :         : 5         : Y              
 VCCIO5                       : 81        : power  :                   : 2.5V    : 5         :                
 GND                          : 82        : gnd    :                   :         :           :                
 line_A3                      : 83        : input  : 2.5 V             :         : 5         : Y              
-RESERVED_INPUT_WITH_WEAK_PULLUP : 84        :        :                   :         : 5         :                
+line_A31                     : 84        : input  : 2.5 V             :         : 5         : Y              
 line_B3                      : 85        : input  : 2.5 V             :         : 5         : Y              
-RESERVED_INPUT_WITH_WEAK_PULLUP : 86        :        :                   :         : 5         :                
+line_B31                     : 86        : input  : 2.5 V             :         : 5         : Y              
 line_A4                      : 87        : input  : 2.5 V             :         : 5         : Y              
-GND+                         : 88        :        :                   :         : 5         :                
+line_A41                     : 88        : input  : 2.5 V             :         : 5         : Y              
 line_B4                      : 89        : input  : 2.5 V             :         : 5         : Y              
-GND+                         : 90        :        :                   :         : 6         :                
+line_B41                     : 90        : input  : 2.5 V             :         : 6         : Y              
 inp_clk                      : 91        : input  : 2.5 V             :         : 6         : Y              
 CONF_DONE                    : 92        :        :                   :         : 6         :                
 VCCIO6                       : 93        : power  :                   : 2.5V    : 6         :                
@@ -166,19 +166,19 @@ GND                          : 95        : gnd    :                   :         
 MSEL1                        : 96        :        :                   :         : 6         :                
 MSEL2                        : 97        :        :                   :         : 6         :                
 line_A5                      : 98        : input  : 2.5 V             :         : 6         : Y              
-RESERVED_INPUT_WITH_WEAK_PULLUP : 99        :        :                   :         : 6         :                
+line_A51                     : 99        : input  : 2.5 V             :         : 6         : Y              
 RESERVED_INPUT_WITH_WEAK_PULLUP : 100       :        :                   :         : 6         :                
 ~ALTERA_nCEO~ / RESERVED_OUTPUT_OPEN_DRAIN : 101       : output : 2.5 V             :         : 6         : N              
 VCCINT                       : 102       : power  :                   : 1.2V    :           :                
 line_A6                      : 103       : input  : 2.5 V             :         : 6         : Y              
-RESERVED_INPUT_WITH_WEAK_PULLUP : 104       :        :                   :         : 6         :                
+line_A61                     : 104       : input  : 2.5 V             :         : 6         : Y              
 line_B6                      : 105       : input  : 2.5 V             :         : 6         : Y              
-RESERVED_INPUT_WITH_WEAK_PULLUP : 106       :        :                   :         : 6         :                
+line_B61                     : 106       : input  : 2.5 V             :         : 6         : Y              
 VCCA2                        : 107       : power  :                   : 2.5V    :           :                
 GNDA2                        : 108       : gnd    :                   :         :           :                
 VCCD_PLL2                    : 109       : power  :                   : 1.2V    :           :                
 line_B5                      : 110       : input  : 2.5 V             :         : 7         : Y              
-RESERVED_INPUT_WITH_WEAK_PULLUP : 111       :        :                   :         : 7         :                
+line_B51                     : 111       : input  : 2.5 V             :         : 7         : Y              
 RESERVED_INPUT_WITH_WEAK_PULLUP : 112       :        :                   :         : 7         :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : 113       :        :                   :         : 7         :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : 114       :        :                   :         : 7         :                

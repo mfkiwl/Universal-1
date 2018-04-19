@@ -128,29 +128,30 @@ end
 /*================================================================*/
 `ifdef AUDIO	//	FOUR channels of SOUND	from ONE source ("defines.vh")
 /*================================================================*/	
-	wire aud1_sync;
-
-	Sync_input 
-	Sync_AUD1(
-		 .clock			(clock),
-		 .signal			(aud1),
-		 .signal_sync	(aud1_sync)
-	);
-	
+//	wire aud1_sync;
+//
+//	Sync_input 
+//	Sync_AUD1(
+//		 .clock			(clock),
+//		 .signal			(aud1),
+//		 .signal_sync	(aud1_sync)
+//	);
+//	
 	wire 	[31:0]	s_data;	
 	reg 	[8:0] 	rd_SOUND;			
-	wire 	[13:0]  	bytes_written;
+	wire 	rx_full;//[13:0]  	bytes_written;
 	
-	sound_store4 sound_storeUnit(
-		 .reset			(reset),
-		 .rst				(frame),
-		 .clock			(clock),
-		  
-		 .Rx					(aud1_sync),
-		 .bytes_written	(bytes_written),			// [13:0]	
-		 .rdaddress			(rd_SOUND),					// [8:0]
-		 .q					(s_data)					//	[15:0]	
-	);
+sound_store4
+sound_storeUnit(
+	 .reset			(~timer),	//reset),
+	 .rst				(frame_rdy),
+	 .clock			(clock),
+	  
+	 .Rx					(aud1),
+	 .rx_full			(rx_full),			// [13:0]	
+	 .rdaddress			(rd_SOUND),			// [8:0]
+	 .q					(s_data)				//	[15:0]	
+);
 	
 wire [31:0] sound; assign sound = s_data;
 	
@@ -264,11 +265,10 @@ always @ (posedge reset or posedge clock) begin
 				wren 		<= 1'b0;
 				
 				if (msec) begin
-					frame_cnt	<= frame_cnt + 4'b1;
 					frame_rdy	<= 1'b1;
 				//------------------------------------------
 					wren			<= 1'b1;
-//					cc_in			<= sound;//{s2_data,s1_data};
+					cc_in			<= sound;//{s2_data,s1_data};
 					cc_wr			<= 10'b0;
 					rd_SOUND		<= rd_SOUND  + 9'b1;
 					
@@ -292,8 +292,8 @@ always @ (posedge reset or posedge clock) begin
 			READ_SOUND: begin
 			//------------------------------------------
 				wren				<= 1'b1;
-//				cc_in				<= sound;//{s2_data,s1_data};
-//				cc_wr				<= cc_wr	+ 10'b1;	
+				cc_in				<= sound;//{s2_data,s1_data};
+				cc_wr				<= cc_wr	+ 10'b1;	
 				rd_SOUND			<= rd_SOUND  + 9'b1;
 				wraddress		<= wraddress + 13'b1;
 			//------------------------------------------	
@@ -336,6 +336,8 @@ always @ (posedge reset or posedge clock) begin
 				wren 		<= 1'b0;
 				CC_RDY	<= 1'b0;
 				
+				frame_cnt	<= frame_cnt + 4'b1;
+				
 			if (rd_FLIGHT >= PARAMS) 	rd_FLIGHT	<= 8'b0; // `FRAME_SIZE_D ("defines.vh")
 
 			end
@@ -372,7 +374,8 @@ CC_ram CC_ramUnit(
 
 
 
-CC_transmit CC_transmitUnit(
+CC_transmit  #(.SUBFRAME(2048))  // how many bytes sent to CC
+CC_transmitUnit(
 	 .reset				(reset),
 	 .clock				(clock),
 	 

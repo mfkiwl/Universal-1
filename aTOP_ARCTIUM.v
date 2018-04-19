@@ -27,7 +27,7 @@ module aTOP_ARCTIUM
 	taho1,
 	taho2,
 	impuls,
-//	line_A21, line_B21,	line_A31, line_B31,	line_A41, line_B41,	line_A51, line_B51,	line_A61, line_B61,
+	line_A21, line_B21,	line_A31, line_B31,	line_A41, line_B41,	line_A51, line_B51,	line_A61, line_B61,
 	
 	LED_FPGA,
 	
@@ -85,22 +85,50 @@ Get_All_and_Trans_TOP:
 FDAU:
 RTC:	
 */
-//	 input  wire 	line_A21						/* synthesis altera_chip_pin_lc="@77" */;		
-//	 input  wire 	line_A31						/* synthesis altera_chip_pin_lc="@84" */;		
-//	 input  wire 	line_A41						/* synthesis altera_chip_pin_lc="@88" */;			 
-//	 input  wire 	line_A51						/* synthesis altera_chip_pin_lc="@99" */;		
-//	 input  wire 	line_A61						/* synthesis altera_chip_pin_lc="@104" */;		
-//	 
-//	 input  wire 	line_B21						/* synthesis altera_chip_pin_lc="@80" */;		
-//	 input  wire 	line_B31						/* synthesis altera_chip_pin_lc="@86" */;		
-//	 input  wire 	line_B41						/* synthesis altera_chip_pin_lc="@90" */;			
-//	 input  wire 	line_B51						/* synthesis altera_chip_pin_lc="@111" */;		
-//	 input  wire 	line_B61						/* synthesis altera_chip_pin_lc="@106" */;		
+	 input  wire 	line_A21						/* synthesis altera_chip_pin_lc="@77" */;		
+	 input  wire 	line_A31						/* synthesis altera_chip_pin_lc="@84" */;		
+	 input  wire 	line_A41						/* synthesis altera_chip_pin_lc="@88" */;			 
+	 input  wire 	line_A51						/* synthesis altera_chip_pin_lc="@99" */;		
+	 input  wire 	line_A61						/* synthesis altera_chip_pin_lc="@104" */;		
+	 
+	 input  wire 	line_B21						/* synthesis altera_chip_pin_lc="@80" */;		
+	 input  wire 	line_B31						/* synthesis altera_chip_pin_lc="@86" */;		
+	 input  wire 	line_B41						/* synthesis altera_chip_pin_lc="@90" */;			
+	 input  wire 	line_B51						/* synthesis altera_chip_pin_lc="@111" */;		
+	 input  wire 	line_B61						/* synthesis altera_chip_pin_lc="@106" */;		
 
 
 
 parameter serial_number = "RP24";
 `include "defines.vh"
+
+wire d_lineA1; wire d_lineB1;
+wire d_lineA2; wire d_lineB2;
+wire d_lineA3; wire d_lineB3;
+wire d_lineB4; wire d_lineA4;
+wire d_lineB5; wire d_lineA5;
+wire d_lineA6; wire d_lineB6;
+
+assign  d_lineB1 	= line_A31 & line_A3;
+assign  d_lineA1	= line_B31 & line_B3;
+
+assign  d_lineB2	= line_A61 & line_A6;
+assign  d_lineA2	= line_B61 & line_B6;
+
+assign  d_lineB3	= line_A21 & line_A2;
+assign  d_lineA3	= line_B21 & line_B2;
+
+assign  d_lineB4	= line_A51 & line_A5;
+assign  d_lineA4	= line_B51 & line_B5;
+
+assign  d_lineA5	= line_A1;
+assign  d_lineB5	= line_B1;
+
+assign  d_lineB6	= line_A41 & line_A4;
+assign  d_lineA6	= line_B41 & line_B4;
+
+
+
 
 /*
 	PLL & RTC
@@ -178,18 +206,18 @@ FDAU
 	 
 	 .TX				(TX_data),	 
 	  
-	 .line_A1	(line_A1),
-	 .line_B1	(line_B1),
-	 .line_A2	(line_A2),
-	 .line_B2	(line_B2),
-	 .line_A3	(line_A3),
-	 .line_B3	(line_B3),
-	 .line_A4	(line_A4),
-	 .line_B4	(line_B4),
-	 .line_A5	(line_A5),
-	 .line_B5	(line_B5),
-	 .line_A6	(line_A6),
-	 .line_B6	(line_B6),
+	 .line_A1	(d_lineA1),
+	 .line_B1	(d_lineB1),
+	 .line_A2	(d_lineA2),
+	 .line_B2	(d_lineB2),
+	 .line_A3	(d_lineA3),
+	 .line_B3	(d_lineB3),
+	 .line_A4	(d_lineA4),
+	 .line_B4	(d_lineB4),
+	 .line_A5	(d_lineA5),
+	 .line_B5	(d_lineB5),
+	 .line_A6	(d_lineA6),
+	 .line_B6	(d_lineB6),
 	 
 	 .taho1			(taho1),
 	 .taho2			(taho2),

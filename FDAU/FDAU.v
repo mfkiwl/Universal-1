@@ -237,7 +237,281 @@ RZ_LINE_TOP_Unit
 	 .arinc_5_outp	(arinc_5_outp),
 	 .arinc_6_outp	(arinc_6_outp)
 );
+///---------------------------------------------------------------------//
+//(* noprune *) wire sig;
+//pos_edge_det 
+//pos_edge_det_Unit
+//( 
+//	 .sig		(sample_rdy),
+//	 .clk		(clock),
+//	 .pe		(sig)
+//);
 
+
+localparam  	INIT				= 0,
+					Iddle 			= 1,//5'b00000,
+					Wr_data			= 2,//5'b00001,
+					Check				= 3,
+					READ_TAHO_1		= 4,//5'b01100,
+					READ_TAHO_2		= 5,//5'b01101,
+					READ_IMPULS		= 6,//5'b01110,
+					
+					WAIT_one_clk	= 7,//5'b01011,
+					READ_DIGI_1		= 8,//5'b00101,
+					READ_DIGI_2		= 9,//5'b00110,
+					READ_DIGI_3		= 10,//5'b00111,
+					READ_DIGI_4		= 11,//5'b01000,
+					READ_DIGI_5		= 12,//5'b01001,
+					READ_DIGI_6		= 13,
+					END_sample		= 14;
+				
+				
+reg [4:0]	c_st, n_st;
+reg 			wren, wr_en;
+reg [8:0]  	wraddress, wr_ad;
+reg [15:0]  data_adau, data;
+reg [3:0] 	digi_channel, d_channel;
+reg [7:0]	word_cnt, b_cnt;
+
+reg [4:0]  	rd_arinc1,
+			rd_arinc2,
+			rd_arinc3,
+			rd_arinc4,
+			rd_arinc5,
+			rd_arinc6,
+			rd_ad;
+	 
+always @ (posedge clock)begin
+	
+	if (reset) begin
+		
+		c_st 				<= INIT;
+		
+		wren				<= 1'b0;
+		word_cnt			<= 8'b0;
+		wraddress		<= 9'b0;
+		data_adau		<= 16'b0;
+		digi_channel	<= 4'b0;			
+		
+		rd_arinc1 		<= 5'b0;
+		rd_arinc2 		<= 5'b0;
+		rd_arinc3 		<= 5'b0;
+		rd_arinc4 		<= 5'b0;
+		rd_arinc5 		<= 5'b0;
+		rd_arinc6 		<= 5'b0;
+		
+	end
+	
+	else begin
+		c_st 				<= n_st;
+		wren				<= wr_en;
+		word_cnt			<= b_cnt;
+		wraddress		<= wr_ad;
+		data_adau		<= data;
+		digi_channel	<= d_channel;
+		
+		rd_arinc1 		<= rd_ad;
+		rd_arinc2 		<= rd_ad;
+		rd_arinc3 		<= rd_ad;
+		rd_arinc4 		<= rd_ad;
+		rd_arinc5 		<= rd_ad;
+		rd_arinc6 		<= rd_ad;
+	end
+end
+
+
+
+always @ (*) begin
+
+	n_st 			= c_st;
+	wr_en			= wren;
+	wr_ad			= wraddress;
+	data			= data_adau;
+	d_channel	= digi_channel;	
+	rd_ad			= rd_arinc1;
+	b_cnt			= word_cnt;
+	
+	case (c_st)
+	
+		INIT: begin
+			n_st			= Iddle;
+			b_cnt			= 8'b0;
+			wr_ad			= 9'b0;
+			wr_en			= 1'b0;
+			d_channel 	= 4'b0; 			
+			rd_ad			= 5'b0;			
+			data			= 16'b0;
+		end
+		
+		Iddle: begin
+			b_cnt			= 8'b0;
+			wr_ad			= 9'b0;
+			wr_en			= 1'b0;
+			d_channel 	= 4'b0; 			
+			rd_ad			= 5'b0;			
+			data			= 16'b0;
+			
+			if (sec)
+				n_st 			= Wr_data;
+		end
+		
+		Wr_data: begin
+			if (sample_rdy) begin
+				n_st		= Check;				
+				wr_en		= 1'b1;
+				data 		= ADC_sample;				
+				b_cnt		= word_cnt + 8'b1;				
+			end
+		end
+		
+		Check: begin
+			 
+			if (word_cnt == 65) begin
+				n_st 	= READ_TAHO_1;
+				b_cnt	= 8'b0;
+			end
+			
+			else begin
+				wr_en	= 1'b0;
+				n_st	= END_sample;
+				wr_ad	= wraddress + 9'b1;
+			end			
+		end	
+			
+		END_sample:
+			if (~sample_rdy)
+				n_st	= Wr_data;
+		 
+		READ_TAHO_1: begin
+			n_st 	= READ_TAHO_2;
+			data 	= freq1;
+			wr_ad	= wraddress + 9'b1;
+		end
+		
+		READ_TAHO_2: begin
+			n_st 	= READ_IMPULS;
+			data 	= freq2;
+			wr_ad	= wraddress + 9'b1;
+		end
+		
+		READ_IMPULS: begin
+			n_st 	= READ_DIGI_1;
+			data 	= imp;
+			wr_ad	= wraddress + 9'b1;
+		end	
+
+		WAIT_one_clk: begin					
+			case (digi_channel)
+				0: n_st		= READ_DIGI_1;
+				1: n_st		= READ_DIGI_2;
+				2: n_st		= READ_DIGI_3;
+				3: n_st		= READ_DIGI_4;
+				4: n_st		= READ_DIGI_5;
+				5: n_st		= READ_DIGI_6;
+				6: n_st		= Iddle;
+			endcase
+		end	
+
+		READ_DIGI_1: begin
+			
+			n_st	= WAIT_one_clk;			 
+			data	= arinc_1_outp; 
+			wr_ad	= wraddress + 9'b1;				
+			b_cnt	= word_cnt + 8'b1;
+			
+			if (rd_arinc1 == 31) begin 	
+				rd_ad 		= 5'b0;
+				d_channel	= digi_channel + 4'b1;				
+			end				
+			
+			else 
+				rd_ad		= rd_arinc1  + 5'b1;
+			
+		end
+
+		READ_DIGI_2: begin
+			
+			n_st	= WAIT_one_clk;			 
+			data	= arinc_2_outp; 
+			wr_ad	= wraddress + 9'b1;				
+			b_cnt	= word_cnt + 8'b1;
+			
+			if (rd_arinc1 == 31) begin 	
+				rd_ad 		= 5'b0;
+				d_channel	= digi_channel + 4'b1;				
+			end				
+			
+			else 
+				rd_ad		= rd_arinc1  + 5'b1;
+		end
+
+		READ_DIGI_3: begin
+			
+			n_st	= WAIT_one_clk;			 
+			data	= arinc_3_outp; 
+			wr_ad	= wraddress + 9'b1;				
+			b_cnt	= word_cnt + 8'b1;
+			
+			if (rd_arinc1 == 31) begin 	
+				rd_ad 		= 5'b0;
+				d_channel	= digi_channel + 4'b1;				
+			end				
+			
+			else 
+				rd_ad		= rd_arinc1  + 5'b1;
+		end
+
+		READ_DIGI_4: begin
+			
+			n_st	= WAIT_one_clk;			 
+			data	= arinc_4_outp; 
+			wr_ad	= wraddress + 9'b1;				
+			b_cnt	= word_cnt + 8'b1;
+			
+			if (rd_arinc1 == 31) begin 	
+				rd_ad 		= 5'b0;
+				d_channel	= digi_channel + 4'b1;				
+			end				
+			
+			else 
+				rd_ad		= rd_arinc1  + 5'b1;
+		end
+
+		READ_DIGI_5: begin
+			
+			n_st	= WAIT_one_clk;			 
+			data	= arinc_5_outp; 
+			wr_ad	= wraddress + 9'b1;				
+			b_cnt	= word_cnt + 8'b1;
+			
+			if (rd_arinc1 == 31) begin 	
+				rd_ad 		= 5'b0;
+				d_channel	= digi_channel + 4'b1;				
+			end				
+			
+			else
+				rd_ad		= rd_arinc1  + 5'b1;
+		end
+
+		READ_DIGI_6: begin
+			
+			n_st	= WAIT_one_clk;			 
+			data	= arinc_6_outp; 
+			wr_ad	= wraddress + 9'b1;				
+			b_cnt	= word_cnt + 8'b1;
+			
+			if (rd_arinc1 == 31) begin 	
+				rd_ad 		= 5'b0;
+				d_channel	= digi_channel + 4'b1;				
+			end				
+			
+			else 
+				rd_ad		= rd_arinc1  + 5'b1;
+		end
+		
+	endcase
+end
+/*
 reg 			wr_en;
 reg [8:0]  	wraddress;
 reg [15:0]  data_adau;
@@ -253,11 +527,10 @@ reg [4:0]  	rd_arinc1,
 				rd_arinc6;
 	
 reg [4:0]	st_m;	
-//(* syn_encoding = "safe" *) 
 
-localparam  Iddle 			= 1,//5'b00000,
+localparam  	Iddle 			= 1,//5'b00000,
 				Wr_data			= 2,//5'b00001,
-				Check				= 3,//5'b00010,
+				Check			= 3,//5'b00010,
 				Wr_gps			= 4,//5'b00011,
 				WAIT_Low_send	= 5,//5'b00100,
 				
@@ -302,53 +575,51 @@ always @ (posedge reset or posedge clock) begin
 		case (st_m)
 		 
 			Iddle: begin
+			 
+				wr_en	<= 1'b0;
+				
 				if (sec) begin
-					st_m 				<= Wr_data;
+					st_m 			<= Wr_data;
 					wraddress		<=	9'b0;
 					digi_channel	<= 4'b0;	
 				end
 				
-				else begin
-					wr_en	<= 1'b0;
-					st_m	<= Iddle;
-				end
 				
 			end
 			
 			Wr_data:begin
+			
 				if (sample_rdy) begin
-					st_m			<= WAIT_Low_send;
+					st_m			<= Check;
 					
 					wr_en			<= 1'b1;
-					data_adau 	<= ADC_sample;
+					data_adau 		<= ADC_sample;
 					
 					word_cnt		<= word_cnt + 8'b1;
 					
 				end
 				
-				else st_m <= Wr_data;
-			end
-			
-			WAIT_Low_send: begin
-				if (~sample_rdy) 	st_m	<= Check;
-				
-				else 					st_m	<= WAIT_Low_send;
 			end
 			
 			Check: begin
-				if (word_cnt == 65) begin
+			 
+				if (wraddress == 65) begin
 					st_m 		<= READ_TAHO_1;
-					wr_en		<= 1'b1;
 					word_cnt	<= 8'b0;
 				end
 				
 				else begin
-					st_m			<= Wr_data;
+					st_m			<= WAIT_Low_send;
 					wr_en			<= 1'b0;
 					wraddress	<= wraddress + 9'b1;
 				end
 				
 			end	
+			
+			WAIT_Low_send: begin
+				if (~sample_rdy) 	st_m	<= Wr_data;
+			end
+			
 			
 			READ_TAHO_1: begin
 				st_m 			<= READ_TAHO_2;
@@ -474,10 +745,14 @@ always @ (posedge reset or posedge clock) begin
 					6: st_m		<= Iddle;
 				endcase
 			end	
+			
+			default: st_m <= Iddle;
+			
 		endcase
 	end
 end
-
+*/
+///---------------------------------------------------------------------//
 
 fdau_ram // 512 words
 fdau_ram_UNIT(
@@ -485,7 +760,7 @@ fdau_ram_UNIT(
 	 .data			(data_adau), // [15:0]
 	 .rdaddress		(rd_fdau),	 // [8:0]
 	 .wraddress		(wraddress), // [8:0]
-	 .wren			(wr_en),
+	 .wren			(wren),
 	 .q				(q_fdau)		 // [15:0]
 );
 

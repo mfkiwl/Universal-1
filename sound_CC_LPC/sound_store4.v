@@ -25,9 +25,9 @@ module sound_store4 #(parameter length = 48, middle = 22)
 	rst,
 	clock,
 	
-	Rx,
+	Rx,	
+	rx_full,
 	
-	bytes_written,
 	rdaddress,
 	q
 );
@@ -36,19 +36,19 @@ input wire 	reset, rst, clock;
 
 input wire 	Rx;
 
-output reg 		[13:0] 	bytes_written;
+output reg	rx_full;
 input  wire 	[8:0]  	rdaddress;
 output wire		[31:0]	q;
 	
 	
 	
-	
-	 reg 			word, wren;
-	 reg [5:0]  bit_length;
-	 reg [2:0]  bit;
-	 reg [7:0]	r_byte;
-	 reg [15:0] data;
-	 reg [9:0] wraddress;
+	 reg [13:0] 	bytes_written;
+	 reg 				word, wren;
+	 reg [5:0]  	bit_length;
+	 reg [2:0]  	bit;
+	 reg [7:0]		r_byte;
+	 reg [7:0] 		data;
+	 reg [10:0] 	wraddress;
 	
 	
 	
@@ -62,7 +62,7 @@ localparam 	IDDLE			= 3'b000,
 
 	
 	
-always @ (posedge reset or posedge rst or posedge clock )begin
+always @ (posedge reset, posedge clock )begin
 
 	if (reset) begin
 	
@@ -71,26 +71,27 @@ always @ (posedge reset or posedge rst or posedge clock )begin
 		bit 			<= 3'b0;	
 		r_byte		<= 8'b0;
 		data 			<= 16'b0;
-		
+		rx_full		<= 1'b0;
 		word 			<= 1'b0;
 		wren			<= 1'b0;
-		wraddress	<= 10'b0;
+		wraddress	<= 11'b0;
 		bytes_written  <= 14'b0;	
 		
 	end	
 	
-	else if (rst) begin
-		wraddress		<= 10'b0;
-		bytes_written  <= 14'b0;	
-		//data 				<= 16'b0;
-	end
+//	else if (rst) begin
+//		wraddress		<= 11'b0;
+//		bytes_written  <= 14'b0;
+//		rx_full			<= 1'b0;	
+//		//data 				<= 16'b0;
+//	end
 	
 	else begin
 	 
 		case (state)
 		 
 			SAMPLE: begin
-				
+				rx_full		<= 1'b0;	
 				bit_length 	<= 6'b0;
 				
 				if (~Rx) state <= IDDLE;
@@ -149,31 +150,40 @@ always @ (posedge reset or posedge rst or posedge clock )begin
 			PRE_STOP: begin
 			 
 				state 			<= STOP;
+				data 				<= r_byte;
 				bytes_written 	<= bytes_written + 1'b1;
 				wren				<= 1'b1;
-				case (word) 
-					
-					0:begin
-						data[7:0] <= r_byte;
-					end
-					
-					1: begin
-						data[15:8] <= r_byte;
-					end
-					
-				endcase
+//				case (word) 
+//					
+//					0:begin
+//						data[7:0] <= r_byte;
+//					end
+//					
+//					1: begin
+//						data[15:8] <= r_byte;
+//					end
+//					
+//				endcase
 				
 			end
 
 			STOP: begin 
-			 
+				
+				wren			<= 1'b0;			 
+				
 				if (bit_length == middle) begin
 				 
 					bit_length 	<= 6'b0;	
 					state 		<= SAMPLE;
 					
-					if (word) wraddress	<= wraddress + 10'b1;
-					
+//					if (word) 					
+					if (bytes_written == 2000) begin
+						wraddress		<= 11'b0;
+						bytes_written  <= 14'b0;
+					end	
+					//	rx_full <= 1'b1;
+					else 
+						wraddress	<= wraddress + 10'b1;						
 				end
 				
 				else begin
@@ -190,9 +200,9 @@ end
 
 s_Buff4 s_BuffUnit(
 	 .clock			(clock),
-	 .data			(data),			// [15:0] 
+	 .data			(data),			// [7:0] 
 	 .rdaddress		(rdaddress),	// [8:0]
-	 .wraddress		(wraddress),	// [9:0]
+	 .wraddress		(wraddress),	// [10:0]
 	 .wren			(wren),
 	 .q				(q)				// [15:0]
 );

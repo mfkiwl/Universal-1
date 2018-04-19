@@ -17,7 +17,8 @@ CC_transmit CC_transmitUnit(
 
 
 
-module CC_transmit(
+module CC_transmit #(parameter SUBFRAME = 2048) 
+(
 	reset,
 	clock,
 	
@@ -38,11 +39,11 @@ input wire [7:0] 	data;
 
 output reg 	tx;
  
-`ifdef	CFDR	// look in "defines.vh"
-	parameter SUBFRAME = 2048;
-`else 
-	parameter SUBFRAME = 48;
-`endif	
+//`ifdef	CFDR	// look in "defines.vh"
+//	parameter SUBFRAME = 2048;
+//`else 
+//	parameter SUBFRAME = 2048;
+//`endif	
 
 	parameter delay_val = 48;	
 //--------------------------//

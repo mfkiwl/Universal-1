@@ -3,7 +3,7 @@ Info (10281): Verilog HDL Declaration information at GPS.v(152): object "speed" 
 Info (10281): Verilog HDL Declaration information at GPS.v(153): object "course" differs only in case from object "COURSE" in the same scope
 Info (10281): Verilog HDL Declaration information at GPS.v(132): object "altitude" differs only in case from object "ALTITUDE" in the same scope
 Info (10281): Verilog HDL Declaration information at LPC_tx.v(53): object "delay" differs only in case from object "Delay" in the same scope
-Info (10281): Verilog HDL Declaration information at CC_transmit.v(52): object "delay" differs only in case from object "Delay" in the same scope
+Info (10281): Verilog HDL Declaration information at CC_transmit.v(53): object "delay" differs only in case from object "Delay" in the same scope
 Info (10281): Verilog HDL Declaration information at UARTx.v(93): object "delay" differs only in case from object "DELAY" in the same scope
 Info (10281): Verilog HDL Declaration information at ADC.v(49): object "start" differs only in case from object "START" in the same scope
 Info (10281): Verilog HDL Declaration information at SUBFRAME_FORMER.v(72): object "cnt" differs only in case from object "CNT" in the same scope
