@@ -24,7 +24,7 @@ RZ_LINE_TOP_Unit
 	 .clock		(clk_400kHz),
 	 .inp_clk	(inp_clk),
 	 .reset		(reset),
-	 
+	 .sec			(sec),
 	 .line_A1	(line_A1),
 	 .line_B1	(line_B1),
 	 .line_A2	(line_A2),
@@ -61,6 +61,7 @@ module RZ_LINE_TOP
  input  wire 	clock,
 					inp_clk,
 					reset,
+					sec,
 					
 					line_A1, line_B1,
 					line_A2, line_B2,
@@ -93,6 +94,7 @@ ARINC_429_1
 (
 	 .clock			(clock),
 	 .reset			(reset),
+	 .sec				(sec),
 	 .inp_clk		(inp_clk),
 	 .line_A			(line_A1),
 	 .line_B			(line_B1),
@@ -105,6 +107,7 @@ alt_429
 ARINC_429_2(
 	 .clock		(clock),
 	 .reset		(reset),
+	 .sec			(sec),
 	 .inp_clk	(inp_clk),
 	 .line_A		(line_A2),
 	 .line_B		(line_B2),
@@ -117,6 +120,7 @@ alt_429
 ARINC_429_3(
 	 .clock		(clock),
 	 .reset		(reset),
+	 .sec			(sec),
 	 .inp_clk	(inp_clk),
 	 .line_A		(line_A3),
 	 .line_B		(line_B3),
@@ -129,6 +133,7 @@ alt_429
 ARINC_429_4(
 	 .clock		(clock),
 	 .reset		(reset),
+	 .sec			(sec),
 	 .inp_clk	(inp_clk),
 	 .line_A		(line_A4),
 	 .line_B		(line_B4),
@@ -141,6 +146,7 @@ alt_429
 ARINC_429_5(
 	 .clock		(clock),
 	 .reset		(reset),
+	 .sec			(sec),
 	 .inp_clk	(inp_clk),
 	 .line_A		(line_A5),
 	 .line_B		(line_B5),
@@ -153,6 +159,7 @@ alt_429
 ARINC_429_6(
 	 .clock		(clock),
 	 .reset		(reset),
+	 .sec			(sec),
 	 .inp_clk	(inp_clk),
 	 .line_A		(line_A6),
 	 .line_B		(line_B6),

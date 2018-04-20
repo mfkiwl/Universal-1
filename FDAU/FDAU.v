@@ -209,6 +209,7 @@ RZ_LINE_TOP_Unit
 	 .clock		(clk_400kHz),
 	 .inp_clk	(clock),
 	 .reset		(reset),
+	 .sec			(sec),
 	 
 	 .line_A1	(line_A1),
 	 .line_B1	(line_B1),
@@ -511,6 +512,18 @@ always @ (*) begin
 		
 	endcase
 end
+
+
+fdau_ram // 512 words
+fdau_ram_UNIT(
+	 .clock			(clock),
+	 .data			(data_adau), // [15:0]
+	 .rdaddress		(rd_fdau),	 // [8:0]
+	 .wraddress		(wraddress), // [8:0]
+	 .wren			(wren),
+	 .q				(q_fdau)		 // [15:0]
+);
+
 /*
 reg 			wr_en;
 reg [8:0]  	wraddress;
@@ -753,16 +766,6 @@ always @ (posedge reset or posedge clock) begin
 end
 */
 ///---------------------------------------------------------------------//
-
-fdau_ram // 512 words
-fdau_ram_UNIT(
-	 .clock			(clock),
-	 .data			(data_adau), // [15:0]
-	 .rdaddress		(rd_fdau),	 // [8:0]
-	 .wraddress		(wraddress), // [8:0]
-	 .wren			(wren),
-	 .q				(q_fdau)		 // [15:0]
-);
 
 
 endmodule

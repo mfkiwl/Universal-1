@@ -2,20 +2,20 @@
 inp_clk => comb.DATAIN
 gps => comb.DATAIN
 AUD1 => comb.DATAIN
-ADDR[0] <= FDAU:FDAU.ADDR
-ADDR[1] <= FDAU:FDAU.ADDR
-ADDR[2] <= FDAU:FDAU.ADDR
-ADDR[3] <= FDAU:FDAU.ADDR
-ENA[0] <= FDAU:FDAU.ENA
-ENA[1] <= FDAU:FDAU.ENA
-ENA[2] <= FDAU:FDAU.ENA
-ENA[3] <= FDAU:FDAU.ENA
-CNV <= FDAU:FDAU.CNV
-SDI <= FDAU:FDAU.SDI
-CLK <= FDAU:FDAU.CLK
+ADDR[0] << FDAU:FDAU.ADDR
+ADDR[1] << FDAU:FDAU.ADDR
+ADDR[2] << FDAU:FDAU.ADDR
+ADDR[3] << FDAU:FDAU.ADDR
+ENA[0] << FDAU:FDAU.ENA
+ENA[1] << FDAU:FDAU.ENA
+ENA[2] << FDAU:FDAU.ENA
+ENA[3] << FDAU:FDAU.ENA
+CNV << FDAU:FDAU.CNV
+SDI << FDAU:FDAU.SDI
+CLK << FDAU:FDAU.CLK
 SDO => comb.DATAIN
-TX_data <= FDAU:FDAU.TX
-CC_tx <= Get_All_and_Trans_TOP:Get_All_and_Trans_TOP_UNIT.CC_tx
+TX_data << FDAU:FDAU.TX
+CC_tx << Get_All_and_Trans_TOP:Get_All_and_Trans_TOP_UNIT.CC_tx
 line_A1 => comb.DATAIN
 line_B1 => comb.DATAIN
 line_A2 => line_A2~0.DATAIN
@@ -41,9 +41,9 @@ line_A51 => line_A51~0.DATAIN
 line_B51 => line_B51~0.DATAIN
 line_A61 => line_A61~0.DATAIN
 line_B61 => line_B61~0.DATAIN
-LED_FPGA <= RTC:RTCUnit.LED_FPGA
-div <= <VCC>
-mul <= <GND>
+LED_FPGA << RTC:RTCUnit.LED_FPGA
+div << <VCC>
+mul << <GND>
 
 
 |aTOP_ARCTIUM|RTC:RTCUnit
@@ -916,7 +916,7 @@ clk_1MHz => clk_1MHz.IN1
 clk_5Mhz => clk_5Mhz.IN1
 reset => reset.IN3
 msec => msec.IN2
-sec => sec.IN2
+sec => sec.IN3
 ADDR[0] <= ADAU:ADAU_FRAME.ADDR
 ADDR[1] <= ADAU:ADAU_FRAME.ADDR
 ADDR[2] <= ADAU:ADAU_FRAME.ADDR
@@ -1730,6 +1730,7 @@ signal_sync <= sync[1].DB_MAX_OUTPUT_PORT_TYPE
 clock => clock.IN6
 inp_clk => inp_clk.IN6
 reset => reset.IN6
+sec => sec.IN6
 line_A1 => line_A1.IN1
 line_B1 => line_B1.IN1
 line_A2 => line_A2.IN1
@@ -1923,6 +1924,7 @@ reset => counter[4].ACLR
 reset => counter[5].ACLR
 reset => counter[6].ACLR
 reset => counter[7].ACLR
+sec => zero.IN1
 line_A => line_A.IN1
 line_B => line_B.IN1
 rdaddress[0] => rdaddress[0].IN1
@@ -1930,22 +1932,22 @@ rdaddress[1] => rdaddress[1].IN1
 rdaddress[2] => rdaddress[2].IN1
 rdaddress[3] => rdaddress[3].IN1
 rdaddress[4] => rdaddress[4].IN1
-q[0] <= rz_ram:rz_ram_unit.q
-q[1] <= rz_ram:rz_ram_unit.q
-q[2] <= rz_ram:rz_ram_unit.q
-q[3] <= rz_ram:rz_ram_unit.q
-q[4] <= rz_ram:rz_ram_unit.q
-q[5] <= rz_ram:rz_ram_unit.q
-q[6] <= rz_ram:rz_ram_unit.q
-q[7] <= rz_ram:rz_ram_unit.q
-q[8] <= rz_ram:rz_ram_unit.q
-q[9] <= rz_ram:rz_ram_unit.q
-q[10] <= rz_ram:rz_ram_unit.q
-q[11] <= rz_ram:rz_ram_unit.q
-q[12] <= rz_ram:rz_ram_unit.q
-q[13] <= rz_ram:rz_ram_unit.q
-q[14] <= rz_ram:rz_ram_unit.q
-q[15] <= rz_ram:rz_ram_unit.q
+q[0] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[1] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[2] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[3] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[4] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[5] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[6] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[7] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[8] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[9] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[10] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[11] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[12] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[13] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[14] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[15] <= q.DB_MAX_OUTPUT_PORT_TYPE
 
 
 |aTOP_ARCTIUM|FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|alt_429:ARINC_429_1|Sync_input:Sync_input_line_A
@@ -2464,6 +2466,7 @@ reset => counter[4].ACLR
 reset => counter[5].ACLR
 reset => counter[6].ACLR
 reset => counter[7].ACLR
+sec => zero.IN1
 line_A => line_A.IN1
 line_B => line_B.IN1
 rdaddress[0] => rdaddress[0].IN1
@@ -2471,22 +2474,22 @@ rdaddress[1] => rdaddress[1].IN1
 rdaddress[2] => rdaddress[2].IN1
 rdaddress[3] => rdaddress[3].IN1
 rdaddress[4] => rdaddress[4].IN1
-q[0] <= rz_ram:rz_ram_unit.q
-q[1] <= rz_ram:rz_ram_unit.q
-q[2] <= rz_ram:rz_ram_unit.q
-q[3] <= rz_ram:rz_ram_unit.q
-q[4] <= rz_ram:rz_ram_unit.q
-q[5] <= rz_ram:rz_ram_unit.q
-q[6] <= rz_ram:rz_ram_unit.q
-q[7] <= rz_ram:rz_ram_unit.q
-q[8] <= rz_ram:rz_ram_unit.q
-q[9] <= rz_ram:rz_ram_unit.q
-q[10] <= rz_ram:rz_ram_unit.q
-q[11] <= rz_ram:rz_ram_unit.q
-q[12] <= rz_ram:rz_ram_unit.q
-q[13] <= rz_ram:rz_ram_unit.q
-q[14] <= rz_ram:rz_ram_unit.q
-q[15] <= rz_ram:rz_ram_unit.q
+q[0] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[1] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[2] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[3] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[4] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[5] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[6] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[7] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[8] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[9] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[10] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[11] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[12] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[13] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[14] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[15] <= q.DB_MAX_OUTPUT_PORT_TYPE
 
 
 |aTOP_ARCTIUM|FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|alt_429:ARINC_429_2|Sync_input:Sync_input_line_A
@@ -3005,6 +3008,7 @@ reset => counter[4].ACLR
 reset => counter[5].ACLR
 reset => counter[6].ACLR
 reset => counter[7].ACLR
+sec => zero.IN1
 line_A => line_A.IN1
 line_B => line_B.IN1
 rdaddress[0] => rdaddress[0].IN1
@@ -3012,22 +3016,22 @@ rdaddress[1] => rdaddress[1].IN1
 rdaddress[2] => rdaddress[2].IN1
 rdaddress[3] => rdaddress[3].IN1
 rdaddress[4] => rdaddress[4].IN1
-q[0] <= rz_ram:rz_ram_unit.q
-q[1] <= rz_ram:rz_ram_unit.q
-q[2] <= rz_ram:rz_ram_unit.q
-q[3] <= rz_ram:rz_ram_unit.q
-q[4] <= rz_ram:rz_ram_unit.q
-q[5] <= rz_ram:rz_ram_unit.q
-q[6] <= rz_ram:rz_ram_unit.q
-q[7] <= rz_ram:rz_ram_unit.q
-q[8] <= rz_ram:rz_ram_unit.q
-q[9] <= rz_ram:rz_ram_unit.q
-q[10] <= rz_ram:rz_ram_unit.q
-q[11] <= rz_ram:rz_ram_unit.q
-q[12] <= rz_ram:rz_ram_unit.q
-q[13] <= rz_ram:rz_ram_unit.q
-q[14] <= rz_ram:rz_ram_unit.q
-q[15] <= rz_ram:rz_ram_unit.q
+q[0] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[1] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[2] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[3] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[4] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[5] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[6] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[7] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[8] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[9] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[10] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[11] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[12] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[13] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[14] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[15] <= q.DB_MAX_OUTPUT_PORT_TYPE
 
 
 |aTOP_ARCTIUM|FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|alt_429:ARINC_429_3|Sync_input:Sync_input_line_A
@@ -3546,6 +3550,7 @@ reset => counter[4].ACLR
 reset => counter[5].ACLR
 reset => counter[6].ACLR
 reset => counter[7].ACLR
+sec => zero.IN1
 line_A => line_A.IN1
 line_B => line_B.IN1
 rdaddress[0] => rdaddress[0].IN1
@@ -3553,22 +3558,22 @@ rdaddress[1] => rdaddress[1].IN1
 rdaddress[2] => rdaddress[2].IN1
 rdaddress[3] => rdaddress[3].IN1
 rdaddress[4] => rdaddress[4].IN1
-q[0] <= rz_ram:rz_ram_unit.q
-q[1] <= rz_ram:rz_ram_unit.q
-q[2] <= rz_ram:rz_ram_unit.q
-q[3] <= rz_ram:rz_ram_unit.q
-q[4] <= rz_ram:rz_ram_unit.q
-q[5] <= rz_ram:rz_ram_unit.q
-q[6] <= rz_ram:rz_ram_unit.q
-q[7] <= rz_ram:rz_ram_unit.q
-q[8] <= rz_ram:rz_ram_unit.q
-q[9] <= rz_ram:rz_ram_unit.q
-q[10] <= rz_ram:rz_ram_unit.q
-q[11] <= rz_ram:rz_ram_unit.q
-q[12] <= rz_ram:rz_ram_unit.q
-q[13] <= rz_ram:rz_ram_unit.q
-q[14] <= rz_ram:rz_ram_unit.q
-q[15] <= rz_ram:rz_ram_unit.q
+q[0] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[1] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[2] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[3] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[4] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[5] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[6] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[7] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[8] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[9] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[10] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[11] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[12] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[13] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[14] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[15] <= q.DB_MAX_OUTPUT_PORT_TYPE
 
 
 |aTOP_ARCTIUM|FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|alt_429:ARINC_429_4|Sync_input:Sync_input_line_A
@@ -4087,6 +4092,7 @@ reset => counter[4].ACLR
 reset => counter[5].ACLR
 reset => counter[6].ACLR
 reset => counter[7].ACLR
+sec => zero.IN1
 line_A => line_A.IN1
 line_B => line_B.IN1
 rdaddress[0] => rdaddress[0].IN1
@@ -4094,22 +4100,22 @@ rdaddress[1] => rdaddress[1].IN1
 rdaddress[2] => rdaddress[2].IN1
 rdaddress[3] => rdaddress[3].IN1
 rdaddress[4] => rdaddress[4].IN1
-q[0] <= rz_ram:rz_ram_unit.q
-q[1] <= rz_ram:rz_ram_unit.q
-q[2] <= rz_ram:rz_ram_unit.q
-q[3] <= rz_ram:rz_ram_unit.q
-q[4] <= rz_ram:rz_ram_unit.q
-q[5] <= rz_ram:rz_ram_unit.q
-q[6] <= rz_ram:rz_ram_unit.q
-q[7] <= rz_ram:rz_ram_unit.q
-q[8] <= rz_ram:rz_ram_unit.q
-q[9] <= rz_ram:rz_ram_unit.q
-q[10] <= rz_ram:rz_ram_unit.q
-q[11] <= rz_ram:rz_ram_unit.q
-q[12] <= rz_ram:rz_ram_unit.q
-q[13] <= rz_ram:rz_ram_unit.q
-q[14] <= rz_ram:rz_ram_unit.q
-q[15] <= rz_ram:rz_ram_unit.q
+q[0] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[1] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[2] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[3] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[4] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[5] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[6] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[7] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[8] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[9] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[10] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[11] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[12] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[13] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[14] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[15] <= q.DB_MAX_OUTPUT_PORT_TYPE
 
 
 |aTOP_ARCTIUM|FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|alt_429:ARINC_429_5|Sync_input:Sync_input_line_A
@@ -4628,6 +4634,7 @@ reset => counter[4].ACLR
 reset => counter[5].ACLR
 reset => counter[6].ACLR
 reset => counter[7].ACLR
+sec => zero.IN1
 line_A => line_A.IN1
 line_B => line_B.IN1
 rdaddress[0] => rdaddress[0].IN1
@@ -4635,22 +4642,22 @@ rdaddress[1] => rdaddress[1].IN1
 rdaddress[2] => rdaddress[2].IN1
 rdaddress[3] => rdaddress[3].IN1
 rdaddress[4] => rdaddress[4].IN1
-q[0] <= rz_ram:rz_ram_unit.q
-q[1] <= rz_ram:rz_ram_unit.q
-q[2] <= rz_ram:rz_ram_unit.q
-q[3] <= rz_ram:rz_ram_unit.q
-q[4] <= rz_ram:rz_ram_unit.q
-q[5] <= rz_ram:rz_ram_unit.q
-q[6] <= rz_ram:rz_ram_unit.q
-q[7] <= rz_ram:rz_ram_unit.q
-q[8] <= rz_ram:rz_ram_unit.q
-q[9] <= rz_ram:rz_ram_unit.q
-q[10] <= rz_ram:rz_ram_unit.q
-q[11] <= rz_ram:rz_ram_unit.q
-q[12] <= rz_ram:rz_ram_unit.q
-q[13] <= rz_ram:rz_ram_unit.q
-q[14] <= rz_ram:rz_ram_unit.q
-q[15] <= rz_ram:rz_ram_unit.q
+q[0] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[1] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[2] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[3] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[4] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[5] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[6] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[7] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[8] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[9] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[10] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[11] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[12] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[13] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[14] <= q.DB_MAX_OUTPUT_PORT_TYPE
+q[15] <= q.DB_MAX_OUTPUT_PORT_TYPE
 
 
 |aTOP_ARCTIUM|FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|alt_429:ARINC_429_6|Sync_input:Sync_input_line_A
@@ -7731,20 +7738,6 @@ FLIGHT_out[31] => cc_in.DATAA
 
 
 |aTOP_ARCTIUM|Get_All_and_Trans_TOP:Get_All_and_Trans_TOP_UNIT|sound_store4:sound_storeUnit
-reset => bytes_written[0].ACLR
-reset => bytes_written[1].ACLR
-reset => bytes_written[2].ACLR
-reset => bytes_written[3].ACLR
-reset => bytes_written[4].ACLR
-reset => bytes_written[5].ACLR
-reset => bytes_written[6].ACLR
-reset => bytes_written[7].ACLR
-reset => bytes_written[8].ACLR
-reset => bytes_written[9].ACLR
-reset => bytes_written[10].ACLR
-reset => bytes_written[11].ACLR
-reset => bytes_written[12].ACLR
-reset => bytes_written[13].ACLR
 reset => wraddress[0].ACLR
 reset => wraddress[1].ACLR
 reset => wraddress[2].ACLR
@@ -7784,7 +7777,49 @@ reset => bit_length[3].ACLR
 reset => bit_length[4].ACLR
 reset => bit_length[5].ACLR
 reset => state~8.DATAIN
-rst => ~NO_FANOUT~
+rst => wraddress.OUTPUTSELECT
+rst => wraddress.OUTPUTSELECT
+rst => wraddress.OUTPUTSELECT
+rst => wraddress.OUTPUTSELECT
+rst => wraddress.OUTPUTSELECT
+rst => wraddress.OUTPUTSELECT
+rst => wraddress.OUTPUTSELECT
+rst => wraddress.OUTPUTSELECT
+rst => wraddress.OUTPUTSELECT
+rst => wraddress.OUTPUTSELECT
+rst => wraddress.OUTPUTSELECT
+rst => rx_full.OUTPUTSELECT
+rst => state.OUTPUTSELECT
+rst => state.OUTPUTSELECT
+rst => state.OUTPUTSELECT
+rst => state.OUTPUTSELECT
+rst => state.OUTPUTSELECT
+rst => data.OUTPUTSELECT
+rst => data.OUTPUTSELECT
+rst => data.OUTPUTSELECT
+rst => data.OUTPUTSELECT
+rst => data.OUTPUTSELECT
+rst => data.OUTPUTSELECT
+rst => data.OUTPUTSELECT
+rst => data.OUTPUTSELECT
+rst => wren.OUTPUTSELECT
+rst => bit_length[5].ENA
+rst => bit_length[4].ENA
+rst => bit_length[3].ENA
+rst => bit_length[2].ENA
+rst => bit_length[1].ENA
+rst => bit_length[0].ENA
+rst => bit[2].ENA
+rst => bit[1].ENA
+rst => bit[0].ENA
+rst => r_byte[7].ENA
+rst => r_byte[6].ENA
+rst => r_byte[5].ENA
+rst => r_byte[4].ENA
+rst => r_byte[3].ENA
+rst => r_byte[2].ENA
+rst => r_byte[1].ENA
+rst => r_byte[0].ENA
 clock => clock.IN1
 Rx => state.OUTPUTSELECT
 Rx => state.OUTPUTSELECT

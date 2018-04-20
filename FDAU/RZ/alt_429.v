@@ -15,6 +15,7 @@ module alt_429 (
 clock,
 inp_clk,
 reset,
+sec,
 line_A,
 line_B,
 
@@ -26,6 +27,7 @@ q
 	input wire	clock,
 					inp_clk, 
 					reset, 
+					sec,
 					line_A, line_B;
 					
 	input wire	[4:0]  rdaddress;
@@ -174,7 +176,16 @@ always @ (*) begin
 end
 
 
+reg zero;
 
+always @* begin
+	if (sec) 
+		zero = 1'b1;
+	if (wren_ena)	
+		zero = 1'b0;	
+end
+
+assign q = zero ? 16'b0 : q_r;
 //
 //
 //reg [ 7:0] 	t_cnt;
@@ -234,7 +245,7 @@ end
 
 //--------------------------------------------------------------------------------------------------------//
 
-
+ wire [15:0] q_r;
 rz_ram 
 rz_ram_unit(
 	 .data			(c_data), 		 
@@ -243,7 +254,7 @@ rz_ram_unit(
 	 .wraddress		(c_addr),	//[3:0]	
 	 .wrclock		(clock), 	// clock
 	 .wren			(wren),
-	 .q				(q)				//[15:0]
+	 .q				(q_r)				//[15:0]
 );
 
 	
