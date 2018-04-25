@@ -78,7 +78,7 @@ output reg 	LED_FPGA;
 parameter 	secs_delay 	= 10, 
 				clk_persec 	= 400_000,	// main clk for SEC & MSEC
 				every_sec	= 25_000, 	// clk_persec/every_sec = 400_000 / 25_000 = 16
-				delay_low	= 3;			// clocks per HIGH SEC & MSEC
+				delay_low	= 3;		// clocks per HIGH SEC & MSEC
 			
 			
 /*

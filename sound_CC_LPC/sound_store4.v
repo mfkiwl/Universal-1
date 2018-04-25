@@ -79,12 +79,12 @@ always @ (posedge reset, posedge clock )begin
 		
 	end	
 	
-	else if (rst) begin
-		wraddress		<= 11'b0;
-		bytes_written  <= 14'b0;
-		rx_full			<= 1'b0;	
-		//data 				<= 16'b0;
-	end
+//	else if (rst) begin
+//		wraddress		<= 11'b0;
+//		bytes_written  <= 14'b0;
+//		rx_full			<= 1'b0;	
+//		//data 				<= 16'b0;
+//	end
 	
 	else begin
 	 
@@ -175,15 +175,15 @@ always @ (posedge reset, posedge clock )begin
 				 
 					bit_length 	<= 6'b0;	
 					state 		<= SAMPLE;
-					wraddress	<= wraddress + 10'b1;	
 					
 //					if (word) 					
-//					if (bytes_written == 2000) begin
-//						wraddress		<= 11'b0;
-//						bytes_written  <= 14'b0;
-//					end	
+					if (bytes_written == 2000) begin
+						wraddress		<= 11'b0;
+						bytes_written  <= 14'b0;
+					end	
 					//	rx_full <= 1'b1;
-//					else 					
+					else 
+						wraddress	<= wraddress + 10'b1;						
 				end
 				
 				else begin

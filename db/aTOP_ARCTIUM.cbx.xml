@@ -17,14 +17,24 @@
 		<CBX_INST_ENTRY INSTANCE_NAME="|aTOP_ARCTIUM|sld_signaltap:fifo|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|altsyncram:\stp_non_zero_ram_gen:stp_buffer_ram" CBX_FILE_NAME="altsyncram_ft14.tdf"/>
 		<CBX_INST_ENTRY INSTANCE_NAME="|aTOP_ARCTIUM|Get_All_and_Trans_TOP:Get_All_and_Trans_TOP_UNIT|CC_ram:CC_ramUnit|altsyncram:altsyncram_component" CBX_FILE_NAME="altsyncram_k8o1.tdf"/>
 		<CBX_INST_ENTRY INSTANCE_NAME="|aTOP_ARCTIUM|sld_signaltap:alt_RZ_db|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|sld_offload_buffer_mgr:\stp_non_zero_depth_offload_gen:stp_offload_buff_mgr_inst|LPM_COUNTER:status_advance_pointer_counter" CBX_FILE_NAME="cntr_afi.tdf"/>
+<<<<<<< HEAD
 		<CBX_INST_ENTRY INSTANCE_NAME="|aTOP_ARCTIUM|sld_signaltap:fifo|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|altdpram:\stp_non_zero_ram_gen:attribute_mem_gen:attribute_mem|lpm_mux:mux" CBX_FILE_NAME="mux_lrc.tdf"/>
 		<CBX_INST_ENTRY INSTANCE_NAME="|aTOP_ARCTIUM|sld_signaltap:fifo|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|sld_offload_buffer_mgr:\stp_non_zero_depth_offload_gen:stp_offload_buff_mgr_inst|LPM_COUNTER:\adv_point_3_and_more:advance_pointer_counter" CBX_FILE_NAME="cntr_ufi.tdf"/>
+=======
+		<CBX_INST_ENTRY INSTANCE_NAME="|aTOP_ARCTIUM|FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|alt_429:ARINC_429_5|rz_ram:rz_ram_unit|altsyncram:altsyncram_component" CBX_FILE_NAME="altsyncram_04k1.tdf"/>
+>>>>>>> parent of 9497e84... RZ to zero vhen inactiv
 		<CBX_INST_ENTRY INSTANCE_NAME="|aTOP_ARCTIUM|sld_signaltap:CC|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|altsyncram:\stp_non_zero_ram_gen:stp_buffer_ram" CBX_FILE_NAME="altsyncram_lt14.tdf"/>
 		<CBX_INST_ENTRY INSTANCE_NAME="|aTOP_ARCTIUM|sld_signaltap:fdau_debug|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|altsyncram:\stp_non_zero_ram_gen:stp_buffer_ram" CBX_FILE_NAME="altsyncram_ct14.tdf"/>
 		<CBX_INST_ENTRY INSTANCE_NAME="|aTOP_ARCTIUM|sld_signaltap:subfarame_dbg|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|sld_offload_buffer_mgr:\stp_non_zero_depth_offload_gen:stp_offload_buff_mgr_inst|LPM_COUNTER:status_advance_pointer_counter" CBX_FILE_NAME="cntr_8fi.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|aTOP_ARCTIUM|FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|alt_429:ARINC_429_6|rz_ram:rz_ram_unit|altsyncram:altsyncram_component" CBX_FILE_NAME="altsyncram_04k1.tdf"/>
 		<CBX_INST_ENTRY INSTANCE_NAME="|aTOP_ARCTIUM|sld_signaltap:CC|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|altdpram:\stp_non_zero_ram_gen:attribute_mem_gen:attribute_mem|lpm_mux:mux" CBX_FILE_NAME="mux_nrc.tdf"/>
 		<CBX_INST_ENTRY INSTANCE_NAME="|aTOP_ARCTIUM|sld_signaltap:CC|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|sld_offload_buffer_mgr:\stp_non_zero_depth_offload_gen:stp_offload_buff_mgr_inst|LPM_COUNTER:\adv_point_3_and_more:advance_pointer_counter" CBX_FILE_NAME="cntr_ofi.tdf"/>
+<<<<<<< HEAD
 		<CBX_INST_ENTRY INSTANCE_NAME="|aTOP_ARCTIUM|sld_signaltap:S_RX|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|sld_offload_buffer_mgr:\stp_non_zero_depth_offload_gen:stp_offload_buff_mgr_inst|LPM_COUNTER:read_pointer_counter" CBX_FILE_NAME="cntr_v7j.tdf"/>
+=======
+		<CBX_INST_ENTRY INSTANCE_NAME="|aTOP_ARCTIUM|sld_signaltap:alt_RZ_db|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|altdpram:\stp_non_zero_ram_gen:attribute_mem_gen:attribute_mem|lpm_decode:wdecoder" CBX_FILE_NAME="decode_4uf.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|aTOP_ARCTIUM|sld_signaltap:alt_RZ_db|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|sld_offload_buffer_mgr:\stp_non_zero_depth_offload_gen:stp_offload_buff_mgr_inst|LPM_COUNTER:status_read_pointer_counter" CBX_FILE_NAME="cntr_p1j.tdf"/>
+>>>>>>> parent of 9497e84... RZ to zero vhen inactiv
 		<CBX_INST_ENTRY INSTANCE_NAME="|aTOP_ARCTIUM|sld_signaltap:fdau_debug|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|altdpram:\stp_non_zero_ram_gen:attribute_mem_gen:attribute_mem|lpm_mux:mux" CBX_FILE_NAME="mux_nrc.tdf"/>
 		<CBX_INST_ENTRY INSTANCE_NAME="|aTOP_ARCTIUM|sld_signaltap:fdau_debug|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|sld_offload_buffer_mgr:\stp_non_zero_depth_offload_gen:stp_offload_buff_mgr_inst|LPM_COUNTER:\adv_point_3_and_more:advance_pointer_counter" CBX_FILE_NAME="cntr_lfi.tdf"/>
 		<CBX_INST_ENTRY INSTANCE_NAME="|aTOP_ARCTIUM|sld_signaltap:S_RX|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|sld_offload_buffer_mgr:\stp_non_zero_depth_offload_gen:stp_offload_buff_mgr_inst|LPM_COUNTER:status_advance_pointer_counter" CBX_FILE_NAME="cntr_3fi.tdf"/>
@@ -49,10 +59,13 @@
 		<CBX_INST_ENTRY INSTANCE_NAME="|aTOP_ARCTIUM|sld_signaltap:S_RX|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|altdpram:\stp_non_zero_ram_gen:attribute_mem_gen:attribute_mem|lpm_mux:mux" CBX_FILE_NAME="mux_grc.tdf"/>
 		<CBX_INST_ENTRY INSTANCE_NAME="|aTOP_ARCTIUM|sld_signaltap:S_RX|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|sld_offload_buffer_mgr:\stp_non_zero_depth_offload_gen:stp_offload_buff_mgr_inst|LPM_COUNTER:\adv_point_3_and_more:advance_pointer_counter" CBX_FILE_NAME="cntr_tfi.tdf"/>
 		<CBX_INST_ENTRY INSTANCE_NAME="|aTOP_ARCTIUM|sld_signaltap:subfarame_dbg|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|sld_offload_buffer_mgr:\stp_non_zero_depth_offload_gen:stp_offload_buff_mgr_inst|LPM_COUNTER:read_pointer_counter" CBX_FILE_NAME="cntr_c5j.tdf"/>
+<<<<<<< HEAD
 		<CBX_INST_ENTRY INSTANCE_NAME="|aTOP_ARCTIUM|FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|alt_429:ARINC_429_5|rz_ram:rz_ram_unit|altsyncram:altsyncram_component" CBX_FILE_NAME="altsyncram_04k1.tdf"/>
 		<CBX_INST_ENTRY INSTANCE_NAME="|aTOP_ARCTIUM|FDAU:FDAU|RZ_LINE_TOP:RZ_LINE_TOP_Unit|alt_429:ARINC_429_6|rz_ram:rz_ram_unit|altsyncram:altsyncram_component" CBX_FILE_NAME="altsyncram_04k1.tdf"/>
 		<CBX_INST_ENTRY INSTANCE_NAME="|aTOP_ARCTIUM|sld_signaltap:alt_RZ_db|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|altdpram:\stp_non_zero_ram_gen:attribute_mem_gen:attribute_mem|lpm_decode:wdecoder" CBX_FILE_NAME="decode_4uf.tdf"/>
 		<CBX_INST_ENTRY INSTANCE_NAME="|aTOP_ARCTIUM|sld_signaltap:alt_RZ_db|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|sld_offload_buffer_mgr:\stp_non_zero_depth_offload_gen:stp_offload_buff_mgr_inst|LPM_COUNTER:status_read_pointer_counter" CBX_FILE_NAME="cntr_p1j.tdf"/>
 		<CBX_INST_ENTRY INSTANCE_NAME="|aTOP_ARCTIUM|sld_signaltap:fifo|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|sld_offload_buffer_mgr:\stp_non_zero_depth_offload_gen:stp_offload_buff_mgr_inst|LPM_COUNTER:read_pointer_counter" CBX_FILE_NAME="cntr_c5j.tdf"/>
+=======
+>>>>>>> parent of 9497e84... RZ to zero vhen inactiv
 	</PROJECT>
 </LOG_ROOT>

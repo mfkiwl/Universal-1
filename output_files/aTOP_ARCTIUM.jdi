@@ -1,11 +1,15 @@
 <sld_project_info>
   <project>
+<<<<<<< HEAD
     <hash md5_digest_80b="873885e6874a94750b86"/>
+=======
+    <hash md5_digest_80b="092f56e346347d53f8b6"/>
+>>>>>>> parent of 9497e84... RZ to zero vhen inactiv
   </project>
   <file_info>
     <file device="EP3C10E144C8" path="aTOP_ARCTIUM.sof" usercode="0xFFFFFFFF"/>
   </file_info>
-  <hub_info hub_ir_width="10" ir_width="10" node_addr_width="3" node_count="6"/>
+  <hub_info hub_ir_width="10" ir_width="10" node_addr_width="3" node_count="5"/>
   <node_info>
     <node hpath="sld_signaltap:CC" instance_id="5" mfg_id="110" node_id="0" sld_node_info="0x30006E05" version="6">
       <parameters>
@@ -121,6 +125,7 @@
       <inputs/>
       <outputs/>
     </node>
+<<<<<<< HEAD
     <node hpath="sld_signaltap:alt_RZ_db" instance_id="7" mfg_id="110" node_id="0" sld_node_info="0x30006E07" version="6">
       <parameters>
         <parameter name="lpm_type" type="string" value="sld_signaltap"/>
@@ -178,6 +183,8 @@
       <inputs/>
       <outputs/>
     </node>
+=======
+>>>>>>> parent of 9497e84... RZ to zero vhen inactiv
     <node hpath="sld_signaltap:fdau_debug" instance_id="0" mfg_id="110" node_id="0" sld_node_info="0x30006E00" version="6">
       <parameters>
         <parameter name="lpm_type" type="string" value="sld_signaltap"/>
