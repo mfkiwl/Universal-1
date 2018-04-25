@@ -19,13 +19,12 @@ state.Delay 0 0 1 0 0 0 1
 state.NEXT_stp 0 1 0 0 0 0 1 
 state.STOP 1 0 0 0 0 0 1 
 
-State Machine - |aTOP_ARCTIUM|Get_All_and_Trans_TOP:Get_All_and_Trans_TOP_UNIT|sound_store4:sound_storeUnit|state
-Name state.STOP state.IDDLE state.DATA_BYTE state.SAMPLE state.PRE_STOP 
-state.SAMPLE 0 0 0 0 0 
-state.DATA_BYTE 0 0 1 1 0 
-state.IDDLE 0 1 0 1 0 
-state.STOP 1 0 0 1 0 
-state.PRE_STOP 0 0 0 1 1 
+State Machine - |aTOP_ARCTIUM|Get_All_and_Trans_TOP:Get_All_and_Trans_TOP_UNIT|sound_rcv:four_ch_sound|uart_rx:sound_rx|state_reg
+Name state_reg.stop state_reg.data state_reg.start state_reg.idle 
+state_reg.idle 0 0 0 0 
+state_reg.start 0 0 1 1 
+state_reg.data 0 1 0 1 
+state_reg.stop 1 0 0 1 
 
 State Machine - |aTOP_ARCTIUM|SUBFRAME_FORMER:SUBFRAME_FORMER_UNIT|state
 Name state.SUBFRAME state.PUT_SERIAL_2 state.PUT_SERIAL_1 state.CNT state.WAIT_LOW state.WAIT_CYCLE state.READ_DOP state.READ_MSRP state.READ_GPS state.READ_I2C state.IDDLE 

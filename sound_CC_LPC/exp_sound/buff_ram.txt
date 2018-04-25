@@ -1,0 +1,29 @@
+
+
+
+
+
+
+
+
+
+
+
+
+	input	  clock;
+	input	[31:0]  data;
+	input	[8:0]  rdaddress;
+	input	[8:0]  wraddress;
+	input	  wren;
+	output	[31:0]  q;
+
+sound_ram_fifo 
+four_sounds(
+	.clock		(),
+	.data		(),
+	.rdaddress	(),
+	.wraddress	(),
+	.wren		(),
+	.q			()
+);
+

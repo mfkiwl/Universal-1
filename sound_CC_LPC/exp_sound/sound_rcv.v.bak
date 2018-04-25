@@ -1,0 +1,75 @@
+module sound_rcv (
+
+input wire clk, rst, rx, msec
+
+input  wire 	[8:0]  	rdaddress,
+output wire		[31:0]	q
+);
+
+
+
+
+wire tick;
+
+mod_m_timer 
+#(.N(4),.M(3))
+sound_uart_timer(
+	 .clk	(clk),
+	 .rst	(rst),
+	 .tick	(tick)
+);
+
+
+wire [ 7:0] dout;
+wire rx_done_tick;
+
+uart_rx #(.DBIT(8), .SB_TICK(16))
+sound_rx(
+	 .clk(clk),
+	 .rst(rst),
+	 .rx(rx),
+	 .s_tick(tick),
+	 .rx_done_tick(rx_done_tick),
+	 .dout(dout)
+);
+
+
+	
+wire rd_ena;
+wire [7:0] r_data;
+
+wr_fifo 
+My_fifo
+(
+	.clk		(clk),
+	.reset		(rst),
+	.aclr		(frame),	
+	
+	.wr_in		(rx_done_tick),
+	.w_data		(dout),
+	
+	.rd_ena		(rd_ena),
+	.r_data		(r_data)
+);
+
+reg [10:0] wraddress;
+
+always @(posedge clk) begin
+	if (rst)
+		wraddress <= 10'b0;
+	else 
+		if (rd_ena)
+			wraddress <= wraddress + 10'b1;
+end
+
+
+s_Buff4 s_BuffUnit(
+	 .clock			(clk),
+	 .data			(r_data),			// [7:0] 
+	 .rdaddress		(rdaddress),	// [8:0]
+	 .wraddress		(wraddress),	// [10:0]
+	 .wren			(rd_ena),
+	 .q				(q)				// [15:0]
+);
+
+endmodule

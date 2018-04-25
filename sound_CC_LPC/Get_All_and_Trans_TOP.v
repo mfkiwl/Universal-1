@@ -139,19 +139,33 @@ end
 //	
 	wire 	[31:0]	s_data;	
 	reg 	[8:0] 	rd_SOUND;			
-	wire 	rx_full;//[13:0]  	bytes_written;
-	
-sound_store4
-sound_storeUnit(
-	 .reset			(~timer),	//reset),
-	 .rst				(frame_rdy),
-	 .clock			(clock),
-	  
-	 .Rx					(aud1),
-	 .rx_full			(rx_full),			// [13:0]	
-	 .rdaddress			(rd_SOUND),			// [8:0]
-	 .q					(s_data)				//	[15:0]	
+//	wire 	rx_full;//[13:0]  	bytes_written;
+//	
+//sound_store4
+//sound_storeUnit(
+//	 .reset			(~timer),	//reset),
+//	 .rst				(frame_rdy),
+//	 .clock			(clock),
+//	  
+//	 .Rx					(aud1),
+//	 .rx_full			(rx_full),			// [13:0]	
+//	 .rdaddress			(rd_SOUND),			// [8:0]
+//	 .q					(s_data)				//	[15:0]	
+//);
+//
+
+sound_rcv 
+four_ch_sound
+(
+	 .clk			(clock),
+	 .rst			(reset),
+	 .rx			(aud1),
+	 .msec		(msec),
+	 .start		(timer),
+	 .rdaddress	(rd_SOUND),
+	 .q			(s_data)	
 );
+
 	
 wire [31:0] sound; assign sound = s_data;
 	
